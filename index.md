@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Welcome to Eric Hare's Webpage
-tagline: Under Construction
+title: Hello World!
+tagline: Supporting tagline
 ---
 {% include JB/setup %}
 
@@ -9,6 +9,20 @@ Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.ht
 
 Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllbootstrap.com)
 
+## Update Author Attributes
+
+In `_config.yml` remember to specify your own data:
+    
+    title : My Blog =)
+    
+    author :
+      name : Name Lastname
+      email : blah@email.test
+      github : username
+      twitter : username
+
+The theme should reference these variables whenever needed.
+    
 
 {% highlight r %}
 summary(cars)
@@ -29,29 +43,12 @@ summary(cars)
 
 
 {% highlight r %}
+par(mar = c(2.5, 2.5, 0.5, 0.1), omi = c(0, 0, 0, 0))
 filled.contour(volcano)
 {% endhighlight %}
 
-![center](/figs/index/fig2.png) 
+![center](//home/erichare/Software/R/Website/figs/index/fig2.png) 
 
-
-## Update Author Attributes
-
-In `_config.yml` remember to specify your own data:
-    
-    title : My Blog =)
-    
-    author :
-      name : Name Lastname
-      email : blah@email.test
-      github : username
-      twitter : username
-
-The theme should reference these variables whenever needed.
-    
-'''
-summary(cars)
-'''
 
 ## Sample Posts
 
