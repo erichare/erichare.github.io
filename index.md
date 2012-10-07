@@ -47,7 +47,7 @@ par(mar = c(2.5, 2.5, 0.5, 0.1), omi = c(0, 0, 0, 0))
 filled.contour(volcano)
 {% endhighlight %}
 
-![center](//home/erichare/Software/R/Website/figs/index/fig2.png) 
+![center](/figs/index/fig2.png) 
 
 
 ## Sample Posts
