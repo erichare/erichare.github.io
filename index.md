@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Hello World!
-tagline: Supporting tagline
+title: Welcome to Eric Hare's Webpage
+tagline: Under Construction
 ---
 {% include JB/setup %}
 
