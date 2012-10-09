@@ -16,7 +16,7 @@ Steps taken to build this post are as follows:
 
 ### Step 1
 
-Create a Jekyll-Boostrap blog if you don't already have one. 
+Create a Jekyll-Boostrap blog if you don't already have one. But I do!
 A brief tutorial on building this blog is available 
 [here](/lessons/2012/05/30/jekyll-build-on-windows/).
 
