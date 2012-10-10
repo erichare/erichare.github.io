@@ -87,7 +87,7 @@ h4.one span
     font-family: 'nevis',Arial,sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #9c1a1a;
+    color: #fff;
     font-size: 38px;
 }
 .logo h4
