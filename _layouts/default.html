@@ -9,13 +9,13 @@
     <title>EricHare.net - {{ page.title }}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="{{ page.root }}css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="{{ page.root }}css/sticky-footer-navbar.css" rel="stylesheet">
     
     <!-- syntax highlighting CSS -->
-    <link href="css/syntax.css" rel="stylesheet">
+    <link href="{{ page.root }}css/syntax.css" rel="stylesheet">
   </head>
 
   <body>
@@ -34,7 +34,7 @@
           <a class="navbar-brand" href="index.html">Eric Hare</a>
           <div class="nav-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="index.html">Home</a></li>
+              <li class="active"><a href="{{ page.root }}index.html">Home</a></li>
               <li><a href="#resume">Resume/CV</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
@@ -47,7 +47,7 @@
               </li>
               <li><a href="#teaching">Teaching</a></li>
               <li><a href="#coursework">Classes</a></li>
-              <li><a href="blog.html">Blog</a></li>
+              <li><a href="{{ page.root }}blog.html">Blog</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -71,8 +71,8 @@
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
-    <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ page.root }}js/jquery-1.10.2.min.js"></script>
+    <script src="{{ page.root }}js/bootstrap.min.js"></script>
     <script> 
     	$(document).ready(function(){
 			var str=location.href.toLowerCase();
