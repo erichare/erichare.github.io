@@ -47,7 +47,7 @@
               </li>
               <li><a href="#teaching">Teaching</a></li>
               <li><a href="#coursework">Classes</a></li>
-              <li><a href="{{ page.root }}blog.html">Blog</a></li>
+              <li class="jekyll"><a href="{{ page.root }}blog.html">Blog</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -77,9 +77,12 @@
     	$(document).ready(function(){
 			var str=location.href.toLowerCase();
 			$(".nav li a").each(function() {
-				if (str.indexOf(this.href.toLowerCase()) > -1 || str.indexOf("jekyll") > -1) {
+				if (str.indexOf(this.href.toLowerCase()) > -1) {
  					$("li.active").removeClass("active");
 					$(this).parent().addClass("active");
+				} else if (str.indexOf("jekyll") > -1) {
+				    $("li.active").removeClass("active");
+					$("li.jekyll").addClass("active");
 				}
 			});
  		})
