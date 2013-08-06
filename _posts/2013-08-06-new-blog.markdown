@@ -7,11 +7,6 @@ categories: jekyll
 
 I've created a new site and blog based on HTML5/Twitter Bootstrap/Jekyll.  Still learning, but I do love the code highlighting that is included!
 
-You'll find this post in your `_posts` directory - edit this post and re-build (or run with the `-w` switch) to see your changes!
-To add new posts, simply add a file in the `_posts` directory that follows the convention: YYYY-MM-DD-name-of-post.ext.
-
-Jekyll also offers powerful support for code snippets:
-
 {% highlight r %}
 # NOTE: Commenting out the old code to parse the website since the WEBSITE IS DOWN
 
