@@ -1,107 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>EricHare.net - {{ page.title }}</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="{{ page.root }}css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{{ page.root }}css/sticky-footer-navbar.css" rel="stylesheet">
-    
-    <!-- syntax highlighting CSS -->
-    <link href="{{ page.root }}css/syntax.css" rel="stylesheet">
-  </head>
-
-  <body>
-
-    <!-- Wrap all page content here -->
-    <div id="wrap">
-
-      <!-- Fixed navbar -->
-      <div class="navbar navbar-fixed-top">
-        <div class="container">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{{ page.root }}index.html">Eric Hare</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="{{ page.root }}index.html">Home</a></li>
-              <li><a href="#resume">Resume/CV</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Pelica</a></li>
-                  <li><a href="#">Forecast Analysis</a></li>
-                  <li><a href="#">Election 2012</a></li>
-                  <li><a href="#">Data Expo 2013</a></li>
-                </ul>
-              </li>
-              <li><a href="#teaching">Teaching</a></li>
-              <li><a href="#coursework">Classes</a></li>
-              <li class="jekyll"><a href="{{ page.root }}blog.html">Blog</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <title>EricHare.net - {{ page.title }}</title>
+        
+        <!-- Bootstrap core CSS -->
+        <link href="{{ page.root }}css/bootstrap.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{{ page.root }}css/sticky-footer-navbar.css" rel="stylesheet">
+        <!-- syntax highlighting CSS -->
+        <link href="{{ page.root }}css/syntax.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Wrap all page content here -->
+        <div id="wrap">
+            <!-- Fixed navbar -->
+            <div class="navbar navbar-fixed-top">
+                <div class="container">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ page.root }}index.html">Eric Hare</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="{{ page.root }}index.html">Home</a></li>
+                            <li><a href="#resume">Resume/CV</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Pelica</a></li>
+                                    <li><a href="#">Forecast Analysis</a></li>
+                                    <li><a href="#">Election 2012</a></li>
+                                    <li><a href="#">Data Expo 2013</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#teaching">Teaching</a></li>
+                            <li><a href="#coursework">Classes</a></li>
+                            <li class="jekyll"><a href="{{ page.root }}blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+            <!-- Begin page content -->
+            <div class="container">
+                <div class="page-header">
+                    <h1>{{ page.title }}</h1>
+                </div>
+                {{ content }}
+                
+                {% if page.comments %}
+            	<div id="disqus_thread"></div>
+            	<script type="text/javascript">
+                	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                	var disqus_shortname = 'erichare'; // required: replace example with your forum shortname
+                
+                	/* * * DON'T EDIT BELOW THIS LINE * * */
+                	(function() {
+                  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                	})();
+            	</script>
+            	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            	{% endif %} 
+            </div>
         </div>
-      </div>
-
-      <!-- Begin page content -->
-    <div class="container">
-    	<div class="page-header">
-        	<h1>{{ page.title }}</h1>
+        
+        <div id="footer">
+            <div class="container">
+                <p class="text-muted credit">Powered by <a href="http://pages.github.com">GitHub Pages</a></p>
+            </div>
         </div>
-        	{{ content }}
-        </div>
-        {% if page.comments %}
-    		<div id="disqus_thread"></div>
-    		<script type="text/javascript">
-        		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        		var disqus_shortname = 'erichare'; // required: replace example with your forum shortname
-
-        		/* * * DON'T EDIT BELOW THIS LINE * * */
-        		(function() {
-            		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        		})();
-    		</script>
-    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    	{% endif %} 
-    </div>
-
-    <div id="footer">
-      <div class="container">
-        <p class="text-muted credit">Powered by <a href="http://pages.github.com">GitHub Pages</a></p>
-      </div>
-    </div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <script src="{{ page.root }}js/jquery-1.10.2.min.js"></script>
-    <script src="{{ page.root }}js/bootstrap.min.js"></script>
-    <script> 
-    	$(document).ready(function(){
-			var str=location.href.toLowerCase();
-			$(".nav li a").each(function() {
-				if (str.indexOf("jekyll") > -1) {
-				    $("li.active").removeClass("active");
-					$("li.jekyll").addClass("active");
-				} else if (str.indexOf(this.href.toLowerCase()) > -1) {
- 					$("li.active").removeClass("active");
-					$(this).parent().addClass("active");
-				}
-			});
- 		})
-    </script>
-  </body>
+        
+        <!-- Bootstrap core JavaScript ================================================== -->
+        <script src="{{ page.root }}js/jquery-1.10.2.min.js"></script>
+        <script src="{{ page.root }}js/bootstrap.min.js"></script>
+        
+        <script> 
+            $(document).ready(function(){
+            var str=location.href.toLowerCase();
+            $(".nav li a").each(function() {
+            if (str.indexOf("jekyll") > -1) {
+               $("li.active").removeClass("active");
+            $("li.jekyll").addClass("active");
+            } else if (str.indexOf(this.href.toLowerCase()) > -1) {
+            	$("li.active").removeClass("active");
+            $(this).parent().addClass("active");
+            }
+            });
+            })
+        </script>
+    </body>
 </html>
