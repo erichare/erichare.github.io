@@ -30,7 +30,13 @@
                     <div class="nav-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="{{ page.root }}index.html">Home</a></li>
-                            <li><a href="#resume">Resume/CV</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Resume/CV <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ page.root }}files/EricHare-Resume.pdf">Resume</a></li>
+                                    <li><a href="{{ page.root }}files/EricHare-CV.pdf">CV</a></li>
+                                </ul>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
