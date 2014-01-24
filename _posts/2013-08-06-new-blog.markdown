@@ -2,7 +2,7 @@
 layout: post
 title:  "New blog"
 date:   2013-08-06 16:42:23
-categories: jekyll
+categories: blog
 ---
 
 I've created a new site and blog based on HTML5/Twitter Bootstrap/Jekyll.  Still learning, but I do love the code highlighting that is included!
