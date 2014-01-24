@@ -6,18 +6,10 @@ comments: true
 
 <div id="posts" class="page">
 	<div class="page-container">
-		<div class="pageheader">
-			<div class="headercontent">
-				<div class="section-container">
-										
-					<h2 class="meta">{{ page.date | date_to_string }}</h2>
-
-					<div class="post">
-					{{ content }}
-					</div>
-					
-				</div>
-			</div>
+		<p class="meta">{{ page.date | date_to_string }}</p>
+		
+		<div class="post">
+			{{ content }}
 		</div>
 	</div>
 </div>
