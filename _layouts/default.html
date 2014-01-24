@@ -63,50 +63,53 @@
                             </div>
                             
                         </div>
+                        
+                        {% assign current = page.url | downcase | split: '/' %}
+                        
                         <ul id="navigation">
-                            <li class="currentmenu">
+                            <li {% if current[1] == 'index' %}class="currentmenu"{% endif %}>
                               <a href="{{ page.root }}index.html">
                                 <div class="icon icon-user"></div>
                                 <div class="text">About Me</div>
                               </a>
                             </li>
                             
-                           <li>
+                           <li {% if current[1] == 'resume' %}class="currentmenu"{% endif %}>
                               <a href="{{ page.root }}resume.pdf">
                                   <div class="icon icon-download-alt"></div>
                                   <div class="text">Resume</div>
                               </a>
                             </li>
                             
-                            <li>
+                            <li {% if current[1] == 'projects' %}class="currentmenu"{% endif %}>
                               <a href="{{ page.root }}projects.html">
                                 <div class="icon icon-book"></div>
                                 <div class="text">Projects</div>
                               </a>
                             </li> 
                             
-                            <li>
+                            <li {% if current[1] == 'classes' %}class="currentmenu"{% endif %}>
                               <a href="{{ page.root }}classes.html">
                                 <div class="icon icon-edit"></div>
                                 <div class="text">Classes</div>
                               </a>
                             </li> 
 
-                            <li>
+                            <li {% if current[1] == 'teaching' %}class="currentmenu"{% endif %}>
                               <a href="{{ page.root }}teaching.html">
                                 <div class="icon icon-time"></div>
                                 <div class="text">Teaching</div>
                               </a>
                             </li>
 
-                            <li>
+                            <li {% if current[1] == 'blog' %}class="currentmenu"{% endif %}>
                               <a href="{{ page.root }}blog.html">
                                 <div class="icon icon-picture"></div>
                                 <div class="text">Blog</div>
                               </a>
                             </li>
 
-                            <li>
+                            <li {% if current[1] == 'contact' %}class="currentmenu"{% endif %}>
                               <a href="{{ page.root }}contact.html">
                                   <div class="icon icon-calendar"></div>
                                   <div class="text">Contact</div>
@@ -159,21 +162,6 @@
                 <p class="text-muted credit">Powered by <a href="http://pages.github.com">GitHub Pages</a></p>
             </div>
         </div>
-
-        <script> 
-            $(document).ready(function(){
-            var str=location.href.toLowerCase();
-            $(".nav li a").each(function() {
-            if (str.indexOf("jekyll") > -1) {
-               $("li.currentmenu").removeClass("currentmenu");
-            $("li.jekyll").addClass("currentmenu");
-            } else if (str.indexOf(this.href.toLowerCase()) > -1) {
-            	$("li.currentmenu").removeClass("currentmenu");
-            $(this).parent().addClass("currentmenu");
-            }
-            });
-            })
-        </script>
         
         <script>
   			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
