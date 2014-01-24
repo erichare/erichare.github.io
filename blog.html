@@ -3,10 +3,23 @@ layout: default
 title: Blog
 ---
 
-<div id="home">
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
+
+<div id="publications" class="page">
+	<div class="page-container">
+		<div class="pageheader">
+			<div class="headercontent">
+				<div class="section-container">
+					
+					<h2 class="title">Blog</h2>
+					
+					<ul class="posts">
+						{% for post in site.posts %}
+							<li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+						{% endfor %}
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
