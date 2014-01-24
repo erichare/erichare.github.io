@@ -165,11 +165,11 @@
             var str=location.href.toLowerCase();
             $(".nav li a").each(function() {
             if (str.indexOf("jekyll") > -1) {
-               $("li.active").removeClass("active");
-            $("li.jekyll").addClass("active");
+               $("li.currentmenu").removeClass("currentmenu");
+            $("li.jekyll").addClass("currentmenu");
             } else if (str.indexOf(this.href.toLowerCase()) > -1) {
-            	$("li.active").removeClass("active");
-            $(this).parent().addClass("active");
+            	$("li.currentmenu").removeClass("currentmenu");
+            $(this).parent().addClass("currentmenu");
             }
             });
             })
