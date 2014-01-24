@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Eric Hare's Webpage</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Eric Hare">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+        <meta name="description" content="A personal webpage for Eric Hare" />
+        <meta name="keywords" content="eric, hare, statistics, iowa, washington, computer, science" />
+
+        <link rel="shortcut icon" href="../favicon.ico">
+
+        <!--CSS styles-->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">  
+        <link rel="stylesheet" href="css/perfect-scrollbar-0.4.5.min.css">
+        <link rel="stylesheet" href="css/magnific-popup.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link id="theme-style" rel="stylesheet" href="css/styles/default.css">
+
+        
+        <!--/CSS styles-->
+        <!--Javascript files-->
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="js/TweenMax.min.js"></script>
+        <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+        <script type="text/javascript" src="js/jquery.carouFredSel-6.2.1-packed.js"></script>
+        
+        <script type="text/javascript" src="js/modernizr.custom.63321.js"></script>
+        <script type="text/javascript" src="js/jquery.dropdownit.js"></script>
+
+        <script type="text/javascript" src="js/jquery.stellar.min.js"></script>
+        <script type="text/javascript" src="js/ScrollToPlugin.min.js"></script>
+
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+
+        <script type="text/javascript" src="js/masonry.min.js"></script>
+
+        <script type="text/javascript" src="js/perfect-scrollbar-0.4.5.with-mousewheel.min.js"></script>
+
+        <script type="text/javascript" src="js/magnific-popup.js"></script>
+        <script type="text/javascript" src="js/custom.js"></script>
+
+        <!--/Javascript files-->
+
+    </head>
+    <body>
+
+        <div id="wrapper">
+            <a href="#sidebar" class="mobilemenu"><i class="icon-reorder"></i></a>
+
+            <div id="sidebar">
+                <div id="main-nav">
+                    <div id="nav-container">
+                        <div id="profile" class="clearfix">
+                            <div class="portrate hidden-xs"></div>
+                            <div class="title">
+                                <h2>Eric Hare</h2>
+                                <h3>Iowa State University</h3>
+                            </div>
+                            
+                        </div>
+                        <ul id="navigation">
+                            <li>
+                              <a href="index.html">
+                                <div class="icon icon-user"></div>
+                                <div class="text">About Me</div>
+                              </a>
+                            </li>
+                            
+                           <li>
+                              <a href="resume.pdf">
+                                  <div class="icon icon-download-alt"></div>
+                                  <div class="text">Resume</div>
+                              </a>
+                            </li>
+                            
+                            <li class="currentmenu">
+                              <a href="projects.html">
+                                <div class="icon icon-book"></div>
+                                <div class="text">Projects</div>
+                              </a>
+                            </li> 
+                            
+                            <li>
+                              <a href="classes.html">
+                                <div class="icon icon-edit"></div>
+                                <div class="text">Classes</div>
+                              </a>
+                            </li> 
+
+                            <li>
+                              <a href="teaching.html">
+                                <div class="icon icon-time"></div>
+                                <div class="text">Teaching</div>
+                              </a>
+                            </li>
+
+                            <li>
+                              <a href="blog.html">
+                                <div class="icon icon-picture"></div>
+                                <div class="text">Blog</div>
+                              </a>
+                            </li>
+
+                            <li>
+                              <a href="contact.html">
+                                  <div class="icon icon-calendar"></div>
+                                  <div class="text">Contact</div>
+                              </a>
+                            </li>
+                        </ul>
+                    </div>        
+                </div>
+                
+                <div class="social-icons">
+                    <ul>
+                        <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                    </ul>
+                </div>    
+            </div>
+
+            <div id="main">
+            
+                <div id="publications" class="page">
+                    <div class="page-container">
+                        <div class="pageheader">
+                            <div class="headercontent">
+                                <div class="section-container">
+                                    
+                                    <h2 class="title">Projects</h2>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p>Below is a list of the research I've done and projects I have worked on.</p>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pagecontents">
+                            
+                            <div class="section color-1" id="filters">
+                                <div class="section-container">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-3">
+                                            <h3>Filter by type:</h3>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select id="cd-dropdown" name="cd-dropdown" class="cd-select">
+                                                <option class="filter" value="all" selected>All types</option>
+                                                <option class="filter" value="paper">Papers</option>
+                                                <option class="filter" value="project">Projects</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="col-md-3" id="sort">
+                                            <span>Sort by year:</span>
+                                            <div class="btn-group pull-right"> 
+
+                                                <button type="button" data-sort="data-year" data-order="desc" class="sort btn btn-default"><i class="icon-sort-by-order"></i></button>
+                                                <button type="button" data-sort="data-year" data-order="asc" class="sort btn btn-default"><i class="icon-sort-by-order-alt"></i></button>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section color-2" id="pub-grid">
+                                <div class="section-container">
+                                    
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="pitems">
+                                                
+                                                <div class="item mix paper" data-year="2014">
+                                                    <div class="pubmain">
+                                                        <div class="pubassets">
+                                                            
+                                                            <a href="#" class="pubcollapse">
+                                                                <i class="icon-expand-alt"></i>
+                                                            </a>
+                                                            <a href="http://harekaplan.github.io/election.html" class="tooltips" title="External link" target="_blank">
+                                                                <i class="icon-external-link"></i>
+                                                            </a>
+                                                            <a href="https://github.com/harekaplan/Election-2012" class="tooltips" title="GitHub" target="_blank">
+                                                                <i class="icon-cloud-download"></i>
+                                                            </a>
+                                                            
+                                                        </div>
+
+                                                        <h4 class="pubtitle">Can you buy a president? Politics after the Tillman Act</h4>
+                                                        <div class="pubauthor"><strong>Andrea Kaplan</strong>, Eric Hare, and Heike Hofmann</div>
+                                                        <div class="pubcite"><span class="label label-warning">Papers</span>Chance...</div>
+                                                        
+                                                    </div>
+                                                    <div class="pubdetails">
+                                                        <h4>Abstract</h4>
+                                                        <p>Although a substantial amount of research has examined the constructs of warmth and competence, far less has examined how these constructs develop and what benefits may accrue when warmth and competence are cultivated. Yet there are positive consequences, both emotional and behavioral, that are likely to occur when brands hold perceptions of both. In this paper, we shed light on when and how warmth and competence are jointly promoted in brands, and why these reputations matter.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </body>
+</html>
+

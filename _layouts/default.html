@@ -1,60 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <title>Eric Hare's Webpage</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="author" content="Eric Hare">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         
-        <title>EricHare.net - {{ page.title }}</title>
+        <meta name="description" content="A personal webpage for Eric Hare" />
+        <meta name="keywords" content="eric, hare, statistics, iowa, washington, computer, science" />
+
+        <link rel="shortcut icon" href="../favicon.ico">
+
+        <!--CSS styles-->
+        <link rel="stylesheet" href="{{ page.root }}css/bootstrap.css">
+        <link rel="stylesheet" href="{{ page.root }}css/font-awesome.min.css">  
+        <link rel="stylesheet" href="{{ page.root }}css/perfect-scrollbar-0.4.5.min.css">
+        <link rel="stylesheet" href="{{ page.root }}css/magnific-popup.css">
+        <link rel="stylesheet" href="{{ page.root }}css/style.css">
+        <link id="theme-style" rel="stylesheet" href="{{ page.root }}css/styles/default.css">
+
         
-        <!-- Bootstrap core CSS -->
-        <link href="{{ page.root }}css/bootstrap.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <link href="{{ page.root }}css/sticky-footer-navbar.css" rel="stylesheet">
-        <!-- syntax highlighting CSS -->
-        <link href="{{ page.root }}css/syntax.css" rel="stylesheet">
+        <!--/CSS styles-->
+        <!--Javascript files-->
+        <script type="text/javascript" src="{{ page.root }}js/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="{{ page.root }}js/TweenMax.min.js"></script>
+        <script type="text/javascript" src="{{ page.root }}js/jquery.touchSwipe.min.js"></script>
+        <script type="text/javascript" src="{{ page.root }}js/jquery.carouFredSel-6.2.1-packed.js"></script>
+        
+        <script type="text/javascript" src="{{ page.root }}js/modernizr.custom.63321.js"></script>
+        <script type="text/javascript" src="{{ page.root }}js/jquery.dropdownit.js"></script>
+
+        <script type="text/javascript" src="{{ page.root }}js/jquery.stellar.min.js"></script>
+        <script type="text/javascript" src="{{ page.root }}js/ScrollToPlugin.min.js"></script>
+
+        <script type="text/javascript" src="{{ page.root }}js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="{{ page.root }}js/jquery.mixitup.min.js"></script>
+
+        <script type="text/javascript" src="{{ page.root }}js/masonry.min.js"></script>
+
+        <script type="text/javascript" src="{{ page.root }}js/perfect-scrollbar-0.4.5.with-mousewheel.min.js"></script>
+
+        <script type="text/javascript" src="{{ page.root }}js/magnific-popup.js"></script>
+        <script type="text/javascript" src="{{ page.root }}js/custom.js"></script>
+
+        <!--/Javascript files-->
+
     </head>
     <body>
-        <!-- Wrap all page content here -->
-        <div id="wrap">
-            <!-- Fixed navbar -->
-            <div class="navbar navbar-fixed-top">
-                <div class="container">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ page.root }}index.html">Eric Hare</a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="{{ page.root }}index.html">Home</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Resume/CV <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{ page.root }}files/EricHare-Resume.pdf">Resume</a></li>
-                                    <li><a href="{{ page.root }}files/EricHare-CV.pdf">CV</a></li>
-                                </ul>
+
+        <div id="wrapper">
+            <a href="#sidebar" class="mobilemenu"><i class="icon-reorder"></i></a>
+
+            <div id="sidebar">
+                <div id="main-nav">
+                    <div id="nav-container">
+                        <div id="profile" class="clearfix">
+                            <div class="portrate hidden-xs"></div>
+                            <div class="title">
+                                <h2>Eric Hare</h2>
+                                <h3>Iowa State University</h3>
+                            </div>
+                            
+                        </div>
+                        <ul id="navigation">
+                            <li class="currentmenu">
+                              <a href="index.html">
+                                <div class="icon icon-user"></div>
+                                <div class="text">About Me</div>
+                              </a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{ page.root }}projects/pelica.html">Pelica</a></li>
-                                    <li><a href="{{ page.root }}projects/forecast.html">Forecast Analysis</a></li>
-                                    <li><a href="http://harekaplan.github.io/election.html">Election 2012</a></li>
-                                    <li><a href="http://harekaplan.github.io/dataexpo.html">Data Expo 2013</a></li>
-                                </ul>
+                            
+                           <li>
+                              <a href="resume.pdf">
+                                  <div class="icon icon-download-alt"></div>
+                                  <div class="text">Resume</div>
+                              </a>
                             </li>
-                            <li><a href="{{ page.root }}teaching.html">Teaching</a></li>
-                            <li><a href="{{ page.root }}classes.html">Classes</a></li>
-                            <li class="jekyll"><a href="{{ page.root }}blog.html">Blog</a></li>
-                            <li><a href="{{ page.root }}contact.html">Contact</a></li>
+                            
+                            <li>
+                              <a href="projects.html">
+                                <div class="icon icon-book"></div>
+                                <div class="text">Projects</div>
+                              </a>
+                            </li> 
+                            
+                            <li>
+                              <a href="classes.html">
+                                <div class="icon icon-edit"></div>
+                                <div class="text">Classes</div>
+                              </a>
+                            </li> 
+
+                            <li>
+                              <a href="teaching.html">
+                                <div class="icon icon-time"></div>
+                                <div class="text">Teaching</div>
+                              </a>
+                            </li>
+
+                            <li>
+                              <a href="blog.html">
+                                <div class="icon icon-picture"></div>
+                                <div class="text">Blog</div>
+                              </a>
+                            </li>
+
+                            <li>
+                              <a href="contact.html">
+                                  <div class="icon icon-calendar"></div>
+                                  <div class="text">Contact</div>
+                              </a>
+                            </li>
                         </ul>
-                    </div>
-                    <!--/.nav-collapse -->
+                    </div>        
                 </div>
+                
+                <div class="social-icons">
+                    <ul>
+                        <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                    </ul>
+                </div>    
             </div>
+
+            <div id="main">
+            
             <!-- Begin page content -->
             <div class="container">
                 <div class="page-header">
@@ -87,11 +159,7 @@
                 <p class="text-muted credit">Powered by <a href="http://pages.github.com">GitHub Pages</a></p>
             </div>
         </div>
-        
-        <!-- Bootstrap core JavaScript ================================================== -->
-        <script src="{{ page.root }}js/jquery-1.10.2.min.js"></script>
-        <script src="{{ page.root }}js/bootstrap.min.js"></script>
-        
+
         <script> 
             $(document).ready(function(){
             var str=location.href.toLowerCase();
@@ -117,5 +185,10 @@
   			ga('send', 'pageview');
 
 		</script>
+            
+                
+            </div>
+        </div>
     </body>
 </html>
+
