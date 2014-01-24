@@ -102,7 +102,7 @@
                               </a>
                             </li>
 
-                            <li {% if current[1] == 'blog.html' || current[1] == 'blog' %}class="currentmenu"{% endif %}>
+                            <li {% if current[1] == 'blog.html' %} class="currentmenu"{% endif %}{% if current[1] == 'blog' %} class="currentmenu"{% endif %}>
                               <a href="{{ page.root }}blog.html">
                                 <div class="icon icon-picture"></div>
                                 <div class="text">Blog</div>
