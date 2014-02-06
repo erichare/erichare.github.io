@@ -1,6 +1,6 @@
 A Framework and Application for Efficient Analysis of Peptide Libraries
 ========================================================
-author: Eric Hare
+author: Eric Riemer Hare
 date: 02-06-2014
 font-family: 'Helvetica'
 
@@ -15,10 +15,10 @@ Peptide Libraries are important in a number of fields for a number of different 
 
 Problems
 ========================================================
-- Cost - The more peptides, the more expensive
+- Cost - The more peptides (or better encoding schemes), the more expensive
 - Quality - The fewer different peptides, the less useful for most applications
 
-Being able to assess the quality of a peptide library, and doing so in a way so as to minimize cost, should help researchers make better choices about which peptide library to purchase.
+Being able to assess the quality of a peptide library, and doing so in a way so as to minimize cost, should help researchers make better choices about which peptide libraries to synthesize and purchase.
 
 Framework
 ========================================================
@@ -42,7 +42,7 @@ discreteRV is available on CRAN (stable) and GitHub (development)
 
 ```r
 install.packages("discreteRV")
-
+# or...
 library(devtools)
 install_github("discreteRV", "erichare")
 ```
@@ -53,7 +53,6 @@ install_github("discreteRV", "erichare")
 ```r
 library(discreteRV)
 ```
-
 
 
 Creating discrete random variables
@@ -80,13 +79,27 @@ random variable with 6 outcomes
 
 Creating discrete random variables (continued)
 ========================================================
+Let Y be distributed according to a poisson random variable with mean parameter 5.
+
+$P(Y = y) = \frac{\lambda^ye^{-\lambda}}{y!} \ \ \ \ y \in \{0, 1, ...\}$
+
+
+```r
+lambda <- 5
+y <- 0:100
+
+Y <- make.RV(y, (lambda^y * exp(-lambda)) / factorial(y))
+```
+
+
+Plot Method
+========================================================
 
 ```r
 plot(X)
 ```
 
-<img src="hare_eric_cc_defense-figure/unnamed-chunk-4.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
-
+<img src="hare_eric_cc_defense-figure/unnamed-chunk-5.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
 
 Probability Functions
@@ -141,6 +154,35 @@ SD(X)
 ```
 
 
+Probability Functions (continued)
+========================================================
+
+
+```r
+E(Y)
+```
+
+```
+[1] 5
+```
+
+```r
+V(Y)
+```
+
+```
+[1] 5
+```
+
+```r
+SD(Y)
+```
+
+```
+[1] 2.236
+```
+
+
 Joint Distributions
 ========================================================
 discreteRV allows easy computation of joint distributions:
@@ -162,6 +204,23 @@ random variable with 36 outcomes
 ```
 
 
+Sum of Random Variables
+========================================================
+We can obtain a new random variable by summing independent realizations of a random variable:
+
+
+```r
+SofIID(X, n = 2, fractions = TRUE)
+```
+
+```
+random variable with 11 outcomes
+
+   2    3    4    5    6    7    8    9   10   11   12 
+1/36 1/18 1/12  1/9 5/36  1/6 5/36  1/9 1/12 1/18 1/36 
+```
+
+
 Simulations
 ========================================================
 We can simulate trials from any defined random variable:
@@ -174,7 +233,7 @@ X.sim
 
 ```
 1/6 1/6 1/6 1/6 1/6 1/6 1/6 1/6 1/6 1/6 
-  4   6   4   2   1   1   6   5   6   4 
+  1   2   6   3   4   2   2   6   6   3 
 attr(,"RV")
 random variable with 6 outcomes
 
@@ -193,7 +252,7 @@ Simulations (continued)
 plot(X.sim)
 ```
 
-<img src="hare_eric_cc_defense-figure/unnamed-chunk-9.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" style="display: block; margin: auto;" />
+<img src="hare_eric_cc_defense-figure/unnamed-chunk-12.png" title="plot of chunk unnamed-chunk-12" alt="plot of chunk unnamed-chunk-12" style="display: block; margin: auto;" />
 
 
 An Application of discreteRV
@@ -208,11 +267,15 @@ peptider
 ========================================================
 peptider is an R package, built on top of discreteRV, which allows for the statistical analysis of peptide libraries.
 
+* Written by Dr. Hofmann and I, based on the work of Sieber et. al
+
+Installing Peptder
+========================================================
 (1) Install from CRAN or GitHub
 
 ```r
 install.packages("peptider")
-
+# or...
 library(devtools)
 install_github("peptider", "heike")
 ```
@@ -223,6 +286,8 @@ install_github("peptider", "heike")
 ```r
 library(peptider)
 ```
+
+
 
 
 Peptide Encoding
@@ -287,6 +352,12 @@ Peptide Library Measures
 ========================================================
 Diversity - Expected # of unique peptides in the library.
 
+$b_i =$ number of peptides theoretically possible in peptide class i
+
+$N =$ size of the library (number of peptides)
+
+$p_i =$ probability (size) of peptide class i
+
 $D(N, k) = \sum_{i=1}^{v^k}b_i(1 - e^{-Np_i/b_i})$
 
 
@@ -299,7 +370,9 @@ diversity(4, "NNK", N = 10^4)
 ```
 
 
-Makowski Diversity - Measure of diversity where 1 is a library in which each peptide has the same probability
+Peptide Library Measures (continued)
+========================================================
+Functional Diversity (Makowski 2003) - Measure of diversity where 1 is a library in which each peptide has the same probability of inclusion - This index tends towards 0 for increasingly skewed distributions.
 
 
 ```r
@@ -403,6 +476,14 @@ peptider:::coverage_new("NNK", k = 18, N = 10^24)
 ```
 
 
+Target Audience
+========================================================
+These measures of library diversity are particularly useful to those in biology and medicine.
+
+The next step was to provide a user-friendly front-end to peptider which would allow those not familiar with R to explore the results for their own libraries.
+
+(In the spirit of discreteRV)
+
 PeLiCa
 ========================================================
 Shiny-based web-frontend to peptider
@@ -430,4 +511,9 @@ PeLiCa is powerful and easy to use...
 
 Thank You
 ========================================================
+A special thanks to:
+* Dr. Hofmann - Guiding me through this project every step of the way
+* Dr. Sieber - Peptides paper, PeLiCa suggestions, biological background
+* Dr. Buja - discreteRV
+
 Any questions?

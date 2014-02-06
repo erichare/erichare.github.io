@@ -1,6 +1,6 @@
 A Framework and Application for Efficient Analysis of Peptide Libraries
 ========================================================
-author: Eric Hare
+author: Eric Riemer Hare
 date: 02-06-2014
 font-family: 'Helvetica'
 
@@ -15,10 +15,10 @@ Peptide Libraries are important in a number of fields for a number of different 
 
 Problems
 ========================================================
-- Cost - The more peptides, the more expensive
+- Cost - The more peptides (or better encoding schemes), the more expensive
 - Quality - The fewer different peptides, the less useful for most applications
 
-Being able to assess the quality of a peptide library, and doing so in a way so as to minimize cost, should help researchers make better choices about which peptide library to purchase.
+Being able to assess the quality of a peptide library, and doing so in a way so as to minimize cost, should help researchers make better choices about which peptide libraries to synthesize and purchase.
 
 Framework
 ========================================================
@@ -41,7 +41,7 @@ discreteRV is available on CRAN (stable) and GitHub (development)
 (1) Install from CRAN or GitHub
 ```{r, eval=FALSE}
 install.packages("discreteRV")
-
+# or...
 library(devtools)
 install_github("discreteRV", "erichare")
 ```
@@ -50,7 +50,6 @@ install_github("discreteRV", "erichare")
 ```{r}
 library(discreteRV)
 ```
-
 
 Creating discrete random variables
 ========================================================
@@ -67,10 +66,22 @@ X
 
 Creating discrete random variables (continued)
 ========================================================
+Let Y be distributed according to a poisson random variable with mean parameter 5.
+
+$P(Y = y) = \frac{\lambda^ye^{-\lambda}}{y!} \ \ \ \ y \in \{0, 1, ...\}$
+
+```{r}
+lambda <- 5
+y <- 0:100
+
+Y <- make.RV(y, (lambda^y * exp(-lambda)) / factorial(y))
+```
+
+Plot Method
+========================================================
 ```{r, fig.align='center'}
 plot(X)
 ```
-
 
 Probability Functions
 ========================================================
@@ -91,12 +102,29 @@ V(X)
 SD(X)
 ```
 
+Probability Functions (continued)
+========================================================
+
+```{r}
+E(Y)
+V(Y)
+SD(Y)
+```
+
 Joint Distributions
 ========================================================
 discreteRV allows easy computation of joint distributions:
 
 ```{r}
 multN(X, n = 2, fractions = TRUE)
+```
+
+Sum of Random Variables
+========================================================
+We can obtain a new random variable by summing independent realizations of a random variable:
+
+```{r}
+SofIID(X, n = 2, fractions = TRUE)
 ```
 
 Simulations
@@ -127,10 +155,14 @@ peptider
 ========================================================
 peptider is an R package, built on top of discreteRV, which allows for the statistical analysis of peptide libraries.
 
+* Written by Dr. Hofmann and I, based on the work of Sieber et. al
+
+Installing Peptder
+========================================================
 (1) Install from CRAN or GitHub
 ```{r, eval=FALSE}
 install.packages("peptider")
-
+# or...
 library(devtools)
 install_github("peptider", "heike")
 ```
@@ -138,6 +170,9 @@ install_github("peptider", "heike")
 (2) Load the package
 ```{r}
 library(peptider)
+```
+```{r, echo=FALSE}
+options(digits=4)
 ```
 
 Peptide Encoding
@@ -180,13 +215,21 @@ Peptide Library Measures
 ========================================================
 Diversity - Expected # of unique peptides in the library.
 
+$b_i =$ number of peptides theoretically possible in peptide class i
+
+$N =$ size of the library (number of peptides)
+
+$p_i =$ probability (size) of peptide class i
+
 $D(N, k) = \sum_{i=1}^{v^k}b_i(1 - e^{-Np_i/b_i})$
 
 ```{r}
 diversity(4, "NNK", N = 10^4)
 ```
 
-Makowski Diversity - Measure of diversity where 1 is a library in which each peptide has the same probability
+Peptide Library Measures (continued)
+========================================================
+Functional Diversity (Makowski 2003) - Measure of diversity where 1 is a library in which each peptide has the same probability of inclusion - This index tends towards 0 for increasingly skewed distributions.
 
 ```{r}
 makowski(4, "NNK")
@@ -236,6 +279,14 @@ This allows for much faster computations, even for large peptides.
 peptider:::coverage_new("NNK", k = 18, N = 10^24)
 ```
 
+Target Audience
+========================================================
+These measures of library diversity are particularly useful to those in biology and medicine.
+
+The next step was to provide a user-friendly front-end to peptider which would allow those not familiar with R to explore the results for their own libraries.
+
+(In the spirit of discreteRV)
+
 PeLiCa
 ========================================================
 Shiny-based web-frontend to peptider
@@ -263,4 +314,9 @@ PeLiCa is powerful and easy to use...
 
 Thank You
 ========================================================
+A special thanks to:
+* Dr. Hofmann - Guiding me through this project every step of the way
+* Dr. Sieber - Peptides paper, PeLiCa suggestions, biological background
+* Dr. Buja - discreteRV
+
 Any questions?
