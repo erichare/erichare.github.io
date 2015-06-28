@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Manipulation of Discrete Random Variables in R with discreteRV</title>
+  <title>Manipulation of Discrete  Random Variables in R  with discreteRV</title>
 
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25,7 +25,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Manipulation of Discrete Random Variables in R with discreteRV',
+                title: 'Manipulation of Discrete <br /> Random Variables in R <br /> with discreteRV',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -81,7 +81,7 @@
 
 <body style="opacity: 0">
 
-<slides class="layout-widescreen">
+<slides>
 
   <slide class="title-slide segue nobackground">
         <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
@@ -93,7 +93,39 @@
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>discreteRV</h2></hgroup><article  id="discreterv">
+<slide class=''><hgroup><h2>The Problem</h2></hgroup><article  id="the-problem">
+
+<p>In statistics education, there is often a large disparity between the <strong>theoretical/mathematical</strong> coursework, and the <strong>computational/programming</strong> coursework.</p>
+
+<ul>
+<li>Different notations</li>
+<li>Different points of emphasis</li>
+<li>Little coding in theory, and little theory in coding</li>
+</ul>
+
+<p>This can cause difficulty for an introductory statistics student with little experience in one of the two areas.</p>
+
+</article></slide><slide class=''><hgroup><h2>Example: The Notion of a Random Variable</h2></hgroup><article  id="example-the-notion-of-a-random-variable">
+
+<p>In theory textbooks:</p>
+
+<p>\(X \sim N(4, 2)\)</p>
+
+<p>\[ 
+\begin{align*}
+P(X &gt; 5) &amp;= 1 - P(X &lt; 5) \\
+         &amp;= 1 - P(Z &lt; 0.707) \\
+         &amp;= .2398
+\end{align*}
+\]</p>
+
+<p>In R:</p>
+
+<pre class = 'prettyprint lang-r'>1 - pnorm(5, 4, sqrt(2))</pre>
+
+<pre >## [1] 0.2397501</pre>
+
+</article></slide><slide class=''><hgroup><h2>discreteRV</h2></hgroup><article  id="discreterv">
 
 <p>Manipulation of Discrete Random Variables</p>
 
@@ -140,15 +172,14 @@ X</pre>
 ## Outcomes   1   2   3   4   5   6
 ## Probs    1/6 1/6 1/6 1/6 1/6 1/6</pre>
 
-</article></slide><slide class=''><hgroup><h2>Creating discrete random variables (continued)</h2></hgroup><article  id="creating-discrete-random-variables-continued">
+</article></slide><slide class=''><hgroup><h2>Creating other discrete RVs</h2></hgroup><article  id="creating-other-discrete-rvs">
 
 <p>Let Y be distributed according to a poisson random variable with mean parameter 5.</p>
 
 <p>\(P(Y = y) = \frac{\lambda^ye^{-\lambda}}{y!} \ \ \ \ y \in \{0, 1, ...\}\)</p>
 
-<pre class = 'prettyprint lang-r'>lambda &lt;- 5
-y &lt;- 0:100
-Y &lt;- RV(y, (lambda^y * exp(-lambda)) / factorial(y))
+<pre class = 'prettyprint lang-r'>pois.func &lt;- function(y, lambda) { lambda^y * exp(-lambda) / factorial(y) }
+Y &lt;- RV(c(0, Inf), pois.func, lambda = 5)
 
 Y &lt;- RV(&quot;poisson&quot;, lambda = 5, fractions = FALSE)
 Y</pre>
@@ -164,7 +195,7 @@ Y</pre>
 
 <pre class = 'prettyprint lang-r'>plot(X)</pre>
 
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="720" style="display: block; margin: auto;" /></p>
 
 </article></slide><slide class=''><hgroup><h2>Probability Functions</h2></hgroup><article  id="probability-functions">
 
@@ -174,9 +205,13 @@ Y</pre>
 
 <pre >## [1] 0.5</pre>
 
-<pre class = 'prettyprint lang-r'>P(X &lt; 1 | X &gt;= 5)</pre>
+<pre class = 'prettyprint lang-r'>P(X &lt; 1 | X &lt;= 2)</pre>
 
 <pre >## [1] 0</pre>
+
+<pre class = 'prettyprint lang-r'>P((X == 2) %OR% (X == 3))</pre>
+
+<pre >## [1] 0.3333333</pre>
 
 </article></slide><slide class=''><hgroup><h2>Probability Functions (continued)</h2></hgroup><article  id="probability-functions-continued">
 
@@ -191,20 +226,6 @@ Y</pre>
 <pre class = 'prettyprint lang-r'>SD(X)</pre>
 
 <pre >## [1] 1.707825</pre>
-
-</article></slide><slide class=''><hgroup><h2>Probability Functions (continued)</h2></hgroup><article  id="probability-functions-continued-1">
-
-<pre class = 'prettyprint lang-r'>E(Y)</pre>
-
-<pre >## [1] 5</pre>
-
-<pre class = 'prettyprint lang-r'>V(Y)</pre>
-
-<pre >## [1] 4.999995</pre>
-
-<pre class = 'prettyprint lang-r'>SD(Y)</pre>
-
-<pre >## [1] 2.236067</pre>
 
 </article></slide><slide class=''><hgroup><h2>Joint Distributions</h2></hgroup><article  id="joint-distributions">
 
@@ -312,20 +333,9 @@ AB</pre>
 <p>We can simulate trials from any defined random variable:</p>
 
 <pre class = 'prettyprint lang-r'>X.sim &lt;- rsim(X, 10)
-X.sim</pre>
+plot(X.sim)</pre>
 
-<pre >## Simulated Vector:  1 5 1 6 4 4 2 5 4 4 
-## 
-## Random variable with 6 outcomes
-## 
-## Outcomes   1   2   3   4   5   6
-## Probs    1/6 1/6 1/6 1/6 1/6 1/6</pre>
-
-</article></slide><slide class=''><hgroup><h2>Simulations (continued)</h2></hgroup><article  id="simulations-continued">
-
-<pre class = 'prettyprint lang-r'>plot(X.sim)</pre>
-
-<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" title="" alt="" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" title="" alt="" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2>Extended Example: Playing Craps</h2></hgroup><article  id="extended-example-playing-craps">
 
@@ -392,11 +402,13 @@ P(First %in% c(7, 11) %OR% (First %in% 4:10 %AND% (First == Second)))</pre>
 <pre class = 'prettyprint lang-r'>sim.results &lt;- replicate(100000, craps_game(Roll))
 mean(sim.results)</pre>
 
-<pre >## [1] 0.491</pre>
+<pre >## [1] 0.49049</pre>
 
 </article></slide><slide class=''><hgroup><h2>Special Thanks</h2></hgroup><article  id="special-thanks">
 
-<p>Dr. Andreas Buja, Wharton School, University of Pennsylvania Dr. Heike Hofmann, Department of Statistics, Iowa State University</p>
+<p>Dr. Andreas Buja, Wharton School, University of Pennsylvania</p>
+
+<p>Dr. Heike Hofmann, Department of Statistics, Iowa State University</p>
 
 </article></slide><slide class=''><hgroup><h2>Thank You</h2></hgroup><article  id="thank-you">
 
