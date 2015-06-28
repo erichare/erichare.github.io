@@ -14,10 +14,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
 
-  <link rel="stylesheet" media="all" href="discreteRV_files/ioslides-13.5.1/fonts/fonts.css">
+  <link rel="stylesheet" media="all" href="index_files/ioslides-13.5.1/fonts/fonts.css">
 
-  <link rel="stylesheet" media="all" href="discreteRV_files/ioslides-13.5.1/theme/css/default.css">
-  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="discreteRV_files/ioslides-13.5.1/theme/css/phone.css">
+  <link rel="stylesheet" media="all" href="index_files/ioslides-13.5.1/theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="index_files/ioslides-13.5.1/theme/css/phone.css">
 
   <base target="_blank">
 
@@ -104,6 +104,8 @@
 <li>My contribution: additional functionality, packaging, documentation, and write-up</li>
 </ul>
 
+<p>Follow along at: <a href='http://erichare.me/talks/useR/2015' title=''>http://erichare.me/talks/useR/2015</a></p>
+
 </article></slide><slide class=''><hgroup><h2>Installing discreteRV</h2></hgroup><article  id="installing-discreterv">
 
 <p>discreteRV is available on CRAN (stable) and GitHub (development)</p>
@@ -162,7 +164,7 @@ Y</pre>
 
 <pre class = 'prettyprint lang-r'>plot(X)</pre>
 
-<p><img src="discreteRV_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="720" style="display: block; margin: auto;" /></p>
 
 </article></slide><slide class=''><hgroup><h2>Probability Functions</h2></hgroup><article  id="probability-functions">
 
@@ -312,7 +314,7 @@ AB</pre>
 <pre class = 'prettyprint lang-r'>X.sim &lt;- rsim(X, 10)
 X.sim</pre>
 
-<pre >## Simulated Vector:  1 4 2 5 2 6 1 6 6 4 
+<pre >## Simulated Vector:  1 5 1 6 4 4 2 5 4 4 
 ## 
 ## Random variable with 6 outcomes
 ## 
@@ -323,7 +325,7 @@ X.sim</pre>
 
 <pre class = 'prettyprint lang-r'>plot(X.sim)</pre>
 
-<p><img src="discreteRV_files/figure-html/unnamed-chunk-17-1.png" title="" alt="" width="720" style="display: block; margin: auto;" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" title="" alt="" width="720" style="display: block; margin: auto;" /></p>
 
 </article></slide><slide class=''><hgroup><h2>Extended Example: Playing Craps</h2></hgroup><article  id="extended-example-playing-craps">
 
@@ -390,7 +392,7 @@ P(First %in% c(7, 11) %OR% (First %in% 4:10 %AND% (First == Second)))</pre>
 <pre class = 'prettyprint lang-r'>sim.results &lt;- replicate(100000, craps_game(Roll))
 mean(sim.results)</pre>
 
-<pre >## [1] 0.49231</pre>
+<pre >## [1] 0.491</pre>
 
 </article></slide><slide class=''><hgroup><h2>Special Thanks</h2></hgroup><article  id="special-thanks">
 
@@ -405,13 +407,13 @@ mean(sim.results)</pre>
 
 </slides>
 
-<script src="discreteRV_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
-<script src="discreteRV_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
-<script src="discreteRV_files/ioslides-13.5.1/js/prettify/lang-r.js"></script>
-<script src="discreteRV_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
-<script src="discreteRV_files/ioslides-13.5.1/js/hammer.js"></script>
-<script src="discreteRV_files/ioslides-13.5.1/js/slide-controller.js"></script>
-<script src="discreteRV_files/ioslides-13.5.1/js/slide-deck.js"></script>
+<script src="index_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+<script src="index_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
+<script src="index_files/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+<script src="index_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+<script src="index_files/ioslides-13.5.1/js/hammer.js"></script>
+<script src="index_files/ioslides-13.5.1/js/slide-controller.js"></script>
+<script src="index_files/ioslides-13.5.1/js/slide-deck.js"></script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
