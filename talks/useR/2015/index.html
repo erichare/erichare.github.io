@@ -107,6 +107,14 @@
 
 </article></slide><slide class=''><hgroup><h2>Example: The Notion of a Random Variable</h2></hgroup><article  id="example-the-notion-of-a-random-variable">
 
+<ul>
+<li>A <strong>Random Variable</strong> is a function that maps the set of possible outcomes of an experiment to the real line.</li>
+<li>Random Variables are associated with a probability density function (in the continuous case) and a probability mass function (in the discrete case)</li>
+<li>A probability density/mass function provides the probabilities of the possible values of the random variable.</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Example (continued)</h2></hgroup><article  id="example-continued">
+
 <p>In theory textbooks:</p>
 
 <p>\(X \sim N(4, 2)\)</p>
@@ -402,7 +410,7 @@ P(First %in% c(7, 11) %OR% (First %in% 4:10 %AND% (First == Second)))</pre>
 <pre class = 'prettyprint lang-r'>sim.results &lt;- replicate(100000, craps_game(Roll))
 mean(sim.results)</pre>
 
-<pre >## [1] 0.49049</pre>
+<pre >## [1] 0.49042</pre>
 
 </article></slide><slide class=''><hgroup><h2>Special Thanks</h2></hgroup><article  id="special-thanks">
 
