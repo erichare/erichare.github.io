@@ -184,7 +184,7 @@ X</pre>
 
 </article></slide><slide class=''><hgroup><h2>Creating other discrete RVs</h2></hgroup><article  id="creating-other-discrete-rvs">
 
-<p>Let Y be distributed according to a poisson random variable with mean parameter 5.</p>
+<p>Let Y be distributed according to a poisson random variable with mean parameter \(\lambda\) = 5.</p>
 
 <p>\(P(Y = y) = \frac{\lambda^ye^{-\lambda}}{y!} \ \ \ \ y \in \{0, 1, ...\}\)</p>
 
@@ -412,7 +412,7 @@ P(First %in% c(7, 11) %OR% (First %in% 4:10 %AND% (First == Second)))</pre>
 <pre class = 'prettyprint lang-r'>sim.results &lt;- replicate(100000, craps_game(Roll))
 mean(sim.results)</pre>
 
-<pre >## [1] 0.49195</pre>
+<pre >## [1] 0.49392</pre>
 
 </article></slide><slide class=''><hgroup><h2>Special Thanks</h2></hgroup><article  id="special-thanks">
 
