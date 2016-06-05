@@ -1,11 +1,8 @@
 .Rproj.user
 .Rhistory
 .RData
-*.Rmd
 
 .DS_Store
 
 _site
 erichare.github.io.Rproj
-
-missfont.log

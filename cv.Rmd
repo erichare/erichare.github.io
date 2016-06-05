@@ -1,0 +1,153 @@
+---
+output: 
+  pdf_document:
+    latex_engine: pdflatex
+    template: svm-latex-cv.tex
+geometry: margin=1in
+
+title: "CV"
+author: Eric Hare
+
+jobtitle: "Research Assistant"
+address: "1121 Snedecor Hall, Ames, IA, 50011-1210"
+fontawesome: yes
+email: erichare@iastate.edu
+github: erichare
+phone: "+1-425-405-0279"
+web: erichare.me
+updated: no
+
+keywords: R Markdown, academic CV, template
+
+fontfamily: mathpazo
+fontfamilyoptions: sc, osf
+fontsize: 11pt
+linkcolor: blue
+urlcolor: blue
+---
+
+# Research Interests
+
+Exploratory Data Analysis, Statistical Graphics, Statistical Computing, Reproducible Research, Graphical User Interfaces
+
+# Education
+
+## Iowa State University
+
+Doctor of Philosophy in Statistics & Computer Science \hfill In Progress
+
+Master of Science in Statistics \hfill Received May 2014
+
+## University of Washington
+
+Bachelor of Science with a Major in Statistics, Cum Laude \hfill Received June 2012
+
+Bachelor of Science in Computer Engineering, Cum Laude \hfill Received June 2012
+
+# Academic Experience
+
+## Instructor
+
+Engineering Probability (STAT 231). Prepared syllabus, lectures, exams, course notes, homeworks, and held office hours. Responsible for 40 students.
+
+Introduction to Business Statistics (STAT 226). Prepared lectures, exams, helped prepare course notes, homeworks, and held office hours. Responsible for 80 students.
+
+## Teaching Assistant
+
+Engineering Statistics (STAT 305). Held office hours, graded homeworks and exams.
+
+Empirical Methods for Computer Science (STAT 430). Held office hours, graded homeworks.
+
+Applied Statistical Computing (STAT 480). Held office hours, graded homeworks.
+
+Introduction to Statistical Computing (STAT 579). Held office hours, graded homeworks, assisted in creation of exams.
+
+## Research Assistant
+
+Analyzed bullet striation patterns for the Center for Statistics and Applications in Forensic Evidence (CSAFE) (Hofmann, H., Carriquiry, A.)
+
+Explored the Lineup Protocol in visual inference. Modified an automated framework for performing tests of significance with the lineup protocol, assisted others in performing experiments, with Hofmann, H., Cook, D.
+
+Developed statistical models and graphical summaries for Shane, J.
+
+Developed an automated hand-tracking mechanism using OpenCV and Python to independently track two hands using a camera connected to a computer. Worked with Fox, D.
+
+# Publications
+
+Hare, E., Hofmann, H., and Carriquiry, A., **Automatic Matching of Bullet Lands**. Accepted by the Annals of Applied Statistics
+
+Hare, E., and Kaplan, A., **Introductory Statistics with intRo**. Accepted by the Journal of Computational and Graphical Statistics
+
+Hare, E., Buja, A., and Hofmann, H., **Manipulation of Discrete Random Variables with discreteRV**. R Journal Vol. 7 Iss. 1 (2015)
+
+Sieber, T., Hare, E., Hofmann, H., and Treppel, M., **Biomathematical description of synthetic Peptide libraries**. PLOS One Vol. 10 Iss. 6 (2015)
+
+Kaplan, A., and Hare, E., Putting Down Roots: **A Graphical Exploration of Community Attachment** (Accepted in Computational Statistics)
+
+Kaplan, A., Hare, E., Hofmann, H., and Cook, D., **Can you buy a president? Politics after the Tillman Act**. CHANCE Vol. 27 Iss. 1 (2014)
+
+# Posters & Presentations
+
+Hare. E., **Reproducing User Actions in Shiny**. Shiny Developer Conference, Jan 30-31, 2016, Palo Alto, WA, USA
+
+Hare, E., Kaplan, A., **intRo: Statistical Analysis Software for Teaching**. Contributed Paper, Joint Statistical Meetings, Aug 8-13, 2015, Seattle, WA, USA
+
+Hare, E., Buja, A., and Hofmann, H., **Manipulation of Discrete Random Variables in R with discreteRV**. useR, Jul 2, 2015, Aalborg, DK
+
+Cook, D., Hare, E., **ASA Traveling Workshops**, May 15-18, 2015, UCLA, Chapman University, Pfizer, California, USA
+
+Hare, E., Kaplan, A., **intRo: Statistical Analysis Software for Teaching**. Departmental Seminar (Iowa State University), Jan 12, 2015, Ames, IA, USA
+
+Hare, E., Sieber, T., and Hofmann, H., **A Web Application for Efficient Analysis of Peptide Libraries**. Contributed Paper, Joint Statistical Meetings, Aug 2-7, 2014, Boston, MA, USA
+
+Kaplan, A., and Hare, E., **Putting Down Roots: A Graphical Exploration of Community Attachment**. Census Data Visualization Seminar, US Census Bureau, Sep 19, 2013, Washington, D.C., USA
+
+Hare, E., Kaplan, A., Hofmann, H., and Cook, D., **Can you buy a president? Politics after the Tillman Act**. Poster Presentation, Joint Statistical Meetings, Aug 3-8, 2013, Montreal, QC
+
+Kaplan, A., and Hare, E., Putting Down Roots: **A Graphical Exploration of Community Attachment**. Poster Presentation, Joint Statistical Meetings, Aug 3-8, 2013, Montreal, QC
+
+# Awards
+
+ASA Imaging Section Student Paper Award 2016
+
+Ron Wasserstein Award for Best Contributed Paper in Statistical Education 2015
+
+ASA Computing Section Student Paper Award 2015
+
+Kempthorne Award for Best Student in Linear Models 2013
+
+ASA Data Exposition 2013 - 1st Place
+
+Explorations in Statistics Research Summer Program 2011
+
+University of Washington Annual Dean's List 2009-2010, 2010-2011, 2011-2012
+
+# Work Experience
+
+Data Scientist, Omni Analytics Group \hfill Aug 2014 - Present
+
+Research Assistant, Iowa State University \hfill Aug 2015 - Present
+
+Teaching Assistant, Iowa State University \hfill Aug 2012 - Aug 2015
+
+Quality Assurance Intern, TIBCO Software, Inc. \hfill Jun 2010 - Aug 2013
+
+# Skills & Qualifications
+
+Strong knowledge of R language, Python, HTML, Javascript, Java (including Android), Objective C, C/C++, bash scripting
+
+Basic knowledge of SAS, Matlab, PHP, ML, Scheme, Julia
+
+Great communication skills and thrives in a collaborative development environment
+
+Conveys ideas strongly through both public speaking and writing
+
+# Leadership
+
+Teacher at Iowa State University R workshops, 2013-2016
+
+Treasurer of STATers, 2013-2014, Iowa State University Department of Statistics
+
+# References
+
+References available upon request.
