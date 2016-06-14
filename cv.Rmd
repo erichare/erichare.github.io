@@ -28,7 +28,7 @@ urlcolor: blue
 
 # Research Interests
 
-Exploratory Data Analysis, Statistical Graphics, Statistical Computing, Reproducible Research, Graphical User Interfaces
+Exploratory Data Analysis, Statistical Graphics, Statistical Computing, Reproducible Research, Graphical User Interfaces, Statistical Forensics
 
 # Education
 
@@ -43,34 +43,6 @@ Master of Science in Statistics \hfill Received May 2014
 Bachelor of Science with a Major in Statistics, Cum Laude \hfill Received June 2012
 
 Bachelor of Science in Computer Engineering, Cum Laude \hfill Received June 2012
-
-# Academic Experience
-
-## Instructor
-
-Engineering Probability (STAT 231). Prepared syllabus, lectures, exams, course notes, homeworks, and held office hours. Responsible for 40 students.
-
-Introduction to Business Statistics (STAT 226). Prepared lectures, exams, helped prepare course notes, homeworks, and held office hours. Responsible for 80 students.
-
-## Teaching Assistant
-
-Engineering Statistics (STAT 305). Held office hours, graded homeworks and exams.
-
-Empirical Methods for Computer Science (STAT 430). Held office hours, graded homeworks.
-
-Applied Statistical Computing (STAT 480). Held office hours, graded homeworks.
-
-Introduction to Statistical Computing (STAT 579). Held office hours, graded homeworks, assisted in creation of exams.
-
-## Research Assistant
-
-Analyzed bullet striation patterns for the Center for Statistics and Applications in Forensic Evidence (CSAFE) (Hofmann, H., Carriquiry, A.)
-
-Explored the Lineup Protocol in visual inference. Modified an automated framework for performing tests of significance with the lineup protocol, assisted others in performing experiments, with Hofmann, H., Cook, D.
-
-Developed statistical models and graphical summaries for Shane, J.
-
-Developed an automated hand-tracking mechanism using OpenCV and Python to independently track two hands using a camera connected to a computer. Worked with Fox, D.
 
 # Publications
 
@@ -108,21 +80,45 @@ Kaplan, A., and Hare, E., Putting Down Roots: **A Graphical Exploration of Commu
 
 # Awards
 
-ASA Imaging Section Student Paper Award 2016
+ASA Imaging Section Student Paper Award \hfill Received 2016
 
-Ron Wasserstein Award for Best Contributed Paper in Statistical Education 2015
+Ron Wasserstein Award for Best Contributed Paper in Statistical Education \hfill Received 2015
 
-ASA Computing Section Student Paper Award 2015
+ASA Computing Section Student Paper Award \hfill Received 2015
 
-Kempthorne Award for Best Student in Linear Models 2013
+Kempthorne Award for Best Student in Linear Models \hfill Received 2013
 
-ASA Data Exposition 2013 - 1st Place
+ASA Data Exposition - 1st Place \hfill Received 2013
 
-Explorations in Statistics Research Summer Program 2011
+# Academic Experience
 
-University of Washington Annual Dean's List 2009-2010, 2010-2011, 2011-2012
+## Instructor
 
-# Work Experience
+Engineering Probability (STAT 231). Prepared syllabus, lectures, exams, course notes, homeworks, and held office hours. Responsible for 40 students.
+
+Introduction to Business Statistics (STAT 226). Prepared lectures, exams, helped prepare course notes, homeworks, and held office hours. Responsible for 80 students.
+
+## Teaching Assistant
+
+Engineering Statistics (STAT 305). Held office hours, graded homeworks and exams.
+
+Empirical Methods for Computer Science (STAT 430). Held office hours, graded homeworks.
+
+Applied Statistical Computing (STAT 480). Held office hours, graded homeworks.
+
+Introduction to Statistical Computing (STAT 579). Held office hours, graded homeworks, assisted in creation of exams.
+
+## Research Assistant
+
+Analyzed bullet striation patterns for the Center for Statistics and Applications in Forensic Evidence (CSAFE) (Hofmann, H., Carriquiry, A.)
+
+Explored the Lineup Protocol in visual inference. Modified an automated framework for performing tests of significance with the lineup protocol, assisted others in performing experiments, with Hofmann, H., Cook, D.
+
+Developed statistical models and graphical summaries for Shane, J.
+
+Developed an automated hand-tracking mechanism using OpenCV and Python to independently track two hands using a camera connected to a computer. Worked with Fox, D.
+
+## Work Experience
 
 Data Scientist, Omni Analytics Group \hfill Aug 2014 - Present
 
@@ -131,22 +127,6 @@ Research Assistant, Iowa State University \hfill Aug 2015 - Present
 Teaching Assistant, Iowa State University \hfill Aug 2012 - Aug 2015
 
 Quality Assurance Intern, TIBCO Software, Inc. \hfill Jun 2010 - Aug 2013
-
-# Skills & Qualifications
-
-Strong knowledge of R language, Python, HTML, Javascript, Java (including Android), Objective C, C/C++, bash scripting
-
-Basic knowledge of SAS, Matlab, PHP, ML, Scheme, Julia
-
-Great communication skills and thrives in a collaborative development environment
-
-Conveys ideas strongly through both public speaking and writing
-
-# Leadership
-
-Teacher at Iowa State University R workshops, 2013-2016
-
-Treasurer of STATers, 2013-2014, Iowa State University Department of Statistics
 
 # References
 
