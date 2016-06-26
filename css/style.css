@@ -77,7 +77,6 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
 	top: 0;
 	left: 0;
 	bottom: 0;
-	background-image: url(../img/sidebg-1.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -923,7 +922,6 @@ ul.timeline li .data .text {
 /* home
  **************************************************/
  .home .pageheader{
-	background-image: url(../img/home.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -939,7 +937,6 @@ ul.timeline li .data .text {
 /* publications
  **************************************************/
  #publications .pageheader{
-	background-image: url(../img/publications.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -1018,7 +1015,6 @@ ul.timeline li .data .text {
 /* Gallery
  **************************************************/
 #gallery .pageheader{
-	background-image: url(../img/gallery-head.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -1204,7 +1200,6 @@ ul.grid li a,ul.grid li img {
 /* research
  **************************************************/
 #research .pageheader{
-	background-image: url(../img/research.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -1219,7 +1214,6 @@ ul.grid li a,ul.grid li img {
 /* projects
  **************************************************/
 #projects .pageheader{
-	background-image: url(../img/projects.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
@@ -1234,7 +1228,6 @@ ul.grid li a,ul.grid li img {
 /* contact
  **************************************************/
 #contact .pageheader{
-	background-image: url(../img/contact.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
