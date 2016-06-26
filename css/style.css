@@ -936,17 +936,6 @@ ul.timeline li .data .text {
 
 /* publications
  **************************************************/
- #publications .pageheader{
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
-	padding: 190px 0 35px 0;
-}
-
-#publications .pageheader .title{
-	  color: #fff;
-	  border: none;
-}
 
 #pub-grid .mix {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
