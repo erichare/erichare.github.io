@@ -1211,43 +1211,6 @@ ul.grid li a,ul.grid li img {
 	  border: none;
 }
 
-/* projects
- **************************************************/
-#projects .pageheader{
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
-	padding: 190px 0 35px 0;
-}
-
-#projects .pageheader .title{
-	  color: #fff;
-	  border: none;
-}
-
-/* contact
- **************************************************/
-#contact .pageheader{
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
-	padding: 190px 0 35px 0;
-}
-
-#contact .pageheader .title{
-	  color: #fff;
-	  border: none;
-}
-
-.contact-office {
-	background: #fff url('../img/contact-office.jpg') no-repeat;
-}
-
-.contact-lab {
-	background: #fff url('../img/contact-lab.jpg') no-repeat;
-	color: #fff;
-}
-
 /*.contact-office .icon-huge, .contact-lab .icon-huge{
 	color: #03cc85;
 }*/
