@@ -50,6 +50,8 @@ Hare, E., Hofmann, H., and Carriquiry, A., **Automatic Matching of Bullet Lands*
 
 Hare, E., and Kaplan, A., **Introductory Statistics with intRo**. Accepted by the Journal of Computational and Graphical Statistics
 
+Dao, B., Kermanshachi, S., Shane, J., Anderson, S., and Hare, E., **Exploring and Assessing Project Complexity**. Acced by the Journal of Construction Engineering
+
 Hare, E., Buja, A., and Hofmann, H., **Manipulation of Discrete Random Variables with discreteRV**. R Journal Vol. 7 Iss. 1 (2015)
 
 Sieber, T., Hare, E., Hofmann, H., and Treppel, M., **Biomathematical description of synthetic Peptide libraries**. PLOS One Vol. 10 Iss. 6 (2015)
