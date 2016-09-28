@@ -130,6 +130,95 @@ development package, usually called r-devel or r-base-dev.</code></pre>
 <li>Add an r to the end of a word</li>
 </ul>
 </section>
+<section id="the-description-file" class="slide level2">
+<h2>The DESCRIPTION File</h2>
+<p>This is the overall descriptor of the package from which metadata is obtained. Fields include:</p>
+<ul>
+<li>Package: isuggr</li>
+<li>Type: Package</li>
+<li>Title: What the Package Does (Title Case)</li>
+<li>Version: 0.1.0</li>
+<li>Author: Who wrote it</li>
+<li>Maintainer: The package maintainer <a href="mailto:yourself@somewhere.net">yourself@somewhere.net</a></li>
+<li>Description: More about what it does</li>
+</ul>
+<p>And more…</p>
+</section>
+<section id="the-namespace-file" class="slide level2">
+<h2>The NAMESPACE File</h2>
+<p>Defines the imported functions (dependencies), and exported functions</p>
+<p>What are exported functions?</p>
+<ul>
+<li>Functions that are made available to the user</li>
+<li>These contrast from internal functions which are not meant to be accessed by users of your package</li>
+<li><code>::</code> vs <code>:::</code></li>
+</ul>
+</section>
+<section id="the-r-directory" class="slide level2">
+<h2>The R Directory</h2>
+<p>Contains the R code for the package. This can be done in a few ways:</p>
+<ol type="1">
+<li>Put all functions into a single file</li>
+<li>Have a separate file for each function</li>
+<li>Group similar functions together in separate files</li>
+</ol>
+<p>The third is recommended by Hadley and is generally the approach that should be used, although CRAN gatekeepers prefer the second option at least compared with the first.</p>
+</section>
+<section id="the-man-directory" class="slide level2">
+<h2>The man Directory</h2>
+<ul>
+<li>Stands for “Manual”</li>
+<li>Contains “.Rd” files (R Documentation) which define the help files we know and love</li>
+<li>Very ugly structure</li>
+<li>Each (exported) function should have an Rd file associated with it.</li>
+<li>Luckily, we don’t have to manually edit this…</li>
+</ul>
+</section>
+<section id="enter-roxygen2" class="slide level2">
+<h2>Enter roxygen2</h2>
+<p>Not gonna lie, I probably wouldn’t be willing to give this talk without roxygen2. It allows automatic generation of:</p>
+<ul>
+<li>All exports</li>
+<li>All imports</li>
+<li>All Rd files</li>
+</ul>
+<p>In other words, it creates the NAMESPACE and Rd files automatically for us. We just have to add special comments above each function.</p>
+<p>Let’s take a look…</p>
+</section>
+<section id="checking-installing-building" class="slide level2">
+<h2>Checking, Installing, Building</h2>
+<p>There will be three general routines we use <code>devtools</code> for: checking (verifying that the package is in the proper format), installing (installing it on our own computer), and building (building it for use by other people)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># With your working directory set to the root package folder</span>
+devtools::<span class="kw">check</span>()
+devtools::<span class="kw">install</span>()
+devtools::<span class="kw">build</span>()</code></pre></div>
+</section>
+<section id="package-dependencies" class="slide level2">
+<h2>Package Dependencies</h2>
+<p>Sometimes we need to depend on other packages. To do so, we use the <span class="citation" data-cites="import">@import</span> or <span class="citation" data-cites="importFrom">@importFrom</span> directive in roxygen. Let’s look at an example.</p>
+</section>
+<section id="your-turn" class="slide level2">
+<h2>Your Turn</h2>
+<p>Add a new function of your choosing to the package. The function must:</p>
+<ol type="1">
+<li>Import the <code>ggplot2</code> package (<span class="citation" data-cites="import">@import</span> ggplot2)</li>
+<li>Return a ggplot2 plot of your choosing</li>
+<li>Be exported</li>
+<li>Take at least two parameters which are both documented</li>
+</ol>
+<p>When you have created this function, <strong>check</strong> and <strong>install</strong> your package to make sure that it works!</p>
+</section>
+<section id="github" class="slide level2">
+<h2>GitHub</h2>
+<p>In the real world, we’re usually developing packages with other developers. Collaborative coding tools like GitHub make this much easier.</p>
+<p>As a side benefit, putting your package on GitHub makes <strong>installing</strong> the package much easier as well:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">&quot;erichare/discreteRV&quot;</span>)</code></pre></div>
+</section>
+<section id="thank-you" class="slide level2">
+<h2>Thank You</h2>
+<p>Next week: Developing R Packages with C/C++ Code, by Andee Kaplan</p>
+<p>Any Questions?</p>
+</section>
 
   <!--
   To hide progress bar from entire presentation

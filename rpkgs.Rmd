@@ -78,8 +78,96 @@ From http://r-pkgs.had.co.nz/package.html:
 
 ## The DESCRIPTION File
 
-## Documenting Functions
+This is the overall descriptor of the package from which metadata is obtained. Fields include:
 
-## Checking, Building, Installing
+- Package: isuggr
+- Type: Package
+- Title: What the Package Does (Title Case)
+- Version: 0.1.0
+- Author: Who wrote it
+- Maintainer: The package maintainer <yourself@somewhere.net>
+- Description: More about what it does
+
+And more...
+
+## The NAMESPACE File
+
+Defines the imported functions (dependencies), and exported functions
+
+What are exported functions?
+
+- Functions that are made available to the user
+- These contrast from internal functions which are not meant to be accessed by users of your package
+- `::` vs `:::`
+
+## The R Directory
+
+Contains the R code for the package. This can be done in a few ways:
+
+1. Put all functions into a single file
+2. Have a separate file for each function
+3. Group similar functions together in separate files
+
+The third is recommended by Hadley and is generally the approach that should be used, although CRAN gatekeepers prefer the second option at least compared with the first.
+
+## The man Directory
+
+- Stands for "Manual"
+- Contains ".Rd" files (R Documentation) which define the help files we know and love
+- Very ugly structure
+- Each (exported) function should have an Rd file associated with it.
+- Luckily, we don't have to manually edit this...
+
+## Enter roxygen2
+
+Not gonna lie, I probably wouldn't be willing to give this talk without roxygen2. It allows automatic generation of:
+
+- All exports
+- All imports
+- All Rd files
+
+In other words, it creates the NAMESPACE and Rd files automatically for us. We just have to add special comments above each function.
+
+Let's take a look...
+
+## Checking, Installing, Building
+
+There will be three general routines we use `devtools` for: checking (verifying that the package is in the proper format), installing (installing it on our own computer), and building (building it for use by other people)
+
+```{r, eval=FALSE}
+# With your working directory set to the root package folder
+devtools::check()
+devtools::install()
+devtools::build()
+```
+
+## Package Dependencies
+
+Sometimes we need to depend on other packages. To do so, we use the @import or @importFrom directive in roxygen. Let's look at an example.
+
+## Your Turn
+
+Add a new function of your choosing to the package. The function must:
+
+1. Import the `ggplot2` package (@import ggplot2)
+2. Return a ggplot2 plot of your choosing
+3. Be exported
+4. Take at least two parameters which are both documented
+
+When you have created this function, **check** and **install** your package to make sure that it works!
 
 ## GitHub
+
+In the real world, we're usually developing packages with other developers. Collaborative coding tools like GitHub make this much easier.
+
+As a side benefit, putting your package on GitHub makes **installing** the package much easier as well:
+
+```{r, eval=FALSE}
+devtools::install_github("erichare/discreteRV")
+```
+
+## Thank You
+
+Next week: Developing R Packages with C/C++ Code, by Andee Kaplan
+
+Any Questions?
