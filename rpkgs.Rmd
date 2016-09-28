@@ -1,0 +1,85 @@
+---
+title: "Introduction to R Package Development"
+author: "Eric Hare"
+date: "9/29/2016"
+output: rmdshower::shower_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction to R Package Development { .white }
+
+<img src="img/code.jpg" class="cover">
+
+<p class="white">
+Eric Hare<br />
+September 29th, 2016
+</p>
+
+## Why packages?
+
+- Easy to install compared to sourcing in R scripts
+- Dependency tracking (e.g., dplyr requires magrittr for the pipe operator, etc.)
+- Package versioning
+- Documentation is much easier
+- Sharing with others via CRAN, GitHub
+
+## Requirements
+
+1. Relatively recent R/RStudio
+2. devtools (`install.packages("devtools")`)
+3. roxygen2 (`install.packages("roxygen2")`)
+
+Some other potentially useful packages include:
+
+- testthat (`install.packages("testthat")`) - Allows the writing of unit tests for individual functions
+- knitr (`install.packages("knitr")`) and rmarkdown (`install.packages("rmarkdown")`) for building Vignettes
+
+## C Code Compilation
+
+Andee will cover this next week, but if you want to get a jump on installing some necessary software for including C code in your packages:
+
+    If you’re developing a package that uses binary code (e.g. C or C++)
+    you’ll also need a set of development tools. On Windows, download 
+    and install Rtools, and devtools takes care of the rest. On Mac, 
+    install the Xcode command line tools. On Linux, install the R 
+    development package, usually called r-devel or r-base-dev.
+    
+Taken from: https://www.rstudio.com/products/rpackages/devtools/
+
+## Are we Ready?
+
+We can check:
+
+```{r}
+library(devtools)
+
+has_devel()
+```
+
+## Creating a Package in RStudio
+
+```{r, echo=FALSE}
+knitr::include_graphics("img/project.png")
+```
+
+## Naming your Package
+
+From http://r-pkgs.had.co.nz/package.html:
+
+- Pick a unique name you can easily Google.
+- Avoid using both upper and lower case letters
+- Find a word that evokes the problem and modify it so that it’s unique:
+    - plyr is generalisation of the apply family, and evokes pliers.
+    - lubridate makes dates and times easier.
+- Add an r to the end of a word
+
+## The DESCRIPTION File
+
+## Documenting Functions
+
+## Checking, Building, Installing
+
+## GitHub
