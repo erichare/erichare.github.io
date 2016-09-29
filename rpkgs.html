@@ -68,8 +68,13 @@
 Eric Hare<br /> September 29th, 2016
 </p>
 </section>
+<section id="before-we-begin" class="slide level2">
+<h2>Before We Begin</h2>
+<p>Much of the material from these slides is taken from Hadley’s book on R programming:</p>
+<p><a href="http://r-pkgs.had.co.nz" class="uri">http://r-pkgs.had.co.nz</a></p>
+</section>
 <section id="why-packages" class="slide level2">
-<h2>Why packages?</h2>
+<h2>Why Packages?</h2>
 <ul>
 <li>Easy to install compared to sourcing in R scripts</li>
 <li>Dependency tracking (e.g., dplyr requires magrittr for the pipe operator, etc.)</li>
@@ -102,7 +107,7 @@ development package, usually called r-devel or r-base-dev.</code></pre>
 <p>Taken from: <a href="https://www.rstudio.com/products/rpackages/devtools/" class="uri">https://www.rstudio.com/products/rpackages/devtools/</a></p>
 </section>
 <section id="are-we-ready" class="slide level2">
-<h2>Are we Ready?</h2>
+<h2>Are We Ready?</h2>
 <p>We can check:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
 
@@ -212,7 +217,7 @@ devtools::<span class="kw">build</span>()</code></pre></div>
 <h2>GitHub</h2>
 <p>In the real world, we’re usually developing packages with other developers. Collaborative coding tools like GitHub make this much easier.</p>
 <p>As a side benefit, putting your package on GitHub makes <strong>installing</strong> the package much easier as well:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">&quot;erichare/discreteRV&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">&quot;erichare/isuggrpkg&quot;</span>)</code></pre></div>
 </section>
 <section id="thank-you" class="slide level2">
 <h2>Thank You</h2>

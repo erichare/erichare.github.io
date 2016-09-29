@@ -18,7 +18,13 @@ Eric Hare<br />
 September 29th, 2016
 </p>
 
-## Why packages?
+## Before We Begin
+
+Much of the material from these slides is taken from Hadley's book on R programming:
+
+http://r-pkgs.had.co.nz
+
+## Why Packages?
 
 - Easy to install compared to sourcing in R scripts
 - Dependency tracking (e.g., dplyr requires magrittr for the pipe operator, etc.)
@@ -49,7 +55,7 @@ Andee will cover this next week, but if you want to get a jump on installing som
     
 Taken from: https://www.rstudio.com/products/rpackages/devtools/
 
-## Are we Ready?
+## Are We Ready?
 
 We can check:
 
@@ -163,7 +169,7 @@ In the real world, we're usually developing packages with other developers. Coll
 As a side benefit, putting your package on GitHub makes **installing** the package much easier as well:
 
 ```{r, eval=FALSE}
-devtools::install_github("erichare/discreteRV")
+devtools::install_github("erichare/isuggrpkg")
 ```
 
 ## Thank You
