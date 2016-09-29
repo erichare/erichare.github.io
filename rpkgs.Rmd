@@ -175,5 +175,3 @@ devtools::install_github("erichare/isuggrpkg")
 ## Thank You
 
 Next week: Developing R Packages with C/C++ Code, by Andee Kaplan
-
-Any Questions?
