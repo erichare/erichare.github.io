@@ -46,9 +46,9 @@ Bachelor of Science in Computer Engineering, Cum Laude \hfill Received June 2012
 
 # Publications
 
-Hare, E., Hofmann, H., and Carriquiry, A., **Automatic Matching of Bullet Lands**. Accepted by the Annals of Applied Statistics
+Hare, E., Hofmann, H., and Carriquiry, A., **Automatic Matching of Bullet Lands**. In Progress
 
-Hare, E., and Kaplan, A., **Introductory Statistics with intRo**. Accepted by the Journal of Computational and Graphical Statistics
+Hare, E., and Kaplan, A., **Introductory Statistics with intRo**. Submitted to the Journal of Computational and Graphical Statistics
 
 Dao, B., Kermanshachi, S., Shane, J., Anderson, S., and Hare, E., **Exploring and Assessing Project Complexity**. Accepted by the Journal of Construction Engineering
 
