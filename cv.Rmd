@@ -8,7 +8,7 @@ geometry: margin=1in
 title: "CV"
 author: Eric Hare
 
-jobtitle: "Research Assistant"
+jobtitle: "Chief Data Scientist at Omni Analytics Group"
 address: "2405 Grant Cir, Ames, IA, 50010"
 fontawesome: yes
 email: eric@omnianalytics.io
