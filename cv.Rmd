@@ -9,9 +9,9 @@ title: "CV"
 author: Eric Hare
 
 jobtitle: "Research Assistant"
-address: "1121 Snedecor Hall, Ames, IA, 50011-1210"
+address: "2405 Grant Cir, Ames, IA, 50010"
 fontawesome: yes
-email: erichare@iastate.edu
+email: eric@omnianalytics.io
 github: erichare
 phone: "+1-425-405-0279"
 web: erichare.me
@@ -34,7 +34,7 @@ Exploratory Data Analysis, Statistical Graphics, Statistical Computing, Reproduc
 
 ## Iowa State University
 
-Doctor of Philosophy in Statistics & Computer Science \hfill In Progress
+Doctor of Philosophy in Statistics & Computer Science \hfill Received May 2017
 
 Master of Science in Statistics \hfill Received May 2014
 
@@ -46,9 +46,13 @@ Bachelor of Science in Computer Engineering, Cum Laude \hfill Received June 2012
 
 # Publications
 
+Hare, E., Hofmann, H., and Carriquiry, A., **A Modern Bullet Matching Database and Web Application**. In Progress
+
+Hare, E., Hofmann, H., and Carriquiry, A., **Algorithmic Approaches to Bullet Matching with an Emphasis on the Degraded Land Case**. In Progress
+
 Hare, E., Hofmann, H., and Carriquiry, A., **Automatic Matching of Bullet Lands**. In Progress
 
-Hare, E., and Kaplan, A., **Introductory Statistics with intRo**. Accepted by the Journal of Computational and Graphical Statistics
+Hare, E., and Kaplan, A., **Designing Modular Software: A Case Study in Introductory Statistics**. Accepted by the Journal of Computational and Graphical Statistics
 
 Dao, B., Kermanshachi, S., Shane, J., Anderson, S., and Hare, E., **Exploring and Assessing Project Complexity**.  Journal of Construction Engineering and Management: 04016126 (2016)
 
@@ -62,7 +66,7 @@ Kaplan, A., Hare, E., Hofmann, H., and Cook, D., **Can you buy a president? Poli
 
 # Posters & Presentations
 
-Hare. E., **Reproducing User Actions in Shiny**. Shiny Developer Conference, Jan 30-31, 2016, Palo Alto, WA, USA
+Hare. E., **Reproducing User Actions in Shiny**. Shiny Developer Conference, Jan 30-31, 2016, Palo Alto, CA, USA
 
 Hare, E., Kaplan, A., **intRo: Statistical Analysis Software for Teaching**. Contributed Paper, Joint Statistical Meetings, Aug 8-13, 2015, Seattle, WA, USA
 
@@ -122,9 +126,11 @@ Developed an automated hand-tracking mechanism using OpenCV and Python to indepe
 
 ## Work Experience
 
-Data Scientist, Omni Analytics Group \hfill Aug 2014 - Present
+Chief Data Scientist, Omni Analytics Group \hfill May 2017 - Present
 
-Research Assistant, Iowa State University \hfill Aug 2015 - Present
+Data Scientist, Omni Analytics Group \hfill Aug 2014 - May 2017
+
+Research Assistant, Iowa State University \hfill Aug 2015 - May 2017
 
 Teaching Assistant, Iowa State University \hfill Aug 2012 - Aug 2015
 
