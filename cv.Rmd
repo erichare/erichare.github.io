@@ -50,7 +50,7 @@ Hare, E., Hofmann, H., and Carriquiry, A., **A Modern Bullet Matching Database a
 
 Hare, E., Hofmann, H., and Carriquiry, A., **Algorithmic Approaches to Bullet Matching with an Emphasis on the Degraded Land Case**. In Progress
 
-Hare, E., Hofmann, H., and Carriquiry, A., **Automatic Matching of Bullet Lands**. In Progress
+Hare, E., Hofmann, H., and Carriquiry, A., **Automatic Matching of Bullet Lands**. Accepted by the Annals of Applied Statistics
 
 Hare, E., and Kaplan, A., **Designing Modular Software: A Case Study in Introductory Statistics**. Accepted by the Journal of Computational and Graphical Statistics
 
