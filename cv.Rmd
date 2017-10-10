@@ -48,7 +48,7 @@ Bachelor of Science in Computer Engineering, Cum Laude \hfill Received June 2012
 
 Hare, E., Hofmann, H., and Carriquiry, A., **A Modern Bullet Matching Database and Web Application**. In Progress
 
-Hare, E., Hofmann, H., and Carriquiry, A., **Algorithmic Approaches to Match Degraded Land Impressions**. Submitted to Law, Probability, and Risk
+Hare, E., Hofmann, H., and Carriquiry, A., **Algorithmic Approaches to Match Degraded Land Impressions**. Submitted to Law, Probability and Risk
 
 Hare, E., Hofmann, H., and Carriquiry, A., **Automatic Matching of Bullet Lands**. Accepted by the Annals of Applied Statistics
 
