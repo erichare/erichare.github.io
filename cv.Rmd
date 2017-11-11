@@ -48,11 +48,11 @@ Bachelor of Science in Computer Engineering, Cum Laude \hfill Received June 2012
 
 Hare, E., Hofmann, H., and Carriquiry, A., **A Modern Bullet Matching Database and Web Application**. In Progress
 
-Hare, E., Hofmann, H., and Carriquiry, A., **Algorithmic Approaches to Match Degraded Land Impressions**. Accepted by Law, Probability and Risk
+Hare, E., Hofmann, H., and Carriquiry, A., **Algorithmic Approaches to Match Degraded Land Impressions**. Law, Probability and Risk, mgx018, https://doi.org/10.1093/lpr/mgx018
 
-Hare, E., Hofmann, H., and Carriquiry, A., **Automatic Matching of Bullet Lands**. Accepted by the Annals of Applied Statistics
+Hare, E., Hofmann, H., and Carriquiry, A., **Automatic Matching of Bullet Lands**. **Automatic Matching of Bullet Land Impressions**. Annals of Applied Statistics. doi: 10.1214/17-AOAS1080
 
-Hare, E., and Kaplan, A., **Designing Modular Software: A Case Study in Introductory Statistics**. Accepted by the Journal of Computational and Graphical Statistics
+Hare, E., and Kaplan, A., **Designing Modular Software: A Case Study in Introductory Statistics**. Journal of Computational and Graphical Statistics (2017): 1-8.
 
 Dao, B., Kermanshachi, S., Shane, J., Anderson, S., and Hare, E., **Exploring and Assessing Project Complexity**.  Journal of Construction Engineering and Management: 04016126 (2016)
 
