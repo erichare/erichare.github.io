@@ -9,7 +9,7 @@ title: "CV"
 author: Eric Hare
 
 jobtitle: "Chief Data Scientist at Omni Analytics Group"
-address: "2911 Charlotte Ct, Unit 103, Ames, IA, 50014"
+address: "6108 78th Ave NE, Marysville, WA, 98270"
 fontawesome: yes
 email: eric@omnianalytics.io
 github: erichare
