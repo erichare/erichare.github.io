@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_astro/
+
+Sitemap: https://erichare.me/sitemap-index.xml

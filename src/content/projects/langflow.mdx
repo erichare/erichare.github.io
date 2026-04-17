@@ -1,0 +1,95 @@
+---
+title: Langflow
+tagline: "The open-source, visual framework for building AI agents. 147k+ stars. I'm a core maintainer."
+summary: "Building and maintaining Langflow at IBM — from MCP integration and the Langflow SDK to model-provider abstractions and tool-use policy."
+role: "Core maintainer"
+period: "2024 — Present"
+stack: ["Python", "FastAPI", "React", "LangChain", "MCP", "Docker", "PostgreSQL"]
+tags: ["ai-agents", "open-source", "ibm", "langflow"]
+featured: true
+order: 1
+links:
+  - label: "Repository"
+    href: "https://github.com/langflow-ai/langflow"
+  - label: "langflow.org"
+    href: "https://www.langflow.org"
+  - label: "My merged PRs"
+    href: "https://github.com/langflow-ai/langflow/pulls?q=is%3Apr+author%3Aerichare+is%3Amerged"
+---
+
+import { Icon } from 'astro-icon/components';
+
+Langflow is an open-source framework for building agentic AI applications visually. It compiles
+flows down to real Python — no low-code tax — and plugs into every major model provider. As of
+April 2026 the project has **147,000+ GitHub stars**, 8,700+ forks, and runs in production at
+hundreds of organisations.
+
+I joined the core team through a path shaped by acquisitions: DataStax acquired Langflow in April
+2024, then IBM acquired DataStax in 2025. I'm now one of the most active committers — **324+ commits
+across 73 active weeks**, and **240+ merged PRs** — working on the developer and operator
+experience team.
+
+## What I've shipped
+
+A non-exhaustive sampling of PRs I've authored and merged:
+
+### The Langflow SDK & Flow DevOps toolkit
+[**PR #12245**](https://github.com/langflow-ai/langflow/pull/12245) introduced the `langflow-sdk`
+and a DevOps API toolkit, making it possible to manage flows, runs, and deployments programmatically
+without clicking through the UI. Followed up with [**#12679**](https://github.com/langflow-ai/langflow/pull/12679)
+wiring the SDK into the release workflow.
+
+### Model Context Protocol (MCP) integration
+Langflow was an early adopter of Anthropic's Model Context Protocol. I contributed many of the MCP
+plumbing PRs, including:
+- [**#10965**](https://github.com/langflow-ai/langflow/pull/10965) — MCP + OAuth support
+- [**#12662**](https://github.com/langflow-ai/langflow/pull/12662) — OAuth callback URL handling for MCP Composer
+- [**#12715**](https://github.com/langflow-ai/langflow/pull/12715) — fixing auth error on MCP server restart
+- [**#12622**](https://github.com/langflow-ai/langflow/pull/12622) — preserving optional field types through MCP Tools
+- [**#12359**](https://github.com/langflow-ai/langflow/pull/12359) — supporting self-referential MCP JSON schemas
+- [**#12746**](https://github.com/langflow-ai/langflow/pull/12746) — respecting renamed/deleted default folders across logins
+
+### Agent policy & ToolGuard
+[**PR #12592**](https://github.com/langflow-ai/langflow/pull/12592) shipped a **policies component via
+ToolGuard** — so you can declaratively gate what tools an agent is allowed to call under what
+conditions. I also contribute upstream to [ToolGuard itself](https://github.com/AgentToolkit/toolguard).
+
+### ModelInput unification
+[**PR #12025**](https://github.com/langflow-ai/langflow/pull/12025) was a cross-cutting refactor that
+unified the model-input selector across every component — the kind of boring, broadly-felt cleanup
+that pays dividends for years. It followed work on context-ID message history
+([**#10319**](https://github.com/langflow-ai/langflow/pull/10319),
+[**#10183**](https://github.com/langflow-ai/langflow/pull/10183)).
+
+### Document parsing with Docling
+[**PR #9398**](https://github.com/langflow-ai/langflow/pull/9398) integrated IBM's
+[Docling](https://github.com/docling-project/docling) for advanced document parsing in the File
+Component, and [**#12296**](https://github.com/langflow-ai/langflow/pull/12296) fixed its worker
+subprocess handling.
+
+### Model & embedding providers
+- Astra DB Base Class ([**#10000**](https://github.com/langflow-ai/langflow/pull/10000))
+- Ollama embeddings ([**#10356**](https://github.com/langflow-ai/langflow/pull/10356))
+- watsonx embeddings + Batch Run
+- Misc Gemini / Nvidia polish
+
+## What Langflow taught me
+
+Working on a project this visible, with this many users, has forced habits I didn't have in
+smaller codebases:
+
+1. **Big refactors only land if you split them into a boring PR and an interesting PR.** The
+   interesting one wouldn't have gone in without the boring one first. The ModelInput unification
+   is a good example.
+
+2. **Authentication is a systems problem, not a code problem.** The volume of MCP auth bugs I've
+   fixed (swap, restart, OAuth callback, folder rename) comes from the fact that a reasonable
+   caller exists for every code path — you just don't see them until production traffic hits.
+
+3. **"Backwards compatible" is usually cheaper than you think.** When a model-provider SDK breaks
+   its API surface every minor release, the cheapest thing you can ship is a thin adapter that your
+   future self will bless you for.
+
+4. **The best open-source DX isn't documentation — it's running `pip install` and having the
+   thing work on the first try, on Windows, with Python 3.11.** A lot of my merged PRs are about
+   that.

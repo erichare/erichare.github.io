@@ -1,0 +1,57 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((p) => ({ params: { slug: p.id }, props: { entry: p } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+
+<BaseLayout title={d.title} description={d.summary}>
+  <article class="container-wide pt-16 pb-16">
+    <nav class="text-xs font-mono mb-6" style="color: var(--color-fg-subtle);">
+      <a href="/projects" class="link">Projects</a> / {d.title}
+    </nav>
+
+    <header class="max-w-3xl">
+      <p class="text-xs uppercase tracking-[0.18em] font-mono" style="color: var(--color-accent);">
+        {d.period}{d.role ? ` · ${d.role}` : ''}
+      </p>
+      <h1 class="mt-3 text-4xl md:text-5xl font-semibold" style="font-family: var(--font-serif); font-weight: 500;">
+        {d.title}
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed" style="color: var(--color-fg-muted);">
+        {d.tagline}
+      </p>
+
+      {d.stack.length > 0 && (
+        <div class="mt-6 flex flex-wrap gap-1.5">
+          {d.stack.map((s) => <span class="chip">{s}</span>)}
+        </div>
+      )}
+
+      {d.links.length > 0 && (
+        <div class="mt-6 flex flex-wrap gap-3">
+          {d.links.map((l) => (
+            <a href={l.href} class="inline-flex items-center gap-1.5 text-sm link">
+              <Icon name="lucide:external-link" width="14" />
+              {l.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <hr class="my-10 max-w-3xl" />
+
+    <div class="prose-styled">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

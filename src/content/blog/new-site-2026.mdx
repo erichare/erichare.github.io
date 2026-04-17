@@ -1,0 +1,86 @@
+---
+title: "A new site, built for the agent era"
+description: "Retiring the 2012-era Jekyll site and launching something that looks like 2026. Notes on the stack, the design choices, and what I learned along the way."
+pubDate: 2026-04-17
+tags: ["meta", "astro", "web"]
+---
+
+The site you're reading has been running on the same Jekyll template since 2012. It served me
+well through a PhD, a few jobs, and a couple of career shifts, but it was starting to feel like
+showing up to a conference in a t-shirt I bought in grad school — still wearable, but maybe
+communicating more than I intended.
+
+So I rebuilt it. This is both a launch post and a note to future me.
+
+## The stack
+
+- **[Astro 5](https://astro.build)** — static-first, islands architecture, content
+  collections with typed frontmatter. It builds down to flat HTML that GitHub Pages can serve
+  directly.
+- **[Tailwind CSS v4](https://tailwindcss.com)** — the new `@theme` block and OKLCH colour
+  system make it surprisingly pleasant to set up a design system in one file.
+- **MDX** for long-form content like the Langflow case study and these posts.
+- **Dynamic OG images** generated at build time with [Satori](https://github.com/vercel/satori).
+- **View Transitions API** for smooth page-to-page navigation — small polish that matters.
+- **Inter**, **Newsreader**, and **JetBrains Mono** for the type, with small-caps and OpenType
+  ligatures turned on.
+
+Total build output: ~400 KB of JS, most of which is icon sprites. Lighthouse scores at 100 across
+the board for the static pages.
+
+## Why stay on GitHub Pages
+
+I considered moving to Vercel or Cloudflare Pages. Both are excellent. But for a portfolio site
+with no server-side features, GitHub Pages is still the right call in 2026:
+
+- Zero ops, zero cost.
+- Deploys straight from a push to `main`.
+- Custom domain + free TLS.
+- The repo *is* the backup.
+
+Astro builds static HTML, so nothing about this choice locks me into Pages. If I ever need
+server-rendered routes I can flip the adapter and move hosts without rewriting a single page.
+
+## Design principles, such as they are
+
+1. **Type first.** Headlines in Newsreader because serifs still communicate
+   thoughtfulness; body in Inter; mono in JetBrains. Small-caps on for proper numerals in
+   tabular data. Nothing radical.
+2. **One accent colour.** A single teal used *sparingly* — the status dot in the header, the
+   left border of a blockquote, the eyebrow labels at the top of a section. The rest is grayscale.
+3. **Dark mode by default.** Technical audience, dim rooms, laptops at night. Toggleable.
+4. **No animations that aren't doing work.** View transitions and hover nudges earn their keep;
+   parallax and floating particles do not.
+5. **Content collections over page components.** Every project, publication, and post is a
+   Markdown file with typed frontmatter, so adding new ones is a matter of writing content — not
+   editing JSX.
+
+## What's on the site
+
+- **[Projects](/projects)** — Langflow featured, plus bullet-matching, discreteRV, intRo,
+  Daisi, CUGA, and Omni Analytics.
+- **[Publications](/publications)** — the full academic paper trail, now with sorghum-head
+  counting for extra colour.
+- **[CV](/cv)** — rendered from a single `cv.md` at the root of the repo. The PDF and the web
+  version both come from the same source.
+- **[/llms.txt](/llms.txt)** — a 2026 affectation: a structured index for agents that want
+  machine-readable context about me.
+
+## What I cut
+
+The Jekyll site had a *Classes* page that hadn't been updated since 2015, a *Teaching* page ditto,
+and a `Contact` page whose form had never worked. None of those made it. If I go back to teaching
+I'll put those back; until then, grep `git log` for the archaeology.
+
+## Housekeeping
+
+- The old `master` branch is now `main`, and the GitHub default branch is updated.
+- The old Rmd-authored PDF CV pipeline is gone — Markdown-first, PDF exported from that source.
+- The entire legacy tree is preserved under `src-legacy/` in the repo history so nothing is
+  lost.
+
+If you spot a broken link or a stale fact, please email
+[ericrhare@gmail.com](mailto:ericrhare@gmail.com) and I'll fix it. The site's source is
+[open on GitHub](https://github.com/erichare/erichare.github.io).
+
+— Eric

@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+import { SITE } from '../lib/site';
+
+const projects = (await getCollection('projects'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 6);
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b" style="border-color: var(--color-border-muted);">
+    <div class="absolute inset-0 grid-mesh pointer-events-none opacity-60"></div>
+    <div class="container-wide relative pt-20 pb-16 md:pt-28 md:pb-24">
+      <p class="text-xs uppercase tracking-[0.18em] font-mono mb-6 flex items-center gap-2" style="color: var(--color-accent);">
+        <span class="inline-flex w-1.5 h-1.5 rounded-full" style="background: var(--color-accent); box-shadow: 0 0 10px var(--color-accent);"></span>
+        Software Engineer · IBM · Langflow
+      </p>
+
+      <h1
+        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-tight max-w-4xl"
+        style="font-family: var(--font-serif); font-weight: 500;"
+      >
+        Building tools that help people <em class="italic" style="color: var(--color-accent);">see</em> their data&nbsp;— and agents that help them act on it.
+      </h1>
+
+      <p class="mt-7 text-lg md:text-xl max-w-2xl leading-relaxed" style="color: var(--color-fg-muted);">
+        I'm Eric. I work on <a href="/projects/langflow" class="link">Langflow</a> and enterprise agent tooling at IBM
+        (via the DataStax acquisition). Before that: Daisi, Chief Data Scientist at Omni Analytics, and a PhD
+        at Iowa State in statistics &amp; computer science — where I helped
+        <a href="/projects/bullet-matching" class="link">match bullets to the guns that fired them</a>.
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-3">
+        <a
+          href="/projects"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-md font-medium text-sm transition"
+          style="background: var(--color-fg); color: var(--color-bg);"
+        >
+          See the work
+          <Icon name="lucide:arrow-right" width="16" />
+        </a>
+        <a
+          href="/cv"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm border transition hover:border-[var(--color-border)]"
+          style="border-color: var(--color-border-muted); color: var(--color-fg);"
+        >
+          <Icon name="lucide:file-text" width="16" />
+          CV
+        </a>
+        <a
+          href={`mailto:${SITE.email}`}
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm transition hover:opacity-80"
+          style="color: var(--color-fg-muted);"
+        >
+          <Icon name="lucide:mail" width="16" />
+          {SITE.email}
+        </a>
+      </div>
+
+      <!-- Status + affiliations strip -->
+      <dl class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4 text-sm max-w-3xl">
+        <div>
+          <dt class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-fg-subtle);">Now</dt>
+          <dd class="mt-1" style="color: var(--color-fg);">IBM · Software Engineer</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-fg-subtle);">Team</dt>
+          <dd class="mt-1" style="color: var(--color-fg);">DOE — Dev &amp; Operator Experience</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-fg-subtle);">Based in</dt>
+          <dd class="mt-1" style="color: var(--color-fg);">Marysville, WA</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-fg-subtle);">Writing</dt>
+          <dd class="mt-1" style="color: var(--color-fg);">
+            <a href="/blog" class="link">/blog</a>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <Section eyebrow="Selected work" title="Projects that took a while to get right." subtitle="Open-source tools, research code, and products I've built or helped build over the last decade.">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {projects.map((p) => (
+        <ProjectCard
+          href={`/projects/${p.id}`}
+          title={p.data.title}
+          tagline={p.data.tagline}
+          role={p.data.role}
+          period={p.data.period}
+          stack={p.data.stack}
+          featured={p.data.featured}
+        />
+      ))}
+    </div>
+    <div class="mt-8">
+      <a href="/projects" class="inline-flex items-center gap-1.5 text-sm font-mono link">
+        All projects <Icon name="lucide:arrow-right" width="14" />
+      </a>
+    </div>
+  </Section>
+
+  <!-- Now / focus -->
+  <Section eyebrow="Focus" title="What I'm working on in 2026.">
+    <div class="grid md:grid-cols-3 gap-5">
+      <article class="card p-6">
+        <Icon name="lucide:workflow" width="22" style="color: var(--color-accent);" />
+        <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">Langflow core</h3>
+        <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
+          SDK, MCP integration, model-provider unification, and the Flow DevOps API toolkit.
+          <a href="/projects/langflow" class="link">Read the case study →</a>
+        </p>
+      </article>
+      <article class="card p-6">
+        <Icon name="lucide:shield-check" width="22" style="color: var(--color-accent);" />
+        <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">Agent safety</h3>
+        <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
+          Contributing to <a href="https://github.com/AgentToolkit/toolguard" class="link">ToolGuard</a> and
+          shipping its policy component into Langflow so agents can't call tools they shouldn't.
+        </p>
+      </article>
+      <article class="card p-6">
+        <Icon name="lucide:bot" width="22" style="color: var(--color-accent);" />
+        <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">CUGA</h3>
+        <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
+          Contributing to IBM Research's open-source
+          <a href="https://github.com/cuga-project/cuga-agent" class="link">generalist agent harness</a> for the enterprise.
+        </p>
+      </article>
+    </div>
+  </Section>
+
+  <!-- Writing -->
+  {posts.length > 0 && (
+    <Section eyebrow="Writing" title="Recent posts." subtitle="Notes on AI engineering, data science, and the occasional piece of statistical esoterica.">
+      <ul class="divide-y" style="--tw-divide-opacity: 1;">
+        {posts.map((post) => (
+          <li class="py-5">
+            <a href={`/blog/${post.id}`} class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 group">
+              <div>
+                <h3 class="text-lg font-medium group-hover:text-[var(--color-accent)] transition">
+                  {post.data.title}
+                </h3>
+                <p class="mt-1 text-sm" style="color: var(--color-fg-muted);">{post.data.description}</p>
+              </div>
+              <time class="text-xs font-mono shrink-0" style="color: var(--color-fg-subtle);" datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}
+              </time>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-6">
+        <a href="/blog" class="inline-flex items-center gap-1.5 text-sm font-mono link">
+          All writing <Icon name="lucide:arrow-right" width="14" />
+        </a>
+      </div>
+    </Section>
+  )}
+
+  <!-- Contact strip -->
+  <Section>
+    <div class="card p-8 md:p-12 text-center">
+      <h2 class="text-2xl md:text-3xl font-semibold" style="font-family: var(--font-serif); font-weight: 500;">
+        Want to talk shop?
+      </h2>
+      <p class="mt-3 max-w-xl mx-auto" style="color: var(--color-fg-muted);">
+        I'm always up for a conversation about AI agents, statistical graphics, R packaging, or forensic statistics.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a href={`mailto:${SITE.email}`} class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm" style="background: var(--color-fg); color: var(--color-bg);">
+          <Icon name="lucide:mail" width="16" /> {SITE.email}
+        </a>
+        <a href={SITE.social.github} class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm border" style="border-color: var(--color-border-muted);">
+          <Icon name="simple-icons:github" width="16" /> GitHub
+        </a>
+        <a href={SITE.social.linkedin} class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm border" style="border-color: var(--color-border-muted);">
+          <Icon name="simple-icons:linkedin" width="16" /> LinkedIn
+        </a>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

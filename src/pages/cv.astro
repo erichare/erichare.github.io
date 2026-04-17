@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { Icon } from 'astro-icon/components';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { marked } from 'marked';
+
+// Load the root cv.md so there is a single source of truth.
+const cvPath = path.resolve('./cv.md');
+const cvText = await fs.readFile(cvPath, 'utf8');
+// Strip the H1 — we render the page header ourselves.
+const body = cvText.replace(/^#\s.+\n/, '');
+const html = await marked.parse(body, { async: true });
+---
+
+<BaseLayout title="Curriculum Vitae" description="Eric Hare — CV, publications, awards, and open-source work.">
+  <PageHeader
+    eyebrow="Curriculum Vitae"
+    title="Eric Hare"
+    lede="Software engineer, statistician, open-source maintainer."
+  />
+
+  <section class="container-wide pb-10 flex flex-wrap items-center gap-3">
+    <a href="/cv.pdf" class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm border hover:border-[var(--color-border)] transition" style="border-color: var(--color-border-muted);">
+      <Icon name="lucide:download" width="14" /> Download PDF
+    </a>
+    <a href="https://github.com/erichare/erichare.github.io/blob/main/cv.md" class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm" style="color: var(--color-fg-muted);">
+      <Icon name="simple-icons:github" width="14" /> Source on GitHub
+    </a>
+    <button
+      id="copy-cv"
+      class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm"
+      style="color: var(--color-fg-muted);"
+      data-cv-text={cvText}
+    >
+      <Icon name="lucide:clipboard" width="14" /> Copy Markdown
+    </button>
+  </section>
+
+  <section class="container-wide pb-24">
+    <article class="prose-styled max-w-3xl" set:html={html} />
+  </section>
+</BaseLayout>
+
+<script>
+  document.getElementById('copy-cv')?.addEventListener('click', async (e) => {
+    const btn = e.currentTarget as HTMLButtonElement;
+    const text = btn.dataset.cvText ?? '';
+    try {
+      await navigator.clipboard.writeText(text);
+      const original = btn.innerHTML;
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!';
+      setTimeout(() => { btn.innerHTML = original; }, 1500);
+    } catch (err) {
+      console.error(err);
+    }
+  });
+</script>

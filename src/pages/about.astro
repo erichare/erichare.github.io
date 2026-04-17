@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Section from '../components/Section.astro';
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+
+const timeline = [
+  {
+    period: '2025 — Present',
+    role: 'Software Engineer',
+    org: 'IBM',
+    team: 'DOE — Developer and Operator Experience',
+    detail: 'Core maintainer of Langflow; contributor to CUGA and ToolGuard. Focus areas: MCP integration, model provider abstractions, agent tool-use policy, and the Langflow SDK.',
+  },
+  {
+    period: '2024 — 2025',
+    role: 'Staff / Principal Engineer',
+    org: 'DataStax (acquired by IBM, 2025)',
+    detail: 'Joined the Langflow core team after DataStax acquired Langflow in April 2024. Shipped hybrid-search + GenAI workflows, watsonx Orchestrate integrations, and Astra DB + Pulsar tooling.',
+  },
+  {
+    period: '2022 — 2023',
+    role: 'Senior Data Scientist',
+    org: 'Daisi Technology',
+    detail: 'Built serverless Python cloud-functions ("daisies") for scientists — sentiment analysis, dimensionality reduction, object detection pipelines. Wrote extensively for the Daisi engineering blog before the platform sunset in November 2022.',
+  },
+  {
+    period: '2017 — Present',
+    role: 'Chief Data Scientist',
+    org: 'Omni Analytics Group',
+    detail: 'Statistical consulting, Shiny apps, and training. Courses on interactive web applications, and the open-source OmniacsDAO suite (experiment-builder, letter-loops, Numerai/DeFi tooling).',
+  },
+  {
+    period: '2012 — 2017',
+    role: 'PhD Candidate & Research Assistant',
+    org: 'Iowa State University',
+    detail: 'Statistics & Computer Science. Dissertation: Statistical Methods for Bullet Matching. Research with CSAFE on forensic bullet-striation analysis; co-author of the R packages bulletr and bulletxtrctr.',
+  },
+  {
+    period: '2010 — 2013',
+    role: 'Quality Assurance Intern',
+    org: 'TIBCO Software',
+    detail: 'Three summers during undergrad.',
+  },
+];
+
+const interests = [
+  { icon: 'lucide:workflow', label: 'AI agent tooling', detail: 'MCP, agent policy, orchestration.' },
+  { icon: 'lucide:bar-chart-2', label: 'Statistical graphics', detail: 'Visual inference, ggplot2-era thinking for the agent era.' },
+  { icon: 'lucide:code-2', label: 'R & Python packaging', detail: 'Years of CRAN submissions have made me opinionated.' },
+  { icon: 'lucide:scale', label: 'Forensic statistics', detail: 'Bullet-matching with CSAFE, ongoing collaborator.' },
+  { icon: 'lucide:flask-conical', label: 'Reproducible research', detail: 'Good science ships with its code.' },
+  { icon: 'lucide:graduation-cap', label: 'Teaching', detail: 'Designed intRo, taught engineering probability to a lot of sophomores.' },
+];
+---
+
+<BaseLayout title="About" description="Eric Hare — biography, career timeline, and areas of focus.">
+  <PageHeader
+    eyebrow="About"
+    title="Short version: statistician who became a software engineer."
+    lede="Longer version below. I grew up in the Pacific Northwest, learned to code the old-fashioned way (shipping bad Perl), picked up statistics at UW, and got a PhD at Iowa State. Today I work on AI-agent tooling at IBM, and I still write R on weekends."
+  />
+
+  <Section>
+    <div class="grid lg:grid-cols-[1fr_260px] gap-10 items-start">
+      <div class="prose-styled">
+        <p>
+          I'm a software engineer at <strong>IBM</strong> on the <em>DOE — Developer and Operator
+          Experience</em> team, where I'm a core maintainer of
+          <a href="https://github.com/langflow-ai/langflow">Langflow</a>. I joined IBM in August 2025 when
+          it acquired DataStax, which had in turn acquired Langflow in 2024 — a trajectory that has let me
+          stay on the same codebase through three name changes on the org chart.
+        </p>
+        <p>
+          I did my undergrad at the University of Washington (dual degrees in Statistics and Computer
+          Engineering, 2012) and my PhD at Iowa State (Statistics &amp; Computer Science, 2017). My
+          dissertation was on automated <a href="/projects/bullet-matching">bullet matching</a> — I worked
+          with <a href="https://forensicstats.org">CSAFE</a> on using 3D surface scans of spent bullets to
+          link them back to the gun that fired them. Surprisingly fun problem; genuinely useful in court.
+        </p>
+        <p>
+          Between then and now: Chief Data Scientist at
+          <a href="https://omnianalytics.io">Omni Analytics Group</a>, Senior Data Scientist at
+          <a href="https://medium.com/daisi">Daisi Technology</a>, then on to DataStax / Langflow / IBM.
+          I've authored or co-authored a few R packages
+          (<a href="https://cran.r-project.org/web/packages/discreteRV/">discreteRV</a>,
+          <a href="https://cran.r-project.org/web/packages/bulletr/">bulletr</a>, bulletxtrctr), published
+          in <em>Annals of Applied Statistics</em> and <em>JCGS</em>, and written for CHANCE, InfoWorld, and
+          the DataStax / Daisi engineering blogs.
+        </p>
+        <p>
+          Outside work: I live north of Seattle with family, do a fair amount of running, and occasionally
+          still use the terminal to solve Advent of Code.
+        </p>
+      </div>
+
+      <aside class="card p-5 text-sm">
+        <Image
+          src="/img/personal/personal-image.jpg"
+          alt="Eric Hare"
+          width={460}
+          height={460}
+          class="rounded-md mb-4"
+          loading="eager"
+        />
+        <div class="space-y-2">
+          <p><span class="font-mono text-xs uppercase tracking-wider" style="color: var(--color-fg-subtle);">Degrees</span><br>PhD, Iowa State — 2017<br>BS Statistics + BS CompE, UW — 2012</p>
+          <p><span class="font-mono text-xs uppercase tracking-wider" style="color: var(--color-fg-subtle);">Based in</span><br>Marysville, WA</p>
+          <p><span class="font-mono text-xs uppercase tracking-wider" style="color: var(--color-fg-subtle);">Contact</span><br><a href="mailto:ericrhare@gmail.com" class="link">ericrhare@gmail.com</a><br><a href="mailto:eric.hare@ibm.com" class="link">eric.hare@ibm.com</a></p>
+        </div>
+      </aside>
+    </div>
+  </Section>
+
+  <Section eyebrow="Timeline" title="Where I've been.">
+    <ol class="relative border-l pl-8 space-y-10" style="border-color: var(--color-border-muted);">
+      {timeline.map((t) => (
+        <li class="relative">
+          <span
+            class="absolute -left-[41px] top-1.5 w-2.5 h-2.5 rounded-full"
+            style="background: var(--color-accent); box-shadow: 0 0 0 4px var(--color-bg);"
+          ></span>
+          <p class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-accent);">{t.period}</p>
+          <h3 class="mt-1 text-lg font-semibold" style="font-family: var(--font-serif); font-weight: 500;">
+            {t.role} <span class="font-normal" style="color: var(--color-fg-muted);">— {t.org}</span>
+          </h3>
+          {t.team && <p class="mt-0.5 text-xs font-mono" style="color: var(--color-fg-subtle);">{t.team}</p>}
+          <p class="mt-2 text-[0.95rem] leading-relaxed max-w-2xl" style="color: var(--color-fg-muted);">{t.detail}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Section eyebrow="Interests" title="Things I find worth caring about.">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {interests.map((i) => (
+        <div class="card p-5">
+          <Icon name={i.icon} width="20" style="color: var(--color-accent);" />
+          <h3 class="mt-3 font-medium">{i.label}</h3>
+          <p class="mt-1 text-sm" style="color: var(--color-fg-muted);">{i.detail}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+</BaseLayout>

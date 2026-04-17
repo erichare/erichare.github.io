@@ -1,0 +1,49 @@
+---
+title: "Automated Bullet Matching"
+tagline: "Statistical methods and 3D scan processing for matching spent bullets to the gun that fired them."
+summary: "PhD dissertation work, continuing research with CSAFE."
+role: "Author"
+period: "2013 — Present"
+stack: ["R", "C++", "OpenCV", "3D scanning"]
+tags: ["forensic-statistics", "r-package", "research"]
+order: 2
+links:
+  - label: "bulletr on CRAN"
+    href: "https://cran.r-project.org/web/packages/bulletr/"
+  - label: "bulletxtrctr"
+    href: "https://github.com/erichare/bulletxtrctr"
+  - label: "Annals of Applied Statistics"
+    href: "https://doi.org/10.1214/17-AOAS1080"
+  - label: "CSAFE"
+    href: "https://forensicstats.org"
+---
+
+When a bullet is fired from a gun, the barrel leaves fine striations on the bullet's surface.
+Traditionally, matching a recovered bullet to a particular gun is done by a firearms examiner
+looking through a comparison microscope and making a judgement call. My dissertation — and the
+ongoing CSAFE research program it fed into — builds **reproducible, statistical methods** for
+doing that matching from high-resolution 3D surface scans.
+
+The practical artifacts:
+
+- **[bulletr](https://github.com/erichare/bulletr)** — the reference R package for reading 3D bullet scans,
+  extracting striations from land-engraved areas, aligning them, and scoring match probabilities.
+  (CRAN-archived in late 2025 because a transitive dependency was archived; actively maintained on
+  GitHub.)
+- **[bulletxtrctr](https://github.com/erichare/bulletxtrctr)** — the feature-extraction toolkit.
+- **Published methodology** in *Annals of Applied Statistics* (["Automatic Matching of Bullet
+  Land Impressions"](https://doi.org/10.1214/17-AOAS1080)) and *Law, Probability &amp; Risk*
+  (["Algorithmic Approaches to Match Degraded Land
+  Impressions"](https://doi.org/10.1093/lpr/mgx018)).
+- **Webapp prototype** at [labs.omnianalytics.org/bullet-analyzer](https://labs.omnianalytics.org/bullet-analyzer/).
+
+The work won the ASA Imaging Section Student Paper Award (2016) and is now part of the CSAFE
+BulletAnalyzr pipeline I still push to occasionally.
+
+### Why it matters
+
+Firearms examination is one of the pattern-matching forensic disciplines that has been repeatedly
+flagged for lacking statistical foundations (NAS 2009; PCAST 2016). A reproducible, open-source,
+quantitative pipeline isn't a complete answer to those critiques, but it's a necessary piece — you
+can't argue about error rates on a method until the method is written down precisely enough to run
+twice.

@@ -1,0 +1,34 @@
+# Eric Hare
+
+> Software Engineer at IBM on the Developer and Operator Experience (DOE) team. Core maintainer of Langflow, contributor to CUGA and ToolGuard. PhD in Statistics and Computer Science from Iowa State University (2017). Previously Chief Data Scientist at Omni Analytics Group, Senior Data Scientist at Daisi Technology. Based in Marysville, WA.
+
+## Primary pages
+
+- [Home](https://erichare.me/): overview, status, selected projects.
+- [About](https://erichare.me/about): biography and career timeline.
+- [Projects](https://erichare.me/projects): open-source work and research.
+- [Publications](https://erichare.me/publications): peer-reviewed papers and preprints.
+- [CV](https://erichare.me/cv): full curriculum vitae. Markdown source at https://github.com/erichare/erichare.github.io/blob/main/cv.md
+- [Writing](https://erichare.me/blog): essays and field reports.
+- [Now](https://erichare.me/now): what I am focused on at the moment.
+
+## Flagship projects
+
+- [Langflow](https://erichare.me/projects/langflow) — IBM / open-source. Core maintainer; 240+ merged PRs. The visual framework for building AI agents (147k+ GitHub stars). Repository: https://github.com/langflow-ai/langflow
+- [CUGA](https://erichare.me/projects/cuga) — IBM Research's open-source generalist agent harness. Contributor. Repository: https://github.com/cuga-project/cuga-agent
+- [Bullet matching](https://erichare.me/projects/bullet-matching) — PhD dissertation + CSAFE research on automated forensic bullet striation matching. R packages: bulletr, bulletxtrctr.
+- [discreteRV](https://erichare.me/projects/discreterv) — R Journal paper (2015). Teaching package for discrete random variables.
+- [Daisi](https://erichare.me/projects/daisi) — Serverless Python cloud functions for scientific computing (2022).
+
+## Contact
+
+- Personal email: ericrhare@gmail.com
+- Work email: eric.hare@ibm.com
+- GitHub: https://github.com/erichare
+- LinkedIn: https://www.linkedin.com/in/eric-h-15280938/
+- Google Scholar: https://scholar.google.com/citations?user=EHAreY8AAAAJ
+
+## Citation
+
+If you need to cite this site, please use:
+  Hare, E. (2026). Personal website. Retrieved from https://erichare.me

@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Section from '../../components/Section.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const all = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<BaseLayout title="Projects" description="Open-source tools, research code, and products Eric Hare has built.">
+  <PageHeader
+    eyebrow="Projects"
+    title="Selected work across a decade."
+    lede="Some of these shipped. Some of these were papers. A couple of them were R packages that eventually got archived on CRAN. All of them taught me something."
+  />
+
+  <Section>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {all.map((p) => (
+        <ProjectCard
+          href={`/projects/${p.id}`}
+          title={p.data.title}
+          tagline={p.data.tagline}
+          role={p.data.role}
+          period={p.data.period}
+          stack={p.data.stack}
+          featured={p.data.featured}
+        />
+      ))}
+    </div>
+  </Section>
+</BaseLayout>

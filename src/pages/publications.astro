@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Section from '../components/Section.astro';
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+
+const pubs = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year);
+
+const byYear = pubs.reduce<Record<number, typeof pubs>>((acc, p) => {
+  (acc[p.data.year] ||= []).push(p);
+  return acc;
+}, {});
+
+const years = Object.keys(byYear)
+  .map(Number)
+  .sort((a, b) => b - a);
+
+const formatAuthors = (authors: readonly string[]) =>
+  authors
+    .map((a) => (a === 'Eric Hare' ? `<strong>${a}</strong>` : a))
+    .join(', ');
+---
+
+<BaseLayout
+  title="Publications"
+  description="Papers, proceedings, preprints and a PhD thesis by Eric Hare."
+>
+  <PageHeader
+    eyebrow="Publications"
+    title="Papers, proceedings, and a thesis."
+    lede="Mostly statistics and its applications — forensic bullet-matching, visual inference, teaching, and a stray YOLO/agriculture paper."
+  />
+
+  <Section>
+    <div class="space-y-14">
+      {years.map((year) => (
+        <div>
+          <div class="flex items-baseline gap-4 mb-5">
+            <h2 class="font-mono text-sm" style="color: var(--color-accent);">{year}</h2>
+            <div class="flex-1 h-px" style="background: var(--color-border-muted);"></div>
+          </div>
+          <ul class="space-y-7">
+            {byYear[year].map((p) => (
+              <li class="grid sm:grid-cols-[120px_1fr] gap-2 sm:gap-6">
+                <span class="chip w-fit h-fit uppercase">{p.data.kind}</span>
+                <div>
+                  <h3 class="text-base md:text-lg font-medium leading-snug">
+                    {p.data.url ? (
+                      <a href={p.data.url} class="link">{p.data.title}</a>
+                    ) : (
+                      p.data.title
+                    )}
+                  </h3>
+                  <p class="mt-1 text-sm" style="color: var(--color-fg-muted);" set:html={formatAuthors(p.data.authors)} />
+                  <p class="mt-1 text-sm italic" style="color: var(--color-fg-muted);">{p.data.venue}</p>
+                  {p.data.award && (
+                    <p class="mt-2 inline-flex items-center gap-1.5 text-xs font-mono" style="color: var(--color-warn);">
+                      <Icon name="lucide:award" width="14" />
+                      {p.data.award}
+                    </p>
+                  )}
+                  {p.data.abstract && (
+                    <p class="mt-2 text-sm" style="color: var(--color-fg-subtle);">{p.data.abstract}</p>
+                  )}
+                  {p.data.doi && (
+                    <p class="mt-1 text-xs font-mono" style="color: var(--color-fg-subtle);">
+                      doi:&nbsp;<a href={`https://doi.org/${p.data.doi}`} class="link">{p.data.doi}</a>
+                    </p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </Section>
+</BaseLayout>

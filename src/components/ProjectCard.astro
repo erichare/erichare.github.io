@@ -1,0 +1,59 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  href: string;
+  title: string;
+  tagline: string;
+  role?: string;
+  period?: string;
+  stack?: readonly string[];
+  featured?: boolean;
+}
+
+const { href, title, tagline, role, period, stack = [], featured = false } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    'card group p-6 md:p-7 flex flex-col gap-4 h-full',
+    featured ? 'md:col-span-2' : '',
+  ]}
+  style={featured
+    ? 'border-color: color-mix(in oklch, var(--color-accent) 35%, var(--color-border-muted));'
+    : ''}
+>
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      {featured && (
+        <span class="chip mb-3" style="background: var(--color-accent-soft); color: var(--color-accent); border-color: color-mix(in oklch, var(--color-accent) 35%, transparent);">
+          <Icon name="lucide:sparkles" width="12" />
+          Featured
+        </span>
+      )}
+      <h3 class="text-xl font-semibold" style="font-family: var(--font-serif); font-weight: 500;">{title}</h3>
+      {period && (
+        <p class="mt-1 text-xs font-mono" style="color: var(--color-fg-subtle);">
+          {period}{role ? ` · ${role}` : ''}
+        </p>
+      )}
+    </div>
+    <Icon
+      name="lucide:arrow-up-right"
+      width="18"
+      class="shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+      style="color: var(--color-fg-subtle);"
+    />
+  </div>
+
+  <p class="text-[0.95rem] leading-relaxed" style="color: var(--color-fg-muted);">
+    {tagline}
+  </p>
+
+  {stack.length > 0 && (
+    <div class="mt-auto flex flex-wrap gap-1.5 pt-2">
+      {stack.map((s) => <span class="chip">{s}</span>)}
+    </div>
+  )}
+</a>

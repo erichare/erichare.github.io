@@ -1,0 +1,41 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  aria-label="Toggle colour theme"
+  class="p-2 rounded-md transition"
+  style="color: var(--color-fg-muted);"
+>
+  <Icon name="lucide:sun" width="18" class="icon-sun hidden" />
+  <Icon name="lucide:moon" width="18" class="icon-moon" />
+</button>
+
+<script is:inline>
+  (function () {
+    const KEY = 'eh-theme';
+    const root = document.documentElement;
+    const stored = localStorage.getItem(KEY);
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initial = stored ?? (prefersLight ? 'light' : 'dark');
+    root.dataset.theme = initial;
+    window.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('theme-toggle');
+      if (!btn) return;
+      const sync = () => {
+        const t = root.dataset.theme;
+        btn.querySelector('.icon-sun')?.classList.toggle('hidden', t !== 'dark');
+        btn.querySelector('.icon-moon')?.classList.toggle('hidden', t === 'dark');
+      };
+      sync();
+      btn.addEventListener('click', () => {
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        localStorage.setItem(KEY, next);
+        sync();
+      });
+    });
+  })();
+</script>

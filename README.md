@@ -1,48 +1,118 @@
-## Jekyll Base ##
-This is a base that will ge you started with jekyll create by Daniel McGraw (@danielmcgraw). Maybe this will work...test
+# erichare.me
 
-### Usage ###
-Check out my [post series](http://danielmcgraw.com/2011/04/14/The-Ultimate-Guide-To-Getting-Started-With-Jekyll-Part-1/) on how to use Jekyll Base to create your own Jekyll powered blog.
+My personal site, rebuilt for 2026. Astro + Tailwind CSS v4 + MDX, deployed to GitHub Pages.
 
-### Structure ###
-<pre>
-.  
-|-- .gitignore  
-|-- README  
-|-- _config.yml  
-|-- _layouts  
-|   |-- layout.html  
-|   `-- post.html  
-|-- _posts  
-|   `-- 1985-10-26-Test-Post.md  
-`-- index.html  
-</pre>
+[![Deploy to GitHub Pages](https://github.com/erichare/erichare.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/erichare/erichare.github.io/actions/workflows/deploy.yml)
 
-Lets take a look at what each of these do.
+## Stack
 
-### .gitignore ###
-This file is not manditory for a proper Jekyll install, but is useful if you are like me and use a mac (ignore the DS_Store) or emacs (ignore the autosave files). If you have any other files or folders that need ignoring toss them in here.
+- **[Astro 5](https://astro.build)** — static-first, content collections, view transitions.
+- **[Tailwind CSS v4](https://tailwindcss.com)** — via the Vite plugin, with a custom `@theme` block in `src/styles/global.css`.
+- **MDX** for long-form content (projects, blog posts).
+- **[Satori](https://github.com/vercel/satori) + Sharp** for dynamic OG image generation.
+- **Icons**: Lucide + Simple Icons via `astro-icon`.
+- **Fonts**: Inter (sans), Newsreader (serif), JetBrains Mono (mono).
+- **Hosted on GitHub Pages** (custom domain: `erichare.me`). Deploys on push to `main` via Actions.
 
-### README ###
-This file is not manditory for a proper Jekyll install, but is recomended by GitHub for all repositories. Toss a simple description of your site and its make up in here if you would like.
+## Repository layout
 
-### _config.yml ###
-This is where you will be putting your Jekyll configuration options. If this file is omitted Jekyll will use its defualts to build your site. You can find the configuration options and default configuration [here](https://github.com/mojombo/jekyll/wiki/configuration).
+```
+.
+├── cv.md                     # Single source of truth for the CV (rendered at /cv)
+├── public/
+│   ├── CNAME                 # erichare.me
+│   ├── cv.pdf                # PDF export of the CV
+│   ├── favicon.svg
+│   ├── img/personal/…        # headshots
+│   ├── llms.txt              # machine-readable site index for agents
+│   ├── humans.txt
+│   └── robots.txt
+├── src/
+│   ├── components/           # SEO, Header, Footer, ProjectCard, etc.
+│   ├── content/
+│   │   ├── blog/             # MDX posts
+│   │   ├── projects/         # MDX project pages
+│   │   └── publications/     # MDX publication entries
+│   ├── content.config.ts     # Zod schemas for all collections
+│   ├── layouts/BaseLayout.astro
+│   ├── lib/site.ts           # Site metadata + navigation
+│   ├── pages/                # Routes (home, about, projects, publications, blog, cv, now, 404)
+│   └── styles/global.css
+├── astro.config.mjs
+├── package.json
+├── tsconfig.json
+└── .github/workflows/
+    ├── deploy.yml            # Build + deploy to GitHub Pages
+    └── lighthouse.yml        # Lighthouse CI on PRs
+```
 
-### _layouts ###
-This folder is where you will be putting all your layout templates. I have added layout.html and post.html so you can get an idea of how they are strutured and used. 
+## Developing locally
 
-#### layout.html ####
-This is the base template for our site. There are no naming conventions, but if you choose to change this file's name make sure you update all the layout references in your file's YAML Front Matter blocks.
+Requires Node 22+.
 
-#### post.html ####
-This is the bast template for each of our posts. Again there are no naming conventions, but make sure you update the required files YAML Front Matter blocks if you do change its name. To learn more about the use of YAML Front Matter check out [this page](https://github.com/mojombo/jekyll/wiki/yaml-front-matter).
+```bash
+npm install
+npm run dev          # http://localhost:4321
+npm run build        # static output → ./dist
+npm run preview      # preview the built site
+npm run check        # astro + TypeScript check
+```
 
-### _posts ###
-This is your posts folder. You will be putting your blog posts in here. Notice the naming convention that is used. You will want to name your files with the the publish date preceeding the posts title all seperated by dashes (Year-Month-Day-Title-Of-The-Post.md). The post date that you see is pulled straight from this filename so make sure you lable your files right.
- 
-#### 1985-10-26-Test-Post.md ####
-This is a simple blog post. Notice that we are using markdown. To learn more about markdown check out the [markdown syntax documentation](http://daringfireball.net/projects/markdown/syntax). Also notice that there is YAML Front Matter in this file specifying the layout it will use and the title of the post. Layout is one of a couple predefined global variables. You can also specify custom variables in the YAML Front Matter. To learn more about the use of YAML Front Matter check out [this page](https://github.com/mojombo/jekyll/wiki/yaml-front-matter).
+## Content authoring
 
-### index.html ###
-This is used to render your sites index. It is essntially a post loop wrapped in your base layout.
+### Adding a project
+
+Drop a file in `src/content/projects/<slug>.mdx` with frontmatter:
+
+```yaml
+---
+title: "Project name"
+tagline: "One-line pitch."
+summary: "Short description for SEO."
+role: "Your role"
+period: "2024 — Present"
+stack: ["Python", "React"]
+featured: false
+order: 10
+links:
+  - label: "Repo"
+    href: "https://github.com/..."
+---
+```
+
+### Adding a blog post
+
+`src/content/blog/<slug>.mdx` — frontmatter schema:
+
+```yaml
+---
+title: "Post title"
+description: "Meta description."
+pubDate: 2026-04-17
+tags: ["tag1"]
+draft: false
+---
+```
+
+Drafts are excluded from the index and RSS but still pre-rendered so you can preview the URL.
+
+### Adding a publication
+
+`src/content/publications/<slug>.mdx` with `title`, `authors`, `venue`, `year`, `kind`, optional
+`doi`, `url`, `abstract`, `award`.
+
+### Updating the CV
+
+Edit `cv.md` at the repo root. The `/cv` page renders it automatically. Regenerate the PDF with
+your tool of choice (pandoc, Typst, or just print-to-PDF from the web page).
+
+## Deploy
+
+`main` → GitHub Pages. The workflow is in `.github/workflows/deploy.yml`.
+
+GitHub Pages must be configured with **Build and deployment → Source: GitHub Actions**
+(Settings → Pages).
+
+## License
+
+Site code: MIT. Content (prose, CV, publications metadata): © Eric Hare, all rights reserved.

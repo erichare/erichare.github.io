@@ -1,0 +1,16 @@
+/* humans.txt */
+
+/* TEAM */
+Owner:    Eric Hare
+Contact:  ericrhare [at] gmail.com
+Twitter:  @ericrhare
+GitHub:   @erichare
+Location: Marysville, WA, USA
+
+/* SITE */
+Last updated: 2026-04-17
+Language:     English
+Doctype:      HTML5
+Stack:        Astro 5, Tailwind CSS v4, MDX
+Hosting:      GitHub Pages
+Source:       https://github.com/erichare/erichare.github.io

@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Section from '../components/Section.astro';
+import { Icon } from 'astro-icon/components';
+
+const lastUpdated = new Date('2026-04-17');
+---
+
+<BaseLayout title="Now" description="What Eric Hare is working on right now, updated periodically.">
+  <PageHeader
+    eyebrow="Now"
+    title="What I'm focused on right now."
+    lede="A page in the spirit of Derek Sivers' nownownow.com. A snapshot, not a résumé."
+  />
+
+  <Section>
+    <div class="prose-styled">
+      <p>
+        <em>Updated {lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} from Marysville, WA.</em>
+      </p>
+
+      <h2>Work</h2>
+      <ul>
+        <li>
+          <strong>Langflow, IBM.</strong> Core maintainer. Current PR queue: MCP auth resilience,
+          watsonx Orchestrate tests, the Langflow SDK release workflow, and
+          <a href="https://github.com/langflow-ai/langflow/pull/12592">ToolGuard policies</a>.
+        </li>
+        <li>
+          <strong>CUGA &amp; ToolGuard.</strong> Contributing upstream as time allows — the two
+          projects feed each other.
+        </li>
+        <li>
+          <strong>Developer and Operator Experience team.</strong> Making Langflow easier to run in
+          production and easier to hack on in development — the two usually want different things.
+        </li>
+      </ul>
+
+      <h2>Side projects</h2>
+      <ul>
+        <li>Rewriting this site (done — you are reading it).</li>
+        <li>Occasional pushes to <a href="https://github.com/erichare/bulletxtrctr">bulletxtrctr</a> and the CSAFE bullet-matching pipeline.</li>
+        <li>
+          <a href="https://github.com/OmniacsDAO">OmniacsDAO</a> — Numerai tooling,
+          <code>experiment-builder</code>, <code>letter-loops</code>.
+        </li>
+      </ul>
+
+      <h2>Reading & learning</h2>
+      <ul>
+        <li>Papers on agent tool-use evaluation and MCP security boundaries.</li>
+        <li>Rust, slowly, for no good reason.</li>
+      </ul>
+
+      <h2>Not doing</h2>
+      <ul>
+        <li>Active consulting through Omni Analytics (still Chief Data Scientist on paper, but
+          bandwidth is committed to IBM).</li>
+        <li>Conference travel (remote-first for 2026).</li>
+      </ul>
+    </div>
+  </Section>
+</BaseLayout>
