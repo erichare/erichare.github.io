@@ -38,7 +38,7 @@ Reproducible research · Forensic statistics.
   generalist agent harness, and [ToolGuard](https://github.com/AgentToolkit/toolguard) upstream.
 
 ### DataStax — Software Engineer
-*December 2022 — August 2025 · Remote*
+*December 2022 — August 2025 · Remote (California)*
 
 - Joined Langflow core after DataStax acquired Langflow in April 2024; moved to IBM when IBM
   acquired DataStax in 2025.
@@ -49,7 +49,7 @@ Reproducible research · Forensic statistics.
   Functions](https://www.infoworld.com/article/2338626/)" for InfoWorld).
 
 ### Daisi Technology — Senior Data Scientist
-*May 2021 — December 2022 · Remote*
+*May 2021 — December 2022 · Remote (California)*
 
 - Built reference "daisies" (serverless Python cloud functions) for YOLO object detection,
   time-series forecasting with Prophet, sentiment analysis, PCA, PDF extraction, and more.
@@ -57,14 +57,14 @@ Reproducible research · Forensic statistics.
   YOLO, and the Daisi Chain.
 
 ### Omni Analytics Group — Chief Data Scientist
-*May 2017 — May 2021*
+*May 2017 — May 2021 · Remote (Iowa)*
 
 - Led the company's data-science practice; built Shiny applications and delivered training under
   the *Creating and Designing Interactive Web Applications with Shiny* banner.
 - Helped seed OmniacsDAO for open-source Numerai, Uniswap, and Aave tooling.
 
 ### Iowa State University — Research Assistant, Teaching Assistant, Instructor
-*August 2012 — May 2017*
+*August 2012 — May 2017 · Ames, IA*
 
 - PhD candidate in Statistics & Computer Science.
 - Research with CSAFE on automated forensic bullet-matching.
