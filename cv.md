@@ -72,7 +72,7 @@ Reproducible research · Forensic statistics.
   Statistics (STAT 226); TA for STAT 305, 430, 480, 579.
 
 ### TIBCO Software, Inc. — Quality Assurance Intern
-*Summers 2010 — 2013*
+*Summers 2010 — 2013 · Seattle, WA*
 
 ## Education
 
