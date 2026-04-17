@@ -5,43 +5,76 @@ import { Icon } from 'astro-icon/components';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { marked } from 'marked';
+import '../styles/print.css';
 
-// Load the root cv.md so there is a single source of truth.
 const cvPath = path.resolve('./cv.md');
 const cvText = await fs.readFile(cvPath, 'utf8');
-// Strip the H1 — we render the page header ourselves.
-const body = cvText.replace(/^#\s.+\n/, '');
-const html = await marked.parse(body, { async: true });
+
+// The first line is the H1 ("# Eric Hare") and the second is the contact/location block.
+// We strip both so we can render our own screen header, but keep them for the print copy.
+const lines = cvText.split('\n');
+const subtitleLine = lines.find((l) => l.includes('·')) ?? '';
+const bodyForScreen = cvText.replace(/^#\s.+\n/, '').replace(subtitleLine + '\n', '');
+const bodyForPrint = cvText.replace(/^#\s.+\n/, '');
+const htmlScreen = await marked.parse(bodyForScreen, { async: true });
+const htmlPrint = await marked.parse(bodyForPrint, { async: true });
 ---
 
-<BaseLayout title="Curriculum Vitae" description="Eric Hare — CV, publications, awards, and open-source work.">
-  <PageHeader
-    eyebrow="Curriculum Vitae"
-    title="Eric Hare"
-    lede="Software engineer, statistician, open-source maintainer."
-  />
+<BaseLayout title="Curriculum Vitae" description="Eric Hare — CV, publications, awards, and open-source work." >
+  <div data-cv-page>
+    <div class="page-header-on-screen">
+      <PageHeader
+        eyebrow="Curriculum Vitae"
+        title="Eric Hare"
+        lede={subtitleLine.replace(/\*\*/g, '')}
+      />
 
-  <section class="container-wide pb-10 flex flex-wrap items-center gap-3">
-    <a href="/cv.pdf" class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm border hover:border-[var(--color-border)] transition" style="border-color: var(--color-border-muted);">
-      <Icon name="lucide:download" width="14" /> Download PDF
-    </a>
-    <a href="https://github.com/erichare/erichare.github.io/blob/main/cv.md" class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm" style="color: var(--color-fg-muted);">
-      <Icon name="simple-icons:github" width="14" /> Source on GitHub
-    </a>
-    <button
-      id="copy-cv"
-      class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm"
-      style="color: var(--color-fg-muted);"
-      data-cv-text={cvText}
-    >
-      <Icon name="lucide:clipboard" width="14" /> Copy Markdown
-    </button>
-  </section>
+      <section class="container-wide pb-6 flex flex-wrap items-center gap-3 no-print">
+        <a href="/cv.pdf" class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm border hover:border-[var(--color-border)] transition" style="border-color: var(--color-border-muted);">
+          <Icon name="lucide:download" width="14" /> PDF
+        </a>
+        <button
+          id="print-cv"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm border hover:border-[var(--color-border)] transition"
+          style="border-color: var(--color-border-muted);"
+        >
+          <Icon name="lucide:printer" width="14" /> Print / Save as PDF
+        </button>
+        <a href="https://github.com/erichare/erichare.github.io/blob/main/cv.md" class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm" style="color: var(--color-fg-muted);">
+          <Icon name="simple-icons:github" width="14" /> Source on GitHub
+        </a>
+        <button
+          id="copy-cv"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm"
+          style="color: var(--color-fg-muted);"
+          data-cv-text={cvText}
+        >
+          <Icon name="lucide:clipboard" width="14" /> Copy Markdown
+        </button>
+      </section>
+    </div>
 
-  <section class="container-wide pb-24">
-    <article class="prose-styled max-w-3xl" set:html={html} />
-  </section>
+    <!-- Screen version (rich, styled) -->
+    <section class="container-wide pb-24 screen-only">
+      <article class="prose-styled max-w-3xl" set:html={htmlScreen} />
+    </section>
+
+    <!-- Print version (clean, includes H1 + contact block) -->
+    <section class="print-only container-wide">
+      <h1>Eric Hare</h1>
+      <p>{subtitleLine.replace(/\*\*/g, '')}</p>
+      <article class="prose-styled" set:html={htmlPrint.replace(/<p>[^<]*·[^<]*<\/p>/, '')} />
+    </section>
+  </div>
 </BaseLayout>
+
+<style>
+  .print-only { display: none; }
+  @media print {
+    .screen-only, .page-header-on-screen { display: none !important; }
+    .print-only { display: block !important; }
+  }
+</style>
 
 <script>
   document.getElementById('copy-cv')?.addEventListener('click', async (e) => {
@@ -52,8 +85,7 @@ const html = await marked.parse(body, { async: true });
       const original = btn.innerHTML;
       btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!';
       setTimeout(() => { btn.innerHTML = original; }, 1500);
-    } catch (err) {
-      console.error(err);
-    }
+    } catch (err) { console.error(err); }
   });
+  document.getElementById('print-cv')?.addEventListener('click', () => window.print());
 </script>

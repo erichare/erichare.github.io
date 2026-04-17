@@ -1,0 +1,147 @@
+@media print {
+  :root {
+    --color-bg: #ffffff !important;
+    --color-bg-elev: #ffffff !important;
+    --color-fg: #1a1a1a !important;
+    --color-fg-muted: #333333 !important;
+    --color-fg-subtle: #4a4a4a !important;
+    --color-accent: #0f5073 !important;
+    --color-border: #cccccc !important;
+    --color-border-muted: #dddddd !important;
+  }
+
+  @page {
+    size: letter;
+    margin: 0.6in 0.7in;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    font-family: 'Newsreader', ui-serif, Georgia, 'Times New Roman', serif !important;
+    font-size: 10.5pt;
+    line-height: 1.4;
+  }
+
+  /* Hide all site chrome */
+  header,
+  footer,
+  nav,
+  #theme-toggle,
+  #mobile-nav,
+  #mobile-nav-toggle,
+  .no-print,
+  [data-cv-text],
+  a[href="/cv.pdf"],
+  a[href^="https://github.com/erichare/erichare.github.io"] {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  /* Remove hero padding */
+  section {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .container-wide, .container-prose {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .grid-mesh {
+    display: none !important;
+  }
+
+  /* Header block at top of CV */
+  h1 {
+    font-size: 22pt !important;
+    margin: 0 0 4pt 0 !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+    page-break-after: avoid;
+  }
+
+  h2 {
+    font-size: 12.5pt !important;
+    font-weight: 600 !important;
+    margin-top: 14pt !important;
+    margin-bottom: 4pt !important;
+    padding-bottom: 2pt !important;
+    border-bottom: 1px solid #aaa !important;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 11pt !important;
+    font-weight: 600 !important;
+    margin-top: 8pt !important;
+    margin-bottom: 2pt !important;
+    page-break-after: avoid;
+  }
+
+  p {
+    margin: 4pt 0 !important;
+    orphans: 3;
+    widows: 3;
+  }
+
+  ul, ol {
+    margin: 4pt 0 !important;
+    padding-left: 18pt !important;
+  }
+  li {
+    margin: 1.5pt 0 !important;
+  }
+
+  em, i {
+    color: #444 !important;
+  }
+
+  strong, b {
+    font-weight: 600 !important;
+  }
+
+  a, a.link {
+    color: #0f5073 !important;
+    text-decoration: none !important;
+    border: 0 !important;
+  }
+
+  hr {
+    display: none !important;
+  }
+
+  .chip,
+  .card,
+  .prose-styled blockquote {
+    display: inline !important;
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Eyebrow labels */
+  .prose-styled p em:first-child {
+    color: #666 !important;
+  }
+
+  /* Force page breaks sensibly */
+  h2, h3 {
+    break-after: avoid;
+  }
+  ul, ol, p {
+    break-inside: avoid;
+  }
+
+  /* CV-specific: put print-mode tweaks after the <PageHeader> */
+  [data-cv-page] .page-header-on-screen {
+    display: none !important;
+  }
+}

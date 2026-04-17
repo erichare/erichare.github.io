@@ -5,7 +5,7 @@ Owner:    Eric Hare
 Contact:  ericrhare [at] gmail.com
 Twitter:  @ericrhare
 GitHub:   @erichare
-Location: Marysville, WA, USA
+Location: Lake Stevens, WA, USA
 
 /* SITE */
 Last updated: 2026-04-17

@@ -1,6 +1,6 @@
 # Eric Hare
 
-Software Engineer at IBM (Developer and Operator Experience) · PhD, Iowa State · Marysville, WA
+Software Engineer at IBM · Developer and Operator Experience · PhD, Iowa State · Lake Stevens, WA
 
 **Email**  ericrhare@gmail.com · eric.hare@ibm.com
 **Web**    [erichare.me](https://erichare.me)
@@ -10,9 +10,9 @@ Software Engineer at IBM (Developer and Operator Experience) · PhD, Iowa State 
 ## Summary
 
 Software engineer and statistician. I build open-source tools for AI agents (Langflow, CUGA,
-ToolGuard) and contribute to the core Langflow project at IBM. Previously Chief Data Scientist at
-Omni Analytics Group, Senior Data Scientist at Daisi Technology, and a researcher in forensic
-statistics at Iowa State. PhD in Statistics & Computer Science (2017).
+ToolGuard) and contribute to the core Langflow project at IBM. Previously at DataStax,
+Daisi Technology, and Chief Data Scientist at Omni Analytics Group. PhD in Statistics &
+Computer Science (Iowa State, 2017), with a research background in forensic statistics.
 
 ## Research Interests
 
@@ -37,10 +37,11 @@ Reproducible research · Forensic statistics.
 - Contributor to [CUGA](https://github.com/cuga-project/cuga-agent), IBM Research's open-source
   generalist agent harness, and [ToolGuard](https://github.com/AgentToolkit/toolguard) upstream.
 
-### DataStax — Staff / Principal Engineer *(acquired by IBM, 2025)*
-*2023 — August 2025*
+### DataStax — Staff / Principal Engineer
+*December 2022 — August 2025 · Remote*
 
-- Joined Langflow core after DataStax acquired Langflow in April 2024.
+- Joined Langflow core after DataStax acquired Langflow in April 2024; moved to IBM when IBM
+  acquired DataStax in 2025.
 - Integrated Langflow with Astra DB, watsonx, and Docling for document parsing.
 - Authored "[Build a GenAI Workflow with Hybrid Search and
   Langflow](https://medium.com/building-the-open-data-stack)" and contributed to Apache Pulsar AI
@@ -48,19 +49,19 @@ Reproducible research · Forensic statistics.
   Functions](https://www.infoworld.com/article/2338626/)" for InfoWorld).
 
 ### Daisi Technology — Senior Data Scientist
-*2022*
+*May 2021 — December 2022 · Remote*
 
 - Built reference "daisies" (serverless Python cloud functions) for YOLO object detection,
   time-series forecasting with Prophet, sentiment analysis, PCA, PDF extraction, and more.
-- Wrote the platform's engineering blog: end-to-end pipelines, R interop, sentiment, YOLO, and
-  the Daisi Chain.
+- Wrote most of the platform's engineering blog: end-to-end pipelines, R interop, sentiment,
+  YOLO, and the Daisi Chain.
 
 ### Omni Analytics Group — Chief Data Scientist
-*May 2017 — Present*
+*May 2017 — May 2021*
 
-- Founded the company's data-science practice; built Shiny applications and delivered
-  training under the *Creating and Designing Interactive Web Applications with Shiny* banner.
-- Spun off OmniacsDAO for open-source Numerai, Uniswap, and Aave tooling.
+- Led the company's data-science practice; built Shiny applications and delivered training under
+  the *Creating and Designing Interactive Web Applications with Shiny* banner.
+- Helped seed OmniacsDAO for open-source Numerai, Uniswap, and Aave tooling.
 
 ### Iowa State University — Research Assistant, Teaching Assistant, Instructor
 *August 2012 — May 2017*

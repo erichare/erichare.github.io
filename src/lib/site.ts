@@ -8,7 +8,7 @@ export const SITE = {
   email: 'ericrhare@gmail.com',
   emailWork: 'eric.hare@ibm.com',
   locale: 'en_US',
-  location: 'Marysville, WA',
+  location: 'Lake Stevens, WA',
   social: {
     github: 'https://github.com/erichare',
     linkedin: 'https://www.linkedin.com/in/eric-h-15280938/',

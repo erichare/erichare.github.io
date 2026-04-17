@@ -1,6 +1,6 @@
 # Eric Hare
 
-> Software Engineer at IBM on the Developer and Operator Experience (DOE) team. Core maintainer of Langflow, contributor to CUGA and ToolGuard. PhD in Statistics and Computer Science from Iowa State University (2017). Previously Chief Data Scientist at Omni Analytics Group, Senior Data Scientist at Daisi Technology. Based in Marysville, WA.
+> Software Engineer at IBM on the Developer and Operator Experience (DOE) team. Core maintainer of Langflow, contributor to CUGA and ToolGuard. PhD in Statistics and Computer Science from Iowa State University (2017). Previously Chief Data Scientist at Omni Analytics Group, Senior Data Scientist at Daisi Technology. Based in Lake Stevens, WA.
 
 ## Primary pages
 

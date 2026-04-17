@@ -1,0 +1,54 @@
+---
+title: "Astra DB Data API"
+tagline: "The HTTP/JSON API in front of Astra DB — the data plane behind Langflow, astrapy, and the portal's ingestion stack."
+summary: "Core work on the DOE team: Unstructured integration, portal ingestion backend, and the astrapy Python client."
+role: "Software Engineer, DOE team"
+period: "Dec 2022 — Present"
+stack: ["Python", "Java", "FastAPI", "Kubernetes", "Astra DB"]
+tags: ["databases", "ibm", "datastax", "open-source"]
+order: 2
+links:
+  - label: "astrapy (Python client)"
+    href: "https://github.com/datastax/astrapy"
+  - label: "Astra DB"
+    href: "https://www.datastax.com/products/datastax-astra"
+  - label: "Unstructured"
+    href: "https://github.com/Unstructured-IO/unstructured"
+---
+
+The Data API is the HTTP/JSON layer that sits in front of Astra DB — the document- and
+vector-friendly surface most developers actually use, whether directly or through our clients.
+On the **Developer and Operator Experience (DOE)** team I've been one of the primary contributors
+to the stack for several years, spanning the API itself, its clients, and the ingestion paths
+that feed it.
+
+## What I work on
+
+### astrapy — the Python client
+I'm an ongoing contributor to [**astrapy**](https://github.com/datastax/astrapy), the reference
+Python client for the Data API. It's what Langflow, notebooks, and most Python-side integrations
+use to talk to Astra DB: collections, vector search, hybrid lexical+vector queries, find/insert
+semantics, and the broader document CRUD surface. Maintaining a client that has to look idiomatic
+to Python users *and* track a moving API surface has been a useful exercise in API-versioning
+discipline.
+
+### Unstructured integration
+I helped build and maintain the integration with [**Unstructured.io**](https://github.com/Unstructured-IO/unstructured)
+so that documents of every shape — PDFs, DOCX, scanned images, slide decks — can be parsed,
+chunked, embedded, and loaded straight into Astra DB. In practice this is the plumbing that
+turns "here's a folder of documents" into "here's a searchable, vectorised knowledge base" with
+no glue code on the user's side.
+
+### Portal ingestion backend
+The Astra portal's ingestion flow — pick a source, pick (or auto-pick) an embedding model, watch
+progress, get a usable collection at the end — is backed by services I contribute to heavily.
+Plenty of attention to failure modes: partial loads, rate limiting, credential rotation, and
+giving operators a legible story when something goes sideways at 3am.
+
+## What it taught me
+
+Data APIs are the rare project where every decision has to be right three times: at the wire
+level (how the JSON looks), at the client level (how it feels in Python), and at the storage
+level (how it behaves under real load). The project made me a much more disciplined API designer
+— the tax for getting a public endpoint wrong is paid in perpetuity by every customer and client
+library that touches it.
