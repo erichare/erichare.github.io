@@ -31,15 +31,8 @@ const htmlPrint = await marked.parse(bodyForPrint, { async: true });
 
       <section class="container-wide pb-6 flex flex-wrap items-center gap-3 no-print">
         <a href="/cv.pdf" class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm border hover:border-[var(--color-border)] transition" style="border-color: var(--color-border-muted);">
-          <Icon name="lucide:download" width="14" /> PDF
+          <Icon name="lucide:download" width="14" /> Download PDF
         </a>
-        <button
-          id="print-cv"
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm border hover:border-[var(--color-border)] transition"
-          style="border-color: var(--color-border-muted);"
-        >
-          <Icon name="lucide:printer" width="14" /> Print / Save as PDF
-        </button>
         <a href="https://github.com/erichare/erichare.github.io/blob/main/cv.md" class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm" style="color: var(--color-fg-muted);">
           <Icon name="simple-icons:github" width="14" /> Source on GitHub
         </a>
@@ -87,5 +80,4 @@ const htmlPrint = await marked.parse(bodyForPrint, { async: true });
       setTimeout(() => { btn.innerHTML = original; }, 1500);
     } catch (err) { console.error(err); }
   });
-  document.getElementById('print-cv')?.addEventListener('click', () => window.print());
 </script>
