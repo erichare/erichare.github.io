@@ -37,7 +37,7 @@ Reproducible research · Forensic statistics.
 - Contributor to [CUGA](https://github.com/cuga-project/cuga-agent), IBM Research's open-source
   generalist agent harness, and [ToolGuard](https://github.com/AgentToolkit/toolguard) upstream.
 
-### DataStax — Staff / Principal Engineer
+### DataStax — Software Engineer
 *December 2022 — August 2025 · Remote*
 
 - Joined Langflow core after DataStax acquired Langflow in April 2024; moved to IBM when IBM
