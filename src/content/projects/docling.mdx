@@ -1,0 +1,45 @@
+---
+title: "Docling"
+tagline: "IBM's open-source toolkit for advanced document parsing — PDFs, DOCX, slides, scans, the whole menagerie. I wired it into Langflow."
+summary: "Contributor work integrating Docling across Langflow and the Astra DB ingestion stack."
+role: "Contributor / Integrator"
+period: "2025 — Present"
+stack: ["Python", "PyTorch", "Langflow"]
+tags: ["ai-agents", "document-parsing", "ibm", "open-source"]
+order: 3
+links:
+  - label: "docling-project/docling"
+    href: "https://github.com/docling-project/docling"
+  - label: "Docling docs"
+    href: "https://docling-project.github.io/docling/"
+---
+
+[Docling](https://github.com/docling-project/docling) is IBM's open-source document-parsing
+toolkit — it ingests PDFs, Office documents, presentations, images, and scans, and emits a
+structured representation clean enough to feed into a RAG pipeline, a knowledge base, or an
+agent's context window. It's one of IBM Research's more quietly important open-source releases;
+it shows up behind a lot of AI features you might not guess are powered by it.
+
+My work has been on making Docling a first-class citizen inside **Langflow** and the broader
+Astra DB ingestion path.
+
+## What I've shipped
+
+- **[PR #9398 — Langflow](https://github.com/langflow-ai/langflow/pull/9398)** — the initial
+  integration that added Docling as an option in the Langflow File Component, so users can
+  point Langflow at any supported document and get back structured, chunk-ready output without
+  wiring up their own parser.
+- **[PR #12296 — Langflow](https://github.com/langflow-ai/langflow/pull/12296)** — fixes to
+  the Docling worker subprocess handling. Running heavy parsers as subprocesses is the kind of
+  thing that works fine in dev and then falls over under real load; this PR tightened the
+  lifecycle and error propagation so Langflow users don't get silent failures on big files.
+- **[PR #12442 — Langflow](https://github.com/langflow-ai/langflow/pull/12442)** — removed
+  the old Astra Assistants path in favour of using Docling directly, simplifying the
+  dependency graph and making document parsing consistent across Langflow surfaces.
+
+## Why it matters
+
+Most real-world AI applications spend an embarrassing fraction of their engineering time on
+the "get the documents into something useful" problem. Docling shrinks that problem to a
+library call. The integration work is unglamorous glue that, done right, lets everyone above
+it ship faster — which is exactly the DOE (Developer &amp; Operator Experience) team's job.

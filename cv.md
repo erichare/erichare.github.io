@@ -9,10 +9,11 @@ Software Engineer at IBM · Developer and Operator Experience · PhD, Iowa State
 
 ## Summary
 
-Software engineer and statistician. I build open-source tools for AI agents (Langflow, CUGA,
-ToolGuard) and contribute to the core Langflow project at IBM. Previously at DataStax,
-Daisi Technology, and Chief Data Scientist at Omni Analytics Group. PhD in Statistics &
-Computer Science (Iowa State, 2017), with a research background in forensic statistics.
+Software engineer and statistician. I build open-source tools for AI agents and document
+pipelines (Langflow, Astra DB Data API, Docling, ToolGuard) on IBM's Developer and Operator
+Experience team. Previously at DataStax, Daisi Technology, and Chief Data Scientist at Omni
+Analytics Group. PhD in Statistics & Computer Science (Iowa State, 2017), with a research
+background in forensic statistics.
 
 ## Research Interests
 
@@ -34,8 +35,13 @@ Reproducible research · Forensic statistics.
   control over what tools an agent is allowed to call.
 - Refactored the **ModelInput selector** across Langflow (PR #12025) for a consistent
   model-provider UX.
-- Contributor to [CUGA](https://github.com/cuga-project/cuga-agent), IBM Research's open-source
-  generalist agent harness, and [ToolGuard](https://github.com/AgentToolkit/toolguard) upstream.
+- Integrated [Docling](https://github.com/docling-project/docling), IBM's document-parsing
+  toolkit, into the Langflow File Component (PRs #9398, #12296, #12442) and the Astra DB
+  ingestion path.
+- Ongoing contributor to the **Astra DB Data API** stack: `astrapy` Python client, Unstructured
+  integration, and portal ingestion backend.
+- Contributor to [ToolGuard](https://github.com/AgentToolkit/toolguard) upstream and to IBM
+  Research's [CUGA](https://github.com/cuga-project/cuga-agent) agent harness.
 
 ### DataStax — Software Engineer
 *December 2022 — August 2025 · Remote (California)*

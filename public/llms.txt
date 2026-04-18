@@ -16,12 +16,13 @@
 
 - [Langflow](https://erichare.me/projects/langflow) — IBM / open-source. Core maintainer; 240+ merged PRs. The visual framework for building AI agents (147k+ GitHub stars). Repository: https://github.com/langflow-ai/langflow
 - [Astra DB Data API](https://erichare.me/projects/astra-data-api) — IBM / DataStax. Contributor to the HTTP/JSON data plane in front of Astra DB: Unstructured integration, portal ingestion backend, and the astrapy Python client.
-- [CUGA](https://erichare.me/projects/cuga) — IBM Research's open-source generalist agent harness. Contributor. Repository: https://github.com/cuga-project/cuga-agent
+- [Docling](https://erichare.me/projects/docling) — IBM's open-source document-parsing toolkit. Contributor, integrator into Langflow (PRs #9398, #12296, #12442) and the Astra DB ingestion path.
 - [Bullet matching](https://erichare.me/projects/bullet-matching) — PhD dissertation + CSAFE research on automated forensic bullet striation matching. R packages: bulletr, bulletxtrctr.
 - [discreteRV](https://erichare.me/projects/discreterv) — R Journal paper (2015). Teaching package for discrete random variables.
 - [intRo](https://erichare.me/projects/intro) — Shiny-based introductory-statistics teaching tool. JCGS paper.
 - [Daisi](https://erichare.me/projects/daisi) — Serverless Python cloud functions for scientific computing (2021–2022).
 - [Omni Analytics & OmniacsDAO](https://erichare.me/projects/omniacsdao) — Chief Data Scientist 2017–2021. Open-source Shiny and DeFi tooling.
+- [CUGA](https://erichare.me/projects/cuga) — Occasional contributor to IBM Research's open-source generalist agent harness.
 
 ## Contact
 
