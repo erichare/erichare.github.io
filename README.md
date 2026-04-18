@@ -3,13 +3,14 @@
 My personal site, rebuilt for 2026. Astro + Tailwind CSS v4 + MDX, deployed to GitHub Pages.
 
 [![Deploy to GitHub Pages](https://github.com/erichare/erichare.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/erichare/erichare.github.io/actions/workflows/deploy.yml)
+[![Lighthouse](https://github.com/erichare/erichare.github.io/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/erichare/erichare.github.io/actions/workflows/lighthouse.yml)
 
 ## Stack
 
 - **[Astro 5](https://astro.build)** — static-first, content collections, view transitions.
 - **[Tailwind CSS v4](https://tailwindcss.com)** — via the Vite plugin, with a custom `@theme` block in `src/styles/global.css`.
 - **MDX** for long-form content (projects, blog posts).
-- **[Satori](https://github.com/vercel/satori) + Sharp** for dynamic OG image generation.
+- **[Satori](https://github.com/vercel/satori) + Sharp** for dynamic OG image generation at `/og-default.png`.
 - **Icons**: Lucide + Simple Icons via `astro-icon`.
 - **Fonts**: Inter (sans), Newsreader (serif), JetBrains Mono (mono).
 - **Hosted on GitHub Pages** (custom domain: `erichare.me`). Deploys on push to `main` via Actions.
@@ -18,37 +19,42 @@ My personal site, rebuilt for 2026. Astro + Tailwind CSS v4 + MDX, deployed to G
 
 ```
 .
-├── cv.md                     # Single source of truth for the CV (rendered at /cv)
+├── cv.md                         # Single source of truth for the CV (rendered at /cv)
+├── scripts/
+│   └── generate-cv-pdf.mjs       # Regenerate public/cv.pdf from /cv (via Chrome headless)
 ├── public/
-│   ├── CNAME                 # erichare.me
-│   ├── cv.pdf                # PDF export of the CV
+│   ├── CNAME                     # erichare.me
+│   ├── cv.pdf                    # PDF export of the CV
 │   ├── favicon.svg
-│   ├── img/personal/…        # headshots
-│   ├── llms.txt              # machine-readable site index for agents
+│   ├── apple-touch-icon.png
+│   ├── site.webmanifest
+│   ├── img/personal/…            # headshot + derived sizes
+│   ├── llms.txt                  # machine-readable site index for agents
 │   ├── humans.txt
 │   └── robots.txt
 ├── src/
-│   ├── components/           # SEO, Header, Footer, ProjectCard, etc.
+│   ├── components/               # SEO, Header, Footer, ProjectCard, ThemeToggle, …
 │   ├── content/
-│   │   ├── blog/             # MDX posts
-│   │   ├── projects/         # MDX project pages
-│   │   └── publications/     # MDX publication entries
-│   ├── content.config.ts     # Zod schemas for all collections
+│   │   ├── blog/                 # MDX posts
+│   │   ├── projects/             # MDX project pages
+│   │   └── publications/         # MDX publication entries
+│   ├── content.config.ts         # Zod schemas for all content collections
 │   ├── layouts/BaseLayout.astro
-│   ├── lib/site.ts           # Site metadata + navigation
-│   ├── pages/                # Routes (home, about, projects, publications, blog, cv, now, 404)
-│   └── styles/global.css
-├── astro.config.mjs
-├── package.json
-├── tsconfig.json
+│   ├── lib/site.ts               # Site metadata + navigation
+│   ├── pages/                    # Routes (home, about, projects, publications, blog, cv, now, 404)
+│   │   ├── og-default.png.ts     # Dynamic OG image (Satori)
+│   │   └── rss.xml.ts            # Writing feed
+│   └── styles/
+│       ├── global.css            # @theme + base + component styles
+│       └── print.css             # Print/PDF stylesheet used by /cv
 └── .github/workflows/
-    ├── deploy.yml            # Build + deploy to GitHub Pages
-    └── lighthouse.yml        # Lighthouse CI on PRs
+    ├── deploy.yml                # Build + deploy to GitHub Pages on push to main
+    └── lighthouse.yml            # Lighthouse CI on pull requests
 ```
 
 ## Developing locally
 
-Requires Node 22+.
+Requires Node 22+ (see `.nvmrc`).
 
 ```bash
 npm install
@@ -56,9 +62,25 @@ npm run dev          # http://localhost:4321
 npm run build        # static output → ./dist
 npm run preview      # preview the built site
 npm run check        # astro + TypeScript check
+npm run cv:pdf       # regenerate public/cv.pdf from /cv via Chrome headless
 ```
 
 ## Content authoring
+
+### Updating the CV
+
+Edit `cv.md` at the repo root. The `/cv` page renders it automatically. Then regenerate the PDF:
+
+```bash
+npm run cv:pdf
+```
+
+The script builds the site, spins up `astro preview`, and uses headless Chrome to print `/cv` into
+`public/cv.pdf`. The `/cv` page has a dedicated print stylesheet (`src/styles/print.css`) that strips
+site chrome and formats the document for letter-size paper, so the resulting PDF matches the
+on-screen CV.
+
+Override the Chrome binary with `CHROME=/path/to/chrome npm run cv:pdf` if needed.
 
 ### Adding a project
 
@@ -72,8 +94,8 @@ summary: "Short description for SEO."
 role: "Your role"
 period: "2024 — Present"
 stack: ["Python", "React"]
-featured: false
-order: 10
+featured: false      # true puts it in the first row of the home-page grid
+order: 10            # lower = higher in the listing
 links:
   - label: "Repo"
     href: "https://github.com/..."
@@ -82,7 +104,7 @@ links:
 
 ### Adding a blog post
 
-`src/content/blog/<slug>.mdx` — frontmatter schema:
+`src/content/blog/<slug>.mdx`:
 
 ```yaml
 ---
@@ -94,24 +116,21 @@ draft: false
 ---
 ```
 
-Drafts are excluded from the index and RSS but still pre-rendered so you can preview the URL.
+Drafts are excluded from `/blog`, the RSS feed, and the home-page recent-posts list, but are still
+pre-rendered so you can preview the URL.
 
 ### Adding a publication
 
-`src/content/publications/<slug>.mdx` with `title`, `authors`, `venue`, `year`, `kind`, optional
+`src/content/publications/<slug>.mdx` with `title`, `authors`, `venue`, `year`,
+`kind` (`journal` | `conference` | `workshop` | `poster` | `talk` | `preprint`), and optional
 `doi`, `url`, `abstract`, `award`.
-
-### Updating the CV
-
-Edit `cv.md` at the repo root. The `/cv` page renders it automatically. Regenerate the PDF with
-your tool of choice (pandoc, Typst, or just print-to-PDF from the web page).
 
 ## Deploy
 
 `main` → GitHub Pages. The workflow is in `.github/workflows/deploy.yml`.
 
 GitHub Pages must be configured with **Build and deployment → Source: GitHub Actions**
-(Settings → Pages).
+(Settings → Pages). This repo is already set that way.
 
 ## License
 
