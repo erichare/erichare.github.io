@@ -58,7 +58,7 @@
 			var elName = this.$el.attr( 'name' ), elId = this.$el.attr( 'id' ),
 				inputName = elName !== undefined ? elName : elId !== undefined ? elId : 'cd-dropdown-' + ( new Date() ).getTime();
 
-			this.inputEl = $( '<input type="hidden" name="' + inputName + '" value="' + value + '"></input>' ).insertAfter( this.selectlabel );
+			this.inputEl = $( '<input>', { type: 'hidden', name: inputName, value: value } ).insertAfter( this.selectlabel );
 			
 			this.selectlabel.css( 'z-index', this.minZIndex + this.optsCount );
 			this._positionOpts();
@@ -69,7 +69,7 @@
 		},
 		_transformSelect : function() {
 
-			var optshtml = '', selectlabel = '', value = -1;
+			var optItems = [], selectlabel = '', value = -1;
 			this.$el.children( 'option' ).each( function() {
 
 				var $this = $( this ),
@@ -79,10 +79,11 @@
 					label = $this.text();
 
 				if( val !== -1 ) {
-					optshtml += 
-						classes !== undefined ? 
-							'<li data-value="' + val + '"><span class="' + classes + '">' + label + '</span></li>' :
-							'<li data-value="' + val + '"><span>' + label + '</span></li>';
+					var $span = $( '<span/>' ).text( label );
+					if( classes !== undefined ) {
+						$span.attr( 'class', classes );
+					}
+					optItems.push( $( '<li/>' ).attr( 'data-value', val ).append( $span ) );
 				}
 
 				if( selected ) {
@@ -92,8 +93,8 @@
 
 			} );
 
-			this.listopts = $( '<ul/>' ).append( optshtml );
-			this.selectlabel = $( '<span/>' ).append( selectlabel );
+			this.listopts = $( '<ul/>' ).append( optItems );
+			this.selectlabel = $( '<span/>' ).text( selectlabel );
 			this.dd = $( '<div class="cd-dropdown"/>' ).append( this.selectlabel, this.listopts ).insertAfter( this.$el );
 			this.$el.remove();
 
