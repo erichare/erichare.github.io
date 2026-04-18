@@ -5,16 +5,17 @@
   --font-serif: 'Newsreader', ui-serif, Georgia, 'Times New Roman', serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-  --color-bg: oklch(0.14 0.012 260);
-  --color-bg-elev: oklch(0.18 0.015 260);
-  --color-border: oklch(0.28 0.018 260);
-  --color-border-muted: oklch(0.22 0.015 260);
-  --color-fg: oklch(0.96 0.005 260);
-  --color-fg-muted: oklch(0.72 0.012 260);
-  --color-fg-subtle: oklch(0.52 0.014 260);
-  --color-accent: oklch(0.74 0.14 195);
-  --color-accent-soft: oklch(0.74 0.14 195 / 0.12);
-  --color-warn: oklch(0.78 0.14 65);
+  /* Archival: warm near-black, ivory, oxblood accent */
+  --color-bg: oklch(0.145 0.014 45);
+  --color-bg-elev: oklch(0.185 0.016 45);
+  --color-border: oklch(0.30 0.020 45);
+  --color-border-muted: oklch(0.23 0.017 45);
+  --color-fg: oklch(0.95 0.018 80);
+  --color-fg-muted: oklch(0.72 0.020 65);
+  --color-fg-subtle: oklch(0.54 0.022 55);
+  --color-accent: oklch(0.64 0.155 32);
+  --color-accent-soft: oklch(0.64 0.155 32 / 0.14);
+  --color-warn: oklch(0.78 0.14 85);
 
   --radius-xs: 0.25rem;
   --radius-sm: 0.375rem;
@@ -27,15 +28,16 @@
 
 @layer base {
   :root[data-theme='light'] {
-    --color-bg: oklch(0.99 0.003 260);
-    --color-bg-elev: oklch(0.97 0.005 260);
-    --color-border: oklch(0.88 0.008 260);
-    --color-border-muted: oklch(0.93 0.006 260);
-    --color-fg: oklch(0.18 0.012 260);
-    --color-fg-muted: oklch(0.42 0.012 260);
-    --color-fg-subtle: oklch(0.58 0.012 260);
-    --color-accent: oklch(0.55 0.16 210);
-    --color-accent-soft: oklch(0.55 0.16 210 / 0.1);
+    /* Archival light: warm cream paper, deep ink, oxblood */
+    --color-bg: oklch(0.975 0.012 85);
+    --color-bg-elev: oklch(0.955 0.014 85);
+    --color-border: oklch(0.85 0.018 70);
+    --color-border-muted: oklch(0.91 0.014 78);
+    --color-fg: oklch(0.20 0.016 45);
+    --color-fg-muted: oklch(0.44 0.016 45);
+    --color-fg-subtle: oklch(0.60 0.018 45);
+    --color-accent: oklch(0.48 0.18 30);
+    --color-accent-soft: oklch(0.48 0.18 30 / 0.1);
   }
 
   html {
