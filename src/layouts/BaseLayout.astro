@@ -17,7 +17,7 @@ const props = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,8 +35,8 @@ const props = Astro.props;
     <script is:inline>
       (function () {
         const t = localStorage.getItem('eh-theme');
-        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-        document.documentElement.dataset.theme = t ?? (prefersLight ? 'light' : 'dark');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = t ?? (prefersDark ? 'dark' : 'light');
       })();
     </script>
     <SEO {...props} />
