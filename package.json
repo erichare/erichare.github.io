@@ -30,6 +30,6 @@
     "@astrojs/check": "^0.9.4",
     "@iconify-json/lucide": "^1.2.75",
     "@iconify-json/simple-icons": "^1.2.65",
-    "typescript": "^6.0.3"
+    "typescript": "^5.9.3"
   }
 }
