@@ -1,15 +1,13 @@
 import type { APIRoute } from 'astro';
-import fs from 'node:fs/promises';
-import path from 'node:path';
 import satori from 'satori';
 import sharp from 'sharp';
 
 export const prerender = true;
 
-async function loadFont(url: string) {
+async function loadFont(url: string): Promise<ArrayBuffer> {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch font ${url}: ${res.status}`);
-  return new Uint8Array(await res.arrayBuffer());
+  return res.arrayBuffer();
 }
 
 export const GET: APIRoute = async () => {
@@ -135,7 +133,7 @@ export const GET: APIRoute = async () => {
   });
 
   const png = await sharp(Buffer.from(svg)).png().toBuffer();
-  return new Response(png, {
+  return new Response(new Uint8Array(png), {
     headers: {
       'Content-Type': 'image/png',
       'Cache-Control': 'public, max-age=31536000, immutable',
