@@ -1,0 +1,460 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+
+const phdPubSlugs = new Set([
+  'thesis',
+  'bullet-matching-aoas',
+  'degraded-lands',
+]);
+
+const allPubs = await getCollection('publications');
+const phdPubs = allPubs
+  .filter((p) => phdPubSlugs.has(p.id))
+  .sort((a, b) => b.data.year - a.data.year);
+
+const formatAuthors = (authors: readonly string[]) =>
+  authors
+    .map((a) => (a === 'Eric Hare' ? `<strong>${a}</strong>` : a))
+    .join(', ');
+
+const stats = [
+  { k: '5', v: 'Years', d: '2012 — 2017 at Iowa State.' },
+  { k: '2', v: 'R packages', d: 'bulletr and bulletxtrctr.' },
+  { k: '1', v: 'ASA award', d: 'Imaging Section Student Paper, 2016.' },
+  { k: '3D', v: 'Microns of striation', d: 'Scans resolve sub-micron barrel tool marks.' },
+];
+
+const pipeline = [
+  {
+    n: '01',
+    icon: 'lucide:scan-line',
+    title: 'Scan',
+    detail: 'High-resolution 3D surface scans of spent bullets — sub-micron vertical resolution across the land-engraved area.',
+  },
+  {
+    n: '02',
+    icon: 'lucide:waves',
+    title: 'Extract',
+    detail: 'Isolate land-engraved areas, detrend the bullet curvature, and pull out the 1D striation signature for each land.',
+  },
+  {
+    n: '03',
+    icon: 'lucide:git-compare-arrows',
+    title: 'Align',
+    detail: 'Pairwise cross-correlation aligns striation signatures between lands, robust to shifts and degradation.',
+  },
+  {
+    n: '04',
+    icon: 'lucide:sigma',
+    title: 'Score',
+    detail: 'A random-forest model over features of the aligned signatures yields a match probability you can defend in court.',
+  },
+];
+
+const contributions = [
+  {
+    icon: 'lucide:package',
+    title: 'bulletr',
+    body: 'Reference R package for reading 3D bullet scans, extracting striations, and scoring matches — the first open, reproducible implementation of the pipeline.',
+    href: 'https://github.com/erichare/bulletr',
+  },
+  {
+    icon: 'lucide:package-2',
+    title: 'bulletxtrctr',
+    body: 'Feature-extraction toolkit separated from the core package for maintainability and reuse across CSAFE tooling.',
+    href: 'https://github.com/erichare/bulletxtrctr',
+  },
+  {
+    icon: 'lucide:book-open-text',
+    title: 'Methodology',
+    body: 'Published in the Annals of Applied Statistics and Law, Probability & Risk, with source code released alongside the papers.',
+    href: 'https://doi.org/10.1214/17-AOAS1080',
+  },
+  {
+    icon: 'lucide:app-window',
+    title: 'Web prototype',
+    body: 'A Shiny app that lets examiners upload scans and step through the matching pipeline interactively.',
+    href: 'https://labs.omnianalytics.org/bullet-analyzer/',
+  },
+];
+
+const timeline = [
+  { y: '2012', t: 'Started the PhD at Iowa State, joining Heike Hofmann and Alicia Carriquiry.' },
+  { y: '2014', t: 'First working prototype of the striation-extraction pipeline in R.' },
+  { y: '2015', t: 'CSAFE launched; the bullet-matching work became part of its founding research portfolio.' },
+  { y: '2016', t: 'ASA Imaging Section Student Paper Award for the automated matching methodology.' },
+  { y: '2017', t: 'Thesis defended; primary paper published in the Annals of Applied Statistics.' },
+  { y: 'Today', t: 'Still an occasional collaborator on CSAFE\u2019s BulletAnalyzr pipeline and the successor R packages.' },
+];
+---
+
+<BaseLayout
+  title="PhD Research — Statistical Methods for Bullet Matching"
+  description="Eric Hare's doctoral research at Iowa State University on reproducible, statistical methods for matching spent bullets to the gun that fired them, from 3D surface scans."
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b" style="border-color: var(--color-border-muted);">
+    <div class="absolute inset-0 grid-mesh pointer-events-none opacity-60"></div>
+    <div class="striation-bg absolute inset-0 pointer-events-none"></div>
+
+    <div class="container-wide relative pt-20 pb-20 md:pt-28 md:pb-28">
+      <nav class="text-xs font-mono mb-8" style="color: var(--color-fg-subtle);">
+        <a href="/" class="link">Home</a> / PhD Research
+      </nav>
+
+      <p class="text-xs uppercase tracking-[0.18em] font-mono mb-6 flex items-center gap-2" style="color: var(--color-accent);">
+        <span class="inline-flex w-1.5 h-1.5 rounded-full animate-pulse" style="background: var(--color-accent); box-shadow: 0 0 14px var(--color-accent);"></span>
+        Iowa State University · 2012 — 2017 · Statistics &amp; Computer Science
+      </p>
+
+      <h1
+        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-tight max-w-5xl"
+        style="font-family: var(--font-serif); font-weight: 500;"
+      >
+        Matching spent bullets to the guns that fired them &mdash;
+        <em class="italic" style="color: var(--color-accent);">statistically, reproducibly, in code.</em>
+      </h1>
+
+      <p class="mt-7 text-lg md:text-xl max-w-3xl leading-relaxed" style="color: var(--color-fg-muted);">
+        My dissertation replaced a firearms examiner's judgement call through a comparison microscope with
+        an open, end-to-end statistical pipeline operating on 3D surface scans. The resulting methods,
+        software, and publications are now part of the
+        <a href="https://forensicstats.org" class="link">CSAFE</a> research program and have been cited in
+        the ongoing debate over the scientific foundation of pattern-matching forensic disciplines.
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-3">
+        <a
+          href="https://dr.lib.iastate.edu/handle/20.500.12876/29498"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-md font-medium text-sm transition hover:opacity-90"
+          style="background: var(--color-fg); color: var(--color-bg);"
+        >
+          <Icon name="lucide:file-text" width="16" />
+          Read the thesis
+        </a>
+        <a
+          href="https://doi.org/10.1214/17-AOAS1080"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm border transition hover:border-[var(--color-border)]"
+          style="border-color: var(--color-border-muted); color: var(--color-fg);"
+        >
+          <Icon name="lucide:external-link" width="16" />
+          AOAS paper
+        </a>
+        <a
+          href="https://github.com/erichare/bulletxtrctr"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm transition hover:opacity-80"
+          style="color: var(--color-fg-muted);"
+        >
+          <Icon name="simple-icons:github" width="16" />
+          bulletxtrctr
+        </a>
+      </div>
+
+      <!-- Stat strip -->
+      <dl class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
+        {stats.map((s) => (
+          <div class="border-l-2 pl-4" style="border-color: var(--color-accent);">
+            <dt class="text-3xl md:text-4xl font-semibold tracking-tight" style="font-family: var(--font-serif);">
+              {s.k}
+            </dt>
+            <dd class="mt-1 text-xs font-mono uppercase tracking-wider" style="color: var(--color-accent);">
+              {s.v}
+            </dd>
+            <dd class="mt-1 text-sm" style="color: var(--color-fg-muted);">{s.d}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- The problem -->
+  <Section eyebrow="The problem" title="Pattern matching without statistics is just pattern matching.">
+    <div class="grid md:grid-cols-[1.3fr_1fr] gap-10 items-start">
+      <div class="prose-styled">
+        <p>
+          When a bullet is fired, the barrel leaves fine striations on its surface &mdash; tool marks
+          that are, in principle, characteristic of that barrel. Traditional firearms identification
+          asks a human examiner to look through a comparison microscope and decide whether two bullets
+          match. The decision is binary, the rationale is verbal, and the error rate has historically
+          been opaque.
+        </p>
+        <p>
+          The <strong>2009 NAS report</strong> and <strong>2016 PCAST report</strong> both singled out
+          pattern-matching forensic disciplines for lacking empirical foundations. You cannot argue
+          about error rates on a method until the method is written down precisely enough to run twice.
+          My dissertation set out to write it down.
+        </p>
+      </div>
+      <aside class="card p-6">
+        <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider" style="color: var(--color-accent);">
+          <Icon name="lucide:quote" width="14" />
+          NAS, 2009
+        </div>
+        <blockquote class="mt-3 text-[0.98rem] leading-relaxed italic" style="color: var(--color-fg);">
+          &ldquo;The validity of the fundamental assumptions of uniqueness and reproducibility of
+          firearms-related toolmarks has not yet been fully demonstrated.&rdquo;
+        </blockquote>
+        <p class="mt-4 text-sm" style="color: var(--color-fg-muted);">
+          &mdash; <em>Strengthening Forensic Science in the United States: A Path Forward</em>
+        </p>
+      </aside>
+    </div>
+  </Section>
+
+  <!-- Pipeline / approach -->
+  <Section
+    eyebrow="The pipeline"
+    title="Scan. Extract. Align. Score."
+    subtitle="Every step is code you can run, not a judgement call you can't audit."
+  >
+    <ol class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+      {pipeline.map((step) => (
+        <li class="card p-6 relative overflow-hidden group">
+          <div
+            class="absolute -top-8 -right-6 text-7xl font-semibold opacity-[0.08] transition-opacity group-hover:opacity-[0.14]"
+            style="font-family: var(--font-serif); color: var(--color-accent);"
+            aria-hidden="true"
+          >
+            {step.n}
+          </div>
+          <Icon name={step.icon} width="22" style="color: var(--color-accent);" />
+          <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.15rem;">
+            {step.title}
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed" style="color: var(--color-fg-muted);">
+            {step.detail}
+          </p>
+        </li>
+      ))}
+    </ol>
+
+    <!-- Striation signature visualization -->
+    <figure class="mt-10 card p-6 md:p-8">
+      <figcaption class="flex items-center justify-between gap-3 text-xs font-mono uppercase tracking-wider mb-5" style="color: var(--color-fg-subtle);">
+        <span class="flex items-center gap-2">
+          <Icon name="lucide:activity" width="14" style="color: var(--color-accent);" />
+          Synthetic striation signature &mdash; illustrative
+        </span>
+        <span>amplitude &times; position along land</span>
+      </figcaption>
+      <svg
+        viewBox="0 0 800 180"
+        class="w-full h-auto"
+        role="img"
+        aria-label="Two overlaid striation signatures showing a strong match between bullet lands."
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient id="strA" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="currentColor" stop-opacity="0" />
+            <stop offset="10%" stop-color="currentColor" stop-opacity="1" />
+            <stop offset="90%" stop-color="currentColor" stop-opacity="1" />
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+
+        <!-- Grid baseline -->
+        <line x1="0" y1="90" x2="800" y2="90" stroke="currentColor" stroke-opacity="0.12" stroke-dasharray="3 6" />
+
+        <!-- Bullet A signature -->
+        <path
+          d="M0,90 C40,70 70,120 110,85 S180,45 220,95 S290,140 330,80 S410,50 450,100 S520,130 560,78 S640,55 680,95 S760,115 800,88"
+          fill="none"
+          stroke="currentColor"
+          stroke-opacity="0.55"
+          stroke-width="1.75"
+          style="color: var(--color-fg-muted);"
+        />
+        <!-- Bullet B signature: very similar shape, slight offset -->
+        <path
+          d="M0,92 C40,74 70,118 112,88 S182,48 222,97 S291,138 332,82 S411,52 451,102 S521,128 561,80 S641,57 681,96 S761,113 800,90"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          style="color: var(--color-accent);"
+        />
+
+        <!-- Match markers -->
+        <g style="color: var(--color-accent);">
+          {[110, 220, 330, 450, 560, 680].map((x) => (
+            <circle cx={x} cy="90" r="2.5" fill="currentColor" fill-opacity="0.7" />
+          ))}
+        </g>
+      </svg>
+      <p class="mt-4 text-sm" style="color: var(--color-fg-muted);">
+        Two signatures overlaid. Peaks and valleys align where the same barrel feature scored both
+        bullets &mdash; the cross-correlation between them is what the classifier ultimately turns
+        into a match probability.
+      </p>
+    </figure>
+  </Section>
+
+  <!-- Artifacts -->
+  <Section eyebrow="What shipped" title="Software and papers, not just a thesis.">
+    <div class="grid md:grid-cols-2 gap-5">
+      {contributions.map((c) => (
+        <a href={c.href} class="card p-6 group flex flex-col gap-3">
+          <div class="flex items-start justify-between gap-4">
+            <Icon name={c.icon} width="22" style="color: var(--color-accent);" />
+            <Icon
+              name="lucide:arrow-up-right"
+              width="16"
+              class="shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              style="color: var(--color-fg-subtle);"
+            />
+          </div>
+          <h3 class="font-semibold" style="font-family: var(--font-serif); font-size: 1.2rem;">
+            {c.title}
+          </h3>
+          <p class="text-sm leading-relaxed" style="color: var(--color-fg-muted);">{c.body}</p>
+        </a>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Publications -->
+  <Section eyebrow="Publications" title="The primary sources.">
+    <ul class="space-y-7">
+      {phdPubs.map((p) => (
+        <li class="grid sm:grid-cols-[120px_1fr] gap-2 sm:gap-6">
+          <span class="chip w-fit h-fit uppercase">{p.data.kind} · {p.data.year}</span>
+          <div>
+            <h3 class="text-base md:text-lg font-medium leading-snug">
+              {p.data.url ? (
+                <a href={p.data.url} class="link">{p.data.title}</a>
+              ) : (
+                p.data.title
+              )}
+            </h3>
+            <p class="mt-1 text-sm" style="color: var(--color-fg-muted);" set:html={formatAuthors(p.data.authors)} />
+            <p class="mt-1 text-sm italic" style="color: var(--color-fg-muted);">{p.data.venue}</p>
+            {p.data.award && (
+              <p class="mt-2 inline-flex items-center gap-1.5 text-xs font-mono" style="color: var(--color-warn);">
+                <Icon name="lucide:award" width="14" />
+                {p.data.award}
+              </p>
+            )}
+            {p.data.abstract && (
+              <p class="mt-2 text-sm" style="color: var(--color-fg-subtle);">{p.data.abstract}</p>
+            )}
+            {p.data.doi && (
+              <p class="mt-1 text-xs font-mono" style="color: var(--color-fg-subtle);">
+                doi:&nbsp;<a href={`https://doi.org/${p.data.doi}`} class="link">{p.data.doi}</a>
+              </p>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
+    <div class="mt-8">
+      <a href="/publications" class="inline-flex items-center gap-1.5 text-sm font-mono link">
+        All publications <Icon name="lucide:arrow-right" width="14" />
+      </a>
+    </div>
+  </Section>
+
+  <!-- Timeline -->
+  <Section eyebrow="Timeline" title="How it played out.">
+    <ol class="relative border-l pl-8 space-y-8" style="border-color: var(--color-border-muted);">
+      {timeline.map((t) => (
+        <li class="relative">
+          <span
+            class="absolute -left-[41px] top-1.5 w-2.5 h-2.5 rounded-full"
+            style="background: var(--color-accent); box-shadow: 0 0 0 4px var(--color-bg), 0 0 12px color-mix(in oklch, var(--color-accent) 70%, transparent);"
+          ></span>
+          <p class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-accent);">{t.y}</p>
+          <p class="mt-1 text-[0.98rem] leading-relaxed max-w-2xl" style="color: var(--color-fg);">{t.t}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <!-- Advisors & collaborators -->
+  <Section eyebrow="People" title="Advisors and co-authors.">
+    <div class="grid md:grid-cols-3 gap-5">
+      <article class="card p-6">
+        <p class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-accent);">Co-advisor</p>
+        <h3 class="mt-2 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">Heike Hofmann</h3>
+        <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
+          Professor of Statistics at Iowa State and long-time collaborator on the bullet-matching
+          methodology and the downstream R tooling.
+        </p>
+      </article>
+      <article class="card p-6">
+        <p class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-accent);">Co-advisor</p>
+        <h3 class="mt-2 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">Alicia Carriquiry</h3>
+        <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
+          Distinguished Professor and founding director of CSAFE &mdash; the Center for Statistics and
+          Applications in Forensic Evidence.
+        </p>
+      </article>
+      <article class="card p-6">
+        <p class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-accent);">Research home</p>
+        <h3 class="mt-2 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">CSAFE</h3>
+        <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
+          NIST Center of Excellence. The bullet-matching work continues there under the
+          <a href="https://forensicstats.org" class="link">BulletAnalyzr</a> umbrella.
+        </p>
+      </article>
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <Section>
+    <div class="card p-8 md:p-12 text-center relative overflow-hidden">
+      <div class="absolute inset-0 grid-mesh pointer-events-none opacity-40"></div>
+      <div class="relative">
+        <p class="text-xs uppercase tracking-[0.18em] font-mono mb-4" style="color: var(--color-accent);">
+          Still interested?
+        </p>
+        <h2 class="text-2xl md:text-3xl font-semibold" style="font-family: var(--font-serif); font-weight: 500;">
+          Happy to talk forensic statistics.
+        </h2>
+        <p class="mt-3 max-w-xl mx-auto" style="color: var(--color-fg-muted);">
+          If you're working on pattern-matching evidence, reproducible pipelines, or the R tooling
+          around any of it &mdash; I still follow this space.
+        </p>
+        <div class="mt-6 flex flex-wrap justify-center gap-3">
+          <a
+            href="/projects/bullet-matching"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm"
+            style="background: var(--color-fg); color: var(--color-bg);"
+          >
+            <Icon name="lucide:folder-open" width="16" /> Project page
+          </a>
+          <a
+            href="mailto:ericrhare@gmail.com"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm border"
+            style="border-color: var(--color-border-muted);"
+          >
+            <Icon name="lucide:mail" width="16" /> Get in touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  .striation-bg {
+    background:
+      repeating-linear-gradient(
+        92deg,
+        transparent 0 22px,
+        color-mix(in oklch, var(--color-accent) 7%, transparent) 22px 23px,
+        transparent 23px 54px,
+        color-mix(in oklch, var(--color-accent) 4%, transparent) 54px 55px
+      );
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent 75%);
+    opacity: 0.55;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-pulse {
+      animation: none;
+    }
+  }
+</style>
