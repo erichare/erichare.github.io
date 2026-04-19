@@ -31,8 +31,6 @@ Reproducible research · Forensic statistics.
   flow, run, and deployment management.
 - Deep work on **Model Context Protocol (MCP)** integration, including OAuth, auth-flow
   resilience on server restart, self-referential schema handling, and optional-type preservation.
-- Built the **policies component via ToolGuard** (PR #12592), giving Langflow users declarative
-  control over what tools an agent is allowed to call.
 - Refactored the **ModelInput selector** across Langflow (PR #12025) for a consistent
   model-provider UX.
 - Integrated [Docling](https://github.com/docling-project/docling), IBM's document-parsing
