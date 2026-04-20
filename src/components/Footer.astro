@@ -8,13 +8,11 @@ const year = new Date().getFullYear();
   <div class="container-wide py-10 flex flex-col gap-6 md:flex-row md:justify-between md:items-center text-sm" style="color: var(--color-fg-muted);">
     <div class="flex flex-col gap-1">
       <p>&copy; {year} {SITE.author}. Built with Astro, deployed on GitHub Pages.</p>
-      <p class="text-xs" style="color: var(--color-fg-subtle);">
-        <a href="/llms.txt" class="link">llms.txt</a>
-        <span class="mx-1.5">·</span>
-        <a href="/rss.xml" class="link">RSS</a>
-        <span class="mx-1.5">·</span>
-        <a href={`https://github.com/erichare/erichare.github.io`} class="link">Source</a>
-      </p>
+      <ul class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs" style="color: var(--color-fg-subtle);">
+        <li><a href="/llms.txt" class="link inline-block py-1">llms.txt</a></li>
+        <li><a href="/rss.xml" class="link inline-block py-1">RSS</a></li>
+        <li><a href="https://github.com/erichare/erichare.github.io" class="link inline-block py-1">Source</a></li>
+      </ul>
     </div>
     <div class="flex items-center gap-3">
       <a href={SITE.social.github} aria-label="GitHub" class="p-2 rounded-md hover:opacity-80 transition" style="color: var(--color-fg-muted);">
