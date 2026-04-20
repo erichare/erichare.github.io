@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Section from '../../components/Section.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
+import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
 
 const all = (await getCollection('projects')).sort(
@@ -17,7 +18,64 @@ const all = (await getCollection('projects')).sort(
     lede="Some of these shipped. Some of these were papers. A couple of them were R packages that eventually got archived on CRAN. All of them taught me something."
   />
 
-  <Section>
+  <Section eyebrow="Research" title="PhD research." subtitle="A body of work that's too big to fit in a project card — so it has its own page.">
+    <a
+      href="/phd"
+      class="card group relative overflow-hidden flex flex-col md:flex-row gap-6 md:gap-10 p-7 md:p-10"
+      style="border-color: color-mix(in oklch, var(--color-accent) 35%, var(--color-border-muted));"
+    >
+      <div
+        class="striation-motif absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+      ></div>
+
+      <div class="relative flex-1">
+        <span
+          class="chip mb-4"
+          style="background: var(--color-accent-soft); color: var(--color-accent); border-color: color-mix(in oklch, var(--color-accent) 35%, transparent);"
+        >
+          <Icon name="lucide:sparkles" width="12" />
+          Featured
+        </span>
+
+        <h3
+          class="text-2xl md:text-3xl font-semibold leading-tight"
+          style="font-family: var(--font-serif); font-weight: 500;"
+        >
+          Statistical Methods for Bullet Matching
+        </h3>
+
+        <p class="mt-2 text-xs font-mono uppercase tracking-wider" style="color: var(--color-fg-subtle);">
+          Iowa State · 2012 — 2017 · PhD dissertation &amp; ongoing CSAFE research
+        </p>
+
+        <p class="mt-4 text-[1.02rem] leading-relaxed max-w-2xl" style="color: var(--color-fg-muted);">
+          A reproducible, statistical pipeline for matching spent bullets to the gun that fired them —
+          built on 3D surface scans, shipped as two R packages and a handful of papers. Won the
+          2016 ASA Imaging Section Student Paper Award; continues today as part of CSAFE's
+          BulletAnalyzr.
+        </p>
+
+        <div class="mt-5 flex flex-wrap gap-1.5">
+          <span class="chip">R</span>
+          <span class="chip">C++</span>
+          <span class="chip">3D scanning</span>
+          <span class="chip">forensic statistics</span>
+        </div>
+
+        <div class="mt-6 inline-flex items-center gap-1.5 text-sm font-mono" style="color: var(--color-accent);">
+          Read the write-up
+          <Icon
+            name="lucide:arrow-right"
+            width="14"
+            class="transition-transform group-hover:translate-x-1"
+          />
+        </div>
+      </div>
+    </a>
+  </Section>
+
+  <Section eyebrow="Software" title="Shipped code.">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {all.map((p) => (
         <ProjectCard
@@ -33,3 +91,17 @@ const all = (await getCollection('projects')).sort(
     </div>
   </Section>
 </BaseLayout>
+
+<style>
+  .striation-motif {
+    background: repeating-linear-gradient(
+      92deg,
+      transparent 0 18px,
+      color-mix(in oklch, var(--color-accent) 8%, transparent) 18px 19px,
+      transparent 19px 46px,
+      color-mix(in oklch, var(--color-accent) 5%, transparent) 46px 47px
+    );
+    mask-image: radial-gradient(ellipse 70% 80% at 85% 50%, black, transparent 75%);
+    opacity: 0.9;
+  }
+</style>
