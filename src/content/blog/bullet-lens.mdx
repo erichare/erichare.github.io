@@ -1,0 +1,49 @@
+---
+title: "Bullet Lens: forensic topography in the browser"
+description: "A short note on Bullet Lens, a browser-based viewer for .x3p bullet land scans, with interactive 3D inspection, stitched bullet views, and side-by-side comparison."
+pubDate: 2026-04-24
+tags: ["forensics", "web", "visualization"]
+---
+
+[Bullet Lens](https://bullet-lens.vercel.app/) is a small web app for looking at something that
+usually stays buried in specialist tooling: the microscopic topography of fired bullets.
+
+When a bullet travels through a barrel, the rifling leaves fine striations on each land surface.
+Those marks are not literally a fingerprint, but they are close enough to make the metaphor useful:
+tiny, directional, physical traces that can help forensic examiners reason about whether two
+bullets may have passed through the same barrel.
+
+![Bullet Lens welcome screen showing the app introduction and .x3p drop zone.](/img/blog/bullet-lens/welcome-desktop.png)
+
+The app reads ISO 5436-2 `.x3p` topography scans directly in the browser. Drop in one scan and you
+get an orbitable 3D surface, a real-world scale overlay, Z-exaggeration controls, and a live
+crosscut signature. Drop in several scans from the same bullet and Bullet Lens can arrange them
+around a virtual barrel so the individual land impressions are easier to understand in context.
+
+The part I like most is that the inspection loop is immediate. There is no account, no upload step,
+and no server-side processing for your own files. The browser unpacks the `.x3p`, parses the XML and
+height matrix, builds the mesh, and lets you start poking at the surface.
+
+![Bullet Lens compare mode showing two Hamby 252 land scans merged along a seam with crosscut plots below.](/img/blog/bullet-lens/compare-desktop.png)
+
+For comparison work, Bullet Lens has a split view and a merged view. The merged view stacks two land
+surfaces along a seam, lets you flip either side, and includes a horizontal B-slide control for
+lining up striae. Underneath, the crosscut plots show the one-dimensional height signatures that
+many automated comparison methods eventually care about.
+
+There is also a built-in demo using Hamby 252 scans from the NIST Ballistics Toolmarks Research
+Database, so the app is explorable even if you do not have `.x3p` files sitting around.
+
+![Bullet Lens stitched bullet mode showing twelve land scans wrapped around a virtual bullet.](/img/blog/bullet-lens/bullet-desktop.png)
+
+The stitched bullet view is deliberately a little opinionated. A real land surface is only a few
+microns tall across millimeters of width, so raw geometry can be visually underwhelming. Bullet Lens
+keeps the overall barrel curvature readable while letting the surface detail breathe through
+exaggeration and colormaps.
+
+This is very much a browser-native tool: Next.js, React Three Fiber, Three.js, Tailwind, `fflate`,
+and Zustand. But the interesting part is less the stack than the interaction shape. For forensic
+topography, being able to drag in data, rotate it, stitch it, compare it, and extract signatures in
+one place makes the data feel less like a file format and more like an object you can study.
+
+Try it here: [bullet-lens.vercel.app](https://bullet-lens.vercel.app/).
