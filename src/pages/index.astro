@@ -34,8 +34,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
       <p class="mt-7 text-lg md:text-xl max-w-2xl leading-relaxed" style="color: var(--color-fg-muted);">
         I'm Eric. I work on developer experience and enterprise agent tooling at IBM — including
-        <a href="/projects/astra-data-api" class="link">Astra DB</a> and
-        <a href="/projects/langflow" class="link">Langflow</a> — and joined via the DataStax acquisition.
+        <a href="/projects/langflow" class="link">Langflow</a>,
+        <a href="/projects/astra-data-api" class="link">Astra DB</a>, and
+        <a href="/projects/ai-workbench" class="link">AI Workbench</a> — and joined via the DataStax acquisition.
         Before that: DataStax, Daisi, Chief Data Scientist at Omni Analytics, and a PhD at Iowa State in
         Statistics &amp; Computer Science — where I helped
         <a href="/phd" class="link">match bullets to the guns that fired them</a>.
@@ -93,7 +94,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   </section>
 
   <!-- Projects -->
-  <Section eyebrow="Selected work" title="Projects that took a while to get right." subtitle="Open-source tools, research code, and products I've built or helped build over the last decade.">
+  <Section eyebrow="Selected work" title="Representative engineering projects." subtitle="Open-source tools, research code, and product systems I have built or helped build over the last decade.">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {projects.map((p) => (
         <ProjectCard
@@ -126,20 +127,21 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         </p>
       </article>
       <article class="card p-6">
-        <Icon name="lucide:shield-check" width="22" style="color: var(--color-accent);" />
-        <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">Agent safety</h3>
+        <Icon name="lucide:database" width="22" style="color: var(--color-accent);" />
+        <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">AI Workbench</h3>
         <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
-          Contributing to <a href="https://github.com/AgentToolkit/toolguard" class="link">ToolGuard</a> and
-          shipping its policy component into Langflow so agents can't call tools they shouldn't.
+          Building the Astra-backed workbench for retrieval applications: workspaces, knowledge bases,
+          ingest, agents, MCP, and the production TypeScript runtime.
+          <a href="/projects/ai-workbench" class="link">Read more →</a>
         </p>
       </article>
       <article class="card p-6">
-        <Icon name="lucide:file-search" width="22" style="color: var(--color-accent);" />
-        <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">Docling</h3>
+        <Icon name="lucide:cloud-sun" width="22" style="color: var(--color-accent);" />
+        <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">Aeroza</h3>
         <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
-          Wiring IBM's <a href="https://github.com/docling-project/docling" class="link">document-parsing toolkit</a>
-          into Langflow and the Astra DB ingestion stack — advanced PDF and office-doc parsing as a library call.
-          <a href="/projects/docling" class="link">Read more →</a>
+          A developer-first weather platform for live radar, geospatial queries, streaming APIs,
+          signed alert webhooks, and probabilistic nowcasting.
+          <a href="/projects/aeroza" class="link">Read more →</a>
         </p>
       </article>
     </div>

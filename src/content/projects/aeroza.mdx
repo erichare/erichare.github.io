@@ -1,0 +1,47 @@
+---
+title: "Aeroza"
+tagline: "Programmable weather intelligence: real-time radar, geospatial queries, streaming APIs, signed webhooks, and probabilistic nowcasting."
+summary: "An open-source weather platform with live NWS/MRMS/METAR ingest, queryable geospatial APIs, forecast verification, and a TypeScript SDK."
+role: "Creator"
+period: "2026 — Present"
+stack: ["Python", "FastAPI", "TypeScript", "Next.js", "PostGIS", "Redis", "NATS"]
+tags: ["weather", "api", "geospatial", "open-source"]
+order: 4
+links:
+  - label: "Repository"
+    href: "https://github.com/erichare/aeroza"
+  - label: "Live site"
+    href: "https://aeroza.vercel.app"
+  - label: "Launch post"
+    href: "/blog/aeroza"
+---
+
+Aeroza is an open-source platform for applications that need to understand and react to weather in
+real time. It turns live weather data into a queryable API: radar, alerts, surface observations,
+nowcasts, verification metrics, streams, and signed webhooks.
+
+The system currently ingests NWS alerts, MRMS reflectivity, and METAR observations. It exposes
+point, polygon, and tile reads over that data; runs persistence, pySTEPS Lucas-Kanade, and
+lagged-ensemble nowcasting; and scores forecasts continuously with continuous, categorical, and
+probabilistic metrics.
+
+## Architecture
+
+The backend is a FastAPI modular monolith with extracted workers for ingest, materialization,
+nowcasting, verification, streams, and webhooks. Storage is PostgreSQL with PostGIS, Redis, and
+Zarr-style raster storage; NATS JetStream handles streaming and worker coordination.
+
+The web surface is Next.js and includes a landing page, live map, Storm Replay demo, calibration
+view, developer console, and docs. The developer console is driven through the `@aeroza/sdk`
+TypeScript client, which keeps the public API and UI in close contact.
+
+## Engineering focus
+
+The project is built around accountable forecasts rather than just attractive weather imagery.
+Short-horizon predictions are compared against observed radar as reality arrives, with MAE, bias,
+RMSE, POD, FAR, CSI, Brier, and CRPS available through the verification surface.
+
+Recent public work has focused on making the live map production-grade: WebP tile negotiation
+([#84](https://github.com/erichare/aeroza/pull/84)), cache prewarming and adaptive radar loops
+([#82](https://github.com/erichare/aeroza/pull/82)), and pre-staged MapLibre radar frames for
+smooth playback ([#85](https://github.com/erichare/aeroza/pull/85)).

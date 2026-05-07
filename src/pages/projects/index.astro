@@ -14,11 +14,11 @@ const all = (await getCollection('projects')).sort(
 <BaseLayout title="Projects" description="Open-source tools, research code, and products Eric Hare has built.">
   <PageHeader
     eyebrow="Projects"
-    title="Selected work across a decade."
-    lede="Some of these shipped. Some of these were papers. A couple of them were R packages that eventually got archived on CRAN. All of them taught me something."
+    title="Selected software and research work."
+    lede="Representative open-source tools, product systems, and research software from industry and academic work."
   />
 
-  <Section eyebrow="Research" title="PhD research." subtitle="A body of work that's too big to fit in a project card — so it has its own page.">
+  <Section eyebrow="Research" title="PhD research." subtitle="A larger body of work with its own dedicated page.">
     <a
       href="/phd"
       class="card group relative overflow-hidden flex flex-col md:flex-row gap-6 md:gap-10 p-7 md:p-10"
@@ -34,7 +34,7 @@ const all = (await getCollection('projects')).sort(
           class="chip mb-4"
           style="background: var(--color-accent-soft); color: var(--color-accent); border-color: color-mix(in oklch, var(--color-accent) 35%, transparent);"
         >
-          <Icon name="lucide:sparkles" width="12" />
+          <Icon name="lucide:star" width="12" />
           Featured
         </span>
 
@@ -75,7 +75,7 @@ const all = (await getCollection('projects')).sort(
     </a>
   </Section>
 
-  <Section eyebrow="Software" title="Shipped code.">
+  <Section eyebrow="Software" title="Software projects." subtitle="Current product work, open-source systems, and selected older projects.">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {all.map((p) => (
         <ProjectCard

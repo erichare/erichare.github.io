@@ -9,9 +9,9 @@ Software Engineer at IBM · Developer and Operator Experience · PhD, Iowa State
 
 ## Summary
 
-Software engineer and statistician. I build open-source tools for AI agents and document
-pipelines (Langflow, Astra DB Data API, Docling, ToolGuard) on IBM's Developer and Operator
-Experience team. Previously at DataStax, Daisi Technology, and Chief Data Scientist at Omni
+Software engineer and statistician. I build open-source tools for AI agents, retrieval systems,
+and data APIs (Langflow, AI Workbench, Astra DB Data API, ToolGuard) on IBM's Developer and
+Operator Experience team. Previously at DataStax, Daisi Technology, and Chief Data Scientist at Omni
 Analytics Group. PhD in Statistics & Computer Science (Iowa State, 2017), with a research
 background in forensic statistics.
 
@@ -29,13 +29,13 @@ Reproducible research · Forensic statistics.
   324+ commits across 73+ active weeks; 240+ merged PRs.
 - Shipped the **Langflow SDK / Flow DevOps API Toolkit** (PR #12245), unifying programmatic
   flow, run, and deployment management.
+- Active contributor to [AI Workbench](https://github.com/datastax/ai-workbench), a self-hosted
+  Astra-backed product surface for workspaces, knowledge bases, ingest, retrieval experiments,
+  agents, MCP, and runtime operations.
 - Deep work on **Model Context Protocol (MCP)** integration, including OAuth, auth-flow
   resilience on server restart, self-referential schema handling, and optional-type preservation.
 - Refactored the **ModelInput selector** across Langflow (PR #12025) for a consistent
   model-provider UX.
-- Integrated [Docling](https://github.com/docling-project/docling), IBM's document-parsing
-  toolkit, into the Langflow File Component (PRs #9398, #12296, #12442) and the Astra DB
-  ingestion path.
 - Ongoing contributor to the **Astra DB Data API** stack: `astrapy` Python client, Unstructured
   integration, and portal ingestion backend.
 - Contributor to [ToolGuard](https://github.com/AgentToolkit/toolguard) upstream and to IBM
@@ -46,7 +46,7 @@ Reproducible research · Forensic statistics.
 
 - Joined Langflow core after DataStax acquired Langflow in April 2024; moved to IBM when IBM
   acquired DataStax in 2025.
-- Integrated Langflow with Astra DB, watsonx, and Docling for document parsing.
+- Integrated Langflow with Astra DB and watsonx; built hybrid-search and GenAI workflow examples.
 - Authored "[Build a GenAI Workflow with Hybrid Search and
   Langflow](https://medium.com/building-the-open-data-stack)" and contributed to Apache Pulsar AI
   pipelines ("[Build a real-time AI pipeline with Pulsar
@@ -110,9 +110,12 @@ Full list at [/publications](/publications).
 ## Open-source software
 
 - **[langflow-ai/langflow](https://github.com/langflow-ai/langflow)** — core maintainer.
+- **[datastax/ai-workbench](https://github.com/datastax/ai-workbench)** — contributor to the
+  Astra-backed RAG workbench.
+- **[Aeroza](https://github.com/erichare/aeroza)** — programmable weather intelligence: radar,
+  geospatial queries, streaming APIs, and nowcasting.
 - **[bulletr](https://github.com/erichare/bulletr)** — R package for bullet-striation matching.
   (CRAN-archived 2025; actively maintained on GitHub.)
-- **[discreteRV](https://github.com/erichare/discreteRV)** — R package for teaching probability.
 - **[bulletxtrctr](https://github.com/erichare/bulletxtrctr)** — 3D bullet scan feature
   extraction.
 - **[OmniacsDAO](https://github.com/OmniacsDAO)** — Numerai/Uniswap/Aave R & Python tooling.
@@ -128,9 +131,6 @@ Full list at [/publications](/publications).
 ## Selected talks
 
 - **Reproducing User Actions in Shiny** — Shiny Developer Conference, Palo Alto, 2016
-- **intRo: Statistical Analysis Software for Teaching** — Joint Statistical Meetings (contributed
-  paper), Seattle, 2015
-- **Manipulation of Discrete Random Variables in R with discreteRV** — useR!, Aalborg, DK, 2015
 - **ASA Traveling Workshops** (with Dianne Cook) — UCLA / Chapman / Pfizer, California, 2015
 
 *References available upon request.*

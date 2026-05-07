@@ -1,0 +1,54 @@
+---
+title: "AI Workbench"
+tagline: "A self-hosted product surface for building, inspecting, and operating retrieval-backed AI applications on DataStax Astra."
+summary: "Astra-backed RAG tooling: workspaces, knowledge bases, ingest, retrieval experiments, agents, MCP, and a production TypeScript HTTP runtime."
+role: "Contributor"
+period: "2026 — Present"
+stack: ["TypeScript", "React", "Hono", "Astra DB", "OpenAPI", "Docker"]
+tags: ["ai-agents", "rag", "datastax", "astra", "open-source"]
+order: 3
+links:
+  - label: "Repository"
+    href: "https://github.com/datastax/ai-workbench"
+  - label: "Pull requests"
+    href: "https://github.com/datastax/ai-workbench/pulls?q=is%3Apr+author%3Aerichare"
+---
+
+AI Workbench is an open-source, self-hosted interface for teams building retrieval-backed AI
+applications on **DataStax Astra**. It brings the operational pieces into one product surface:
+workspaces, knowledge bases, document ingest, chunking, embedding and reranking services, API keys,
+retrieval experiments, agents, and MCP.
+
+The public repository describes the **TypeScript runtime** as the production ship path today. It
+bundles the UI and implements the full `/api/v1/*` contract in one Docker image. Python and Java
+runtimes are present as preview scaffolds so the cross-runtime API contract can be tested as those
+implementations mature.
+
+## Product surface
+
+The core model is workspace-first. A workspace owns the knowledge bases, documents, jobs,
+credentials, services, agents, and API keys that belong together. A knowledge base owns its Astra
+collection end to end, including the chunking, embedding, and optional reranking services that feed
+it.
+
+That gives the UI a practical shape:
+
+- create or attach Astra-backed knowledge bases;
+- ingest raw text or files and track synchronous or asynchronous job state;
+- run text, vector, hybrid, and reranked retrieval in the browser;
+- configure workspace-scoped services and API keys;
+- define retrieval-grounded agents and expose the workspace through MCP when enabled.
+
+## What I work on
+
+My contributions have spanned the runtime, UI, test harness, and production hardening work. Recent
+public PRs include file ingest support ([#192](https://github.com/datastax/ai-workbench/pull/192),
+[#193](https://github.com/datastax/ai-workbench/pull/193)), authentication and observability
+work ([#196](https://github.com/datastax/ai-workbench/pull/196),
+[#197](https://github.com/datastax/ai-workbench/pull/197)), conformance coverage
+([#198](https://github.com/datastax/ai-workbench/pull/198)), and control-plane cleanup
+([#199](https://github.com/datastax/ai-workbench/pull/199)).
+
+The work is close to the kind of developer product I like: a clear UI, a stable HTTP contract,
+direct Astra integration, and enough conformance testing that the implementation can keep evolving
+without surprising its users.
