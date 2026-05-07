@@ -38,8 +38,7 @@ Reproducible research · Forensic statistics.
   model-provider UX.
 - Ongoing contributor to the **Astra DB Data API** stack: `astrapy` Python client, Unstructured
   integration, and portal ingestion backend.
-- Contributor to [ToolGuard](https://github.com/AgentToolkit/toolguard) upstream and to IBM
-  Research's [CUGA](https://github.com/cuga-project/cuga-agent) agent harness.
+- Contributor to [ToolGuard](https://github.com/AgentToolkit/toolguard) upstream.
 
 ### DataStax — Software Engineer
 *December 2022 — August 2025 · Remote (California)*

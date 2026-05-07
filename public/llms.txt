@@ -21,7 +21,6 @@
 - [PhD research — bullet matching](https://erichare.me/phd) — PhD dissertation + CSAFE research on automated forensic bullet striation matching. R packages: bulletr, bulletxtrctr.
 - [Daisi](https://erichare.me/projects/daisi) — Serverless Python cloud functions for scientific computing (2021–2022).
 - [Omni Analytics & OmniacsDAO](https://erichare.me/projects/omniacsdao) — Chief Data Scientist 2017–2021. Open-source Shiny and DeFi tooling.
-- [CUGA](https://erichare.me/projects/cuga) — Occasional contributor to IBM Research's open-source generalist agent harness.
 
 ## Contact
 
