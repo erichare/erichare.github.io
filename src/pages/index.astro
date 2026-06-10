@@ -117,13 +117,23 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
   <!-- Now / focus -->
   <Section eyebrow="Focus" title="What I'm working on in 2026.">
-    <div class="grid md:grid-cols-3 gap-5">
+    <div class="grid md:grid-cols-2 gap-5">
       <article class="card p-6">
         <Icon name="lucide:workflow" width="22" style="color: var(--color-accent);" />
         <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">Langflow core</h3>
         <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
           SDK, MCP integration, model-provider unification, and the Flow DevOps API toolkit.
           <a href="/projects/langflow" class="link">Read the case study →</a>
+        </p>
+      </article>
+      <article class="card p-6">
+        <Icon name="lucide:scale" width="22" style="color: var(--color-accent);" />
+        <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">Verity</h3>
+        <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
+          An open engine for forensic surface comparison: calibrated likelihood ratios — not
+          black-box "matches" — from 3-D scans of bullets, cartridge cases, and toolmarks.
+          My main project outside of work.
+          <a href="/projects/verity" class="link">Read more →</a>
         </p>
       </article>
       <article class="card p-6">

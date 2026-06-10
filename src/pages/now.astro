@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Section from '../components/Section.astro';
 
-const lastUpdated = new Date('2026-05-07');
+const lastUpdated = new Date('2026-06-10');
 ---
 
 <BaseLayout title="Now" description="What Eric Hare is working on right now, updated periodically.">
@@ -41,6 +41,14 @@ const lastUpdated = new Date('2026-05-07');
       <h2>Side projects</h2>
       <ul>
         <li>
+          <strong>Verity.</strong> My main project outside of work: an open, domain-general engine
+          for forensic surface comparison — calibrated likelihood ratios, not black-box "matches,"
+          from 3-D scans of bullets, cartridge cases, and toolmarks.
+          <a href="/projects/verity">Project notes</a> ·
+          <a href="https://verity.codes">verity.codes</a> ·
+          <a href="https://github.com/erichare/verity">source</a>.
+        </li>
+        <li>
           <strong>Aeroza.</strong> Open-source weather infrastructure for live radar, geospatial
           queries, streaming APIs, nowcasting, and forecast verification.
           <a href="/projects/aeroza">Project notes</a> ·
@@ -57,7 +65,7 @@ const lastUpdated = new Date('2026-05-07');
       <h2>Reading & learning</h2>
       <ul>
         <li>Papers on agent tool-use evaluation and MCP security boundaries.</li>
-        <li>Rust, slowly, for no good reason.</li>
+        <li>Rust, no longer for no good reason — Verity's X3P codec is written in it.</li>
       </ul>
 
       <h2>Not doing</h2>

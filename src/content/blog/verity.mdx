@@ -1,0 +1,134 @@
+---
+title: "Verity: weighing the marks, not calling the match"
+description: "Introducing Verity, an open, domain-general engine for forensic surface comparison — transparent, calibrated likelihood ratios from 3-D scans of bullets, cartridge cases, and toolmarks."
+pubDate: 2026-06-10
+tags: ["forensics", "statistics", "open-science", "rust"]
+---
+
+In 2012 I started a PhD with a strange job description: figure out whether a spent bullet can be
+matched to the gun that fired it, statistically, from a 3-D scan of its surface.
+
+I spent five years on that question. I wrote R packages, scanned bullet lands, extracted
+striations, scored comparisons, defended a thesis, and watched the work fold into
+[CSAFE](https://forensicstats.org)'s research portfolio. Then I went off and built developer
+tools and AI platforms for a decade.
+
+The question never let go.
+
+Here is the thing that stuck with me: when a firearms examiner testifies, the jury hears the word
+**"match."** And the honest version of that word — the one a statistician would sign — does not
+exist yet. Courts have started noticing. *Abruquah v. Maryland* (2023) pushed back on unqualified
+identification testimony. Federal Rule of Evidence 702 was amended the same year to tighten what
+expert conclusions are supposed to survive. And as Cuellar et al. put it in 2024, no
+pattern-comparison discipline yet has a well-characterized error rate.
+
+Meanwhile, the tooling landscape is split between subjective examiner judgment, proprietary
+black-box correlation systems, and a pile of open but domain-specific research packages — some of
+which I wrote.
+
+So I built [Verity](https://verity.codes).
+
+![Verity — forensic marks, weighed as evidence.](/img/blog/verity/home-hero.svg)
+
+## Not a verdict, a weight
+
+Verity compares 3-D surface-topography scans — bullet lands, cartridge-case breech-face
+impressions, striated and impressed toolmarks — directly from X3P files, the ISO 25178-72
+standard format. What it refuses to do is say "match."
+
+What you get instead is a `ComparisonReport`:
+
+```jsonc
+{
+  "likelihood_ratio": 146.0,
+  "verbal": "moderately strong support for same source",
+  "lr_bound_log10": 2.16,
+  "reference": { "name": "pooled bullet-land", "n_km": 146, "n_knm": 1755, "auc": 0.984, "cllr": 0.193 },
+  "attribution": [ /* the matched regions — the explanation */ ],
+  "scope_note": "Not a claim about the error rate of examination, which remains unknown."
+}
+```
+
+Every piece of that is deliberate. A likelihood ratio instead of a binary call. A verbal
+equivalent so the number is reportable in plain language. A named reference population with its
+measured discrimination and calibration cost, so the claim is characterized rather than asserted.
+An ELUB bound that caps how strong a statement the data can support no matter how enthusiastic
+the score is. And region-level attribution, so you can see *which parts of the surfaces* carried
+the evidence.
+
+The design principle underneath: **statistics decide, not a black box.** A representation —
+classical metrology today, learned features eventually — produces a score. A transparent,
+ELUB-bounded calibration turns that score into evidence. Because the decision layer is
+interpretable on its own terms, the report stays auditable regardless of how the score was
+computed. That is the firewall.
+
+## One method, many marks
+
+The comparison method is something I am calling Congruent Matching Regions (CMR). It generalizes
+Song's Congruent Matching Cells — the standard cartridge-case method — from 2-D cells under a
+fixed translation+rotation to regions of any dimension under any transformation group.
+
+Partition a mark into regions. Register each region against the other mark. Count the regions
+that agree on one common geometry. For striated marks with 1-D profile windows, this reduces to
+the Chumbley/CMS-style tests I worked with in graduate school. For impressed marks with 2-D grid
+cells, it reduces exactly to CMC. For fractured surfaces with 3-D mesh patches, it becomes a
+research direction. Same algorithm, three domains — and the congruent regions *are* the
+attribution map, so the explanation falls out of the method instead of being bolted on.
+
+## The plumbing matters too
+
+A decade of platform work left me with opinions about research code, and Verity is where I am
+acting on all of them.
+
+The foundation is `verity-x3p`, a Rust crate that is the single source of truth for reading and
+writing X3P files. Python gets it through PyO3 with NumPy arrays; R gets it through extendr with
+an `x3ptools`-compatible layout. A file written from any binding reads back bit-identically in
+every other. On top of that sit the Python metrology engine — ISO 16610 preprocessing,
+registration, CMR, the calibrated-LR decision layer — a FastAPI comparison API, a normalized
+scan catalog with content-addressed storage, and a Next.js app.
+
+Everything is deterministic, version-pinned, and content-hashed, because a forensic result you
+cannot reproduce is not a result. And the whole comparison is one HTTP call:
+
+```bash
+curl -s -X POST https://api.verity.codes/compare \
+  -F domain=striated \
+  -F mark_a=@bulletA_land1.x3p -F mark_a=@bulletA_land2.x3p \
+  -F mark_b=@bulletB_land1.x3p -F mark_b=@bulletB_land2.x3p
+```
+
+## The honest part
+
+Validation is where forensic tools usually get vague, so this is the section I care most about.
+
+The headline result: under a barrel-disjoint protocol — no barrel appears in both training and
+test, reported per study, never pooled across makes — the first-principles scorer reaches
+AUC ≈ 1.00 with a test Cllr ≈ 0.11 on Hamby-252, and Cllr ≈ 0.11–0.35 at AUC ≈ 0.97–1.00 across
+the four NBTRD bullet studies. That is an informative, calibrated weight of evidence from
+metrology alone, with the calibration loss measured on the split that actually stresses it.
+
+The less flattering result, stated just as plainly: the learned representation does not beat the
+cross-correlation baseline yet. Trained barrel-disjoint on 210 Hamby scans, its held-out AUC
+collapses to about 0.67 — it overfits. Synthetic tests confirm the pipeline learns when there is
+enough signal, so this is a data limit rather than a defect, and the fix is more scans, not more
+spin. But the number is in the README, because a project about honest evidence does not get to
+bury its own.
+
+And the scope note appears everywhere for a reason: none of this is a claim about the error rate
+of forensic *examination*. That remains unknown. Verity characterizes the error rate of one named
+method on named data — which is exactly the thing the field has been missing.
+
+## A very old question, upgraded
+
+My dissertation work was one discipline, one language, one pipeline. Verity's bet is bigger: one
+general, calibrated, explainable method, proven first where ground truth is strongest — firearms,
+where test fires give you real same-source labels — and then transferred to toolmarks, footwear,
+and fractured surfaces, where it is weakest.
+
+Grad-school me would have killed for this platform. Present me gets to build it with a Rust core,
+a real API, and ten more years of statistical caution.
+
+The app is live at [verity.codes](https://verity.codes), the API reference at
+[api.verity.codes/scalar](https://api.verity.codes/scalar), and the code — MIT/Apache-2.0 — at
+[github.com/erichare/verity](https://github.com/erichare/verity). If you have X3P scans, bring
+them. If you have opinions about likelihood ratios in the courtroom, I want to hear those too.
