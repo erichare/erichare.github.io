@@ -1,50 +1,53 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Newsreader', ui-serif, Georgia, 'Times New Roman', serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  /* Terminal: IBM Plex Sans body, IBM Plex Mono for display headings + code.
+     --font-serif is repurposed as the mono "display" face so existing heading
+     markup (font-family: var(--font-serif)) renders in mono with no per-page edits. */
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-  /* Archival: warm near-black, ivory, oxblood accent */
-  --color-bg: oklch(0.145 0.014 45);
-  --color-bg-elev: oklch(0.185 0.016 45);
-  --color-border: oklch(0.30 0.020 45);
-  --color-border-muted: oklch(0.23 0.017 45);
-  --color-fg: oklch(0.95 0.018 80);
-  --color-fg-muted: oklch(0.72 0.020 65);
-  --color-fg-subtle: oklch(0.54 0.022 55);
-  --color-accent: oklch(0.64 0.155 32);
-  --color-accent-soft: oklch(0.64 0.155 32 / 0.14);
-  --color-warn: oklch(0.78 0.14 85);
+  /* Terminal: cool near-black, soft white, phosphor-green accent */
+  --color-bg: #0b0f0d;
+  --color-bg-elev: #121814;
+  --color-border: #25302a;
+  --color-border-muted: #1a221d;
+  --color-fg: #e3ece5;
+  --color-fg-muted: #93a89a;
+  --color-fg-subtle: #5f7066;
+  --color-accent: #4ad07f;
+  --color-accent-soft: rgba(74, 208, 127, 0.12);
+  --color-warn: #e3b341;
 
-  --radius-xs: 0.25rem;
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.1875rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.5rem;
 
   --shadow-glow: 0 0 0 1px color-mix(in oklch, var(--color-accent) 40%, transparent);
 }
 
 @layer base {
   :root[data-theme='light'] {
-    /* Archival light: warm cream paper, deep ink, oxblood */
-    --color-bg: oklch(0.975 0.012 85);
-    --color-bg-elev: oklch(0.955 0.014 85);
-    --color-border: oklch(0.85 0.018 70);
-    --color-border-muted: oklch(0.91 0.014 78);
-    --color-fg: oklch(0.20 0.016 45);
-    --color-fg-muted: oklch(0.44 0.016 45);
-    --color-fg-subtle: oklch(0.60 0.018 45);
-    --color-accent: oklch(0.48 0.18 30);
-    --color-accent-soft: oklch(0.48 0.18 30 / 0.1);
+    /* Paper terminal: cool light paper, deep ink, deep-green accent */
+    --color-bg: #f2f4f3;
+    --color-bg-elev: #e9ece9;
+    --color-border: #cdd5cf;
+    --color-border-muted: #dde2de;
+    --color-fg: #14201a;
+    --color-fg-muted: #4a5750;
+    --color-fg-subtle: #6f7d75;
+    --color-accent: #157f48;
+    --color-accent-soft: rgba(21, 127, 72, 0.1);
   }
 
   html {
     background: var(--color-bg);
     color: var(--color-fg);
     font-family: var(--font-sans);
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
+    font-feature-settings: 'liga' 1, 'calt' 1;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -54,7 +57,7 @@
   body {
     min-height: 100vh;
     background:
-      radial-gradient(ellipse 120% 80% at 50% -20%, color-mix(in oklch, var(--color-accent) 14%, transparent), transparent 60%),
+      radial-gradient(ellipse 120% 80% at 50% -20%, color-mix(in oklch, var(--color-accent) 10%, transparent), transparent 60%),
       var(--color-bg);
     background-attachment: fixed;
   }
@@ -85,7 +88,7 @@
 
   pre, code, kbd {
     font-family: var(--font-mono);
-    font-feature-settings: 'ss01', 'ss02', 'cv01', 'cv02';
+    font-feature-settings: normal;
   }
 
   pre {
@@ -211,10 +214,24 @@
 
   .grid-mesh {
     background-image:
-      linear-gradient(to right, color-mix(in oklch, var(--color-border) 45%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in oklch, var(--color-border) 45%, transparent) 1px, transparent 1px);
-    background-size: 48px 48px;
+      radial-gradient(color-mix(in oklch, var(--color-accent) 22%, transparent) 1px, transparent 1px);
+    background-size: 16px 16px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 70%);
+  }
+
+  .term-caret {
+    display: inline-block;
+    width: 0.55ch;
+    height: 0.92em;
+    margin-left: 0.12em;
+    vertical-align: -0.08em;
+    background: var(--color-accent);
+    box-shadow: 0 0 10px color-mix(in oklch, var(--color-accent) 55%, transparent);
+    animation: term-blink 1.1s steps(2, jump-none) infinite;
+  }
+  @keyframes term-blink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
   }
 }
 

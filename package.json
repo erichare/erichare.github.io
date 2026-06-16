@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "cv:pdf": "node scripts/generate-cv-pdf.mjs"
+    "cv:pdf": "node scripts/generate-cv-pdf.mjs",
+    "icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",
