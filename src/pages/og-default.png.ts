@@ -11,15 +11,15 @@ async function loadFont(url: string): Promise<ArrayBuffer> {
 }
 
 export const GET: APIRoute = async () => {
-  const [inter500, inter700, newsreader500] = await Promise.all([
+  const [plexMono500, plexMono600, plexSans400] = await Promise.all([
     loadFont(
-      'https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-500-normal.ttf'
+      'https://cdn.jsdelivr.net/fontsource/fonts/ibm-plex-mono@latest/latin-500-normal.ttf'
     ),
     loadFont(
-      'https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-700-normal.ttf'
+      'https://cdn.jsdelivr.net/fontsource/fonts/ibm-plex-mono@latest/latin-600-normal.ttf'
     ),
     loadFont(
-      'https://cdn.jsdelivr.net/fontsource/fonts/newsreader@latest/latin-500-normal.ttf'
+      'https://cdn.jsdelivr.net/fontsource/fonts/ibm-plex-sans@latest/latin-400-normal.ttf'
     ),
   ]);
 
@@ -33,10 +33,9 @@ export const GET: APIRoute = async () => {
         flexDirection: 'column',
         justifyContent: 'space-between',
         padding: '88px 92px',
-        background:
-          'linear-gradient(135deg, #0d121b 0%, #16202c 100%)',
-        color: '#f3f7fa',
-        fontFamily: 'Inter',
+        background: 'linear-gradient(135deg, #0b0f0d 0%, #0e1512 100%)',
+        color: '#e3ece5',
+        fontFamily: 'IBM Plex Sans',
       },
       children: [
         {
@@ -50,9 +49,9 @@ export const GET: APIRoute = async () => {
                   style: {
                     width: '14px',
                     height: '14px',
-                    background: '#4fd3e6',
+                    background: '#4ad07f',
                     borderRadius: '9999px',
-                    boxShadow: '0 0 32px #4fd3e6',
+                    boxShadow: '0 0 32px #4ad07f',
                   },
                 },
               },
@@ -61,9 +60,10 @@ export const GET: APIRoute = async () => {
                 props: {
                   style: {
                     fontSize: '22px',
-                    color: '#4fd3e6',
+                    color: '#4ad07f',
                     letterSpacing: '4px',
-                    fontWeight: 700,
+                    fontFamily: 'IBM Plex Mono',
+                    fontWeight: 600,
                   },
                   children: 'ERICHARE.ME',
                 },
@@ -79,15 +79,33 @@ export const GET: APIRoute = async () => {
               {
                 type: 'div',
                 props: {
-                  style: {
-                    fontFamily: 'Newsreader',
-                    fontSize: '104px',
-                    fontWeight: 500,
-                    lineHeight: 1.05,
-                    letterSpacing: '-0.02em',
-                    maxWidth: '1000px',
-                  },
-                  children: 'Eric Hare',
+                  style: { display: 'flex', alignItems: 'center', gap: '20px' },
+                  children: [
+                    {
+                      type: 'div',
+                      props: {
+                        style: {
+                          fontFamily: 'IBM Plex Mono',
+                          fontSize: '96px',
+                          fontWeight: 500,
+                          lineHeight: 1.05,
+                          letterSpacing: '-0.02em',
+                        },
+                        children: 'Eric Hare',
+                      },
+                    },
+                    {
+                      type: 'div',
+                      props: {
+                        style: {
+                          width: '24px',
+                          height: '80px',
+                          background: '#4ad07f',
+                          boxShadow: '0 0 28px #4ad07f',
+                        },
+                      },
+                    },
+                  ],
                 },
               },
               {
@@ -95,7 +113,7 @@ export const GET: APIRoute = async () => {
                 props: {
                   style: {
                     fontSize: '34px',
-                    color: '#a8b5c4',
+                    color: '#93a89a',
                     lineHeight: 1.35,
                     maxWidth: '960px',
                   },
@@ -111,8 +129,8 @@ export const GET: APIRoute = async () => {
           props: {
             style: {
               fontSize: '22px',
-              color: '#6b7a8c',
-              fontFamily: 'Inter',
+              color: '#5f7066',
+              fontFamily: 'IBM Plex Mono',
               letterSpacing: '0.03em',
             },
             children: 'github.com/erichare · erichare.me',
@@ -126,9 +144,9 @@ export const GET: APIRoute = async () => {
     width: 1200,
     height: 630,
     fonts: [
-      { name: 'Inter', data: inter500, weight: 500, style: 'normal' },
-      { name: 'Inter', data: inter700, weight: 700, style: 'normal' },
-      { name: 'Newsreader', data: newsreader500, weight: 500, style: 'normal' },
+      { name: 'IBM Plex Mono', data: plexMono500, weight: 500, style: 'normal' },
+      { name: 'IBM Plex Mono', data: plexMono600, weight: 600, style: 'normal' },
+      { name: 'IBM Plex Sans', data: plexSans400, weight: 400, style: 'normal' },
     ],
   });
 
