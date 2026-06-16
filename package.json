@@ -32,5 +32,8 @@
     "@iconify-json/lucide": "^1.2.75",
     "@iconify-json/simple-icons": "^1.2.65",
     "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "esbuild": "^0.28.1"
   }
 }
