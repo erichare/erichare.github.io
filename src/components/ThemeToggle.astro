@@ -5,42 +5,37 @@ import { Icon } from 'astro-icon/components';
 <button
   id="theme-toggle"
   type="button"
-  aria-label="Toggle colour theme"
-  class="p-2 rounded-md transition"
-  style="color: var(--color-fg-muted);"
+  aria-label="Switch to dark theme"
+  class="icon-button theme-toggle"
 >
-  <Icon name="lucide:sun" width="18" class="icon-sun hidden" />
-  <Icon name="lucide:moon" width="18" class="icon-moon" />
+  <Icon name="ph:sun" width="19" class="theme-icon-light" aria-hidden="true" />
+  <Icon name="ph:moon" width="19" class="theme-icon-dark hidden" aria-hidden="true" />
+  <span class="sr-only theme-toggle__state">Light theme active</span>
 </button>
 
 <script is:inline>
   (function () {
     const KEY = 'eh-theme';
     const root = document.documentElement;
-    const stored = localStorage.getItem(KEY);
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    root.dataset.theme = stored ?? (prefersDark ? 'dark' : 'light');
+    const button = document.getElementById('theme-toggle');
+    if (!button || button.dataset.bound === 'true') return;
+    button.dataset.bound = 'true';
 
-    const bind = () => {
-      const btn = document.getElementById('theme-toggle');
-      if (!btn || btn.dataset.bound === '1') return;
-      btn.dataset.bound = '1';
-      const sync = () => {
-        const t = root.dataset.theme;
-        btn.querySelector('.icon-sun')?.classList.toggle('hidden', t !== 'dark');
-        btn.querySelector('.icon-moon')?.classList.toggle('hidden', t === 'dark');
-      };
-      sync();
-      btn.addEventListener('click', () => {
-        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-        root.dataset.theme = next;
-        localStorage.setItem(KEY, next);
-        sync();
-      });
+    const sync = () => {
+      const dark = root.dataset.theme === 'dark';
+      button.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+      button.querySelector('.theme-icon-light')?.classList.toggle('hidden', dark);
+      button.querySelector('.theme-icon-dark')?.classList.toggle('hidden', !dark);
+      const state = button.querySelector('.theme-toggle__state');
+      if (state) state.textContent = dark ? 'Dark theme active' : 'Light theme active';
     };
 
-    document.addEventListener('astro:page-load', bind);
-    if (document.readyState !== 'loading') bind();
-    else document.addEventListener('DOMContentLoaded', bind);
+    sync();
+    button.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      localStorage.setItem(KEY, next);
+      sync();
+    });
   })();
 </script>

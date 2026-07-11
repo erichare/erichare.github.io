@@ -7,18 +7,12 @@ interface Props {
 const { eyebrow, title, lede } = Astro.props;
 ---
 
-<section class="container-wide pt-16 pb-12 md:pt-24 md:pb-16">
-  {eyebrow && (
-    <p class="text-xs uppercase tracking-[0.18em] font-mono mb-4" style="color: var(--color-accent);">
-      {eyebrow}
-    </p>
-  )}
-  <h1 class="text-4xl md:text-5xl font-semibold tracking-tight max-w-3xl" style="font-family: var(--font-serif); font-weight: 500;">
-    {title}
-  </h1>
-  {lede && (
-    <p class="mt-5 text-lg max-w-2xl leading-relaxed" style="color: var(--color-fg-muted);">
-      {lede}
-    </p>
-  )}
+<section class="page-header">
+  <div class="container-wide page-header__grid">
+    <div>{eyebrow && <p class="eyebrow">{eyebrow}</p>}</div>
+    <div>
+      <h1 class="page-header__title">{title}</h1>
+      {lede && <p class="page-header__lede">{lede}</p>}
+    </div>
+  </div>
 </section>

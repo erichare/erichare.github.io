@@ -1,26 +1,17 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import type { APIRoute } from 'astro';
 import satori from 'satori';
 import sharp from 'sharp';
 
 export const prerender = true;
 
-async function loadFont(url: string): Promise<ArrayBuffer> {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Failed to fetch font ${url}: ${res.status}`);
-  return res.arrayBuffer();
-}
-
 export const GET: APIRoute = async () => {
-  const [plexMono500, plexMono600, plexSans400] = await Promise.all([
-    loadFont(
-      'https://cdn.jsdelivr.net/fontsource/fonts/ibm-plex-mono@latest/latin-500-normal.ttf'
-    ),
-    loadFont(
-      'https://cdn.jsdelivr.net/fontsource/fonts/ibm-plex-mono@latest/latin-600-normal.ttf'
-    ),
-    loadFont(
-      'https://cdn.jsdelivr.net/fontsource/fonts/ibm-plex-sans@latest/latin-400-normal.ttf'
-    ),
+  const [newsreader500, plexSans400, plexSans500, plexMono500] = await Promise.all([
+    fs.readFile(path.resolve('node_modules/@fontsource/newsreader/files/newsreader-latin-500-normal.woff')),
+    fs.readFile(path.resolve('node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff')),
+    fs.readFile(path.resolve('node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff')),
+    fs.readFile(path.resolve('node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff')),
   ]);
 
   const element = {
@@ -32,40 +23,33 @@ export const GET: APIRoute = async () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        padding: '88px 92px',
-        background: 'linear-gradient(135deg, #0b0f0d 0%, #0e1512 100%)',
-        color: '#e3ece5',
+        padding: '62px 70px 56px',
+        background: '#f5f2ea',
+        color: '#172019',
         fontFamily: 'IBM Plex Sans',
+        border: '1px solid #d8d9d2',
       },
       children: [
         {
           type: 'div',
           props: {
-            style: { display: 'flex', alignItems: 'center', gap: '14px' },
+            style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
             children: [
               {
                 type: 'div',
                 props: {
-                  style: {
-                    width: '14px',
-                    height: '14px',
-                    background: '#4ad07f',
-                    borderRadius: '9999px',
-                    boxShadow: '0 0 32px #4ad07f',
-                  },
+                  style: { display: 'flex', alignItems: 'center', gap: '12px', fontSize: '22px', fontWeight: 500 },
+                  children: [
+                    { type: 'div', props: { style: { width: '12px', height: '12px', borderRadius: '999px', background: '#235e45' } } },
+                    { type: 'div', props: { children: 'Eric Hare' } },
+                  ],
                 },
               },
               {
                 type: 'div',
                 props: {
-                  style: {
-                    fontSize: '22px',
-                    color: '#4ad07f',
-                    letterSpacing: '4px',
-                    fontFamily: 'IBM Plex Mono',
-                    fontWeight: 600,
-                  },
-                  children: 'ERICHARE.ME',
+                  style: { color: '#235e45', fontFamily: 'IBM Plex Mono', fontSize: '14px', letterSpacing: '2px' },
+                  children: 'SOFTWARE ENGINEER · STATISTICIAN',
                 },
               },
             ],
@@ -74,51 +58,20 @@ export const GET: APIRoute = async () => {
         {
           type: 'div',
           props: {
-            style: { display: 'flex', flexDirection: 'column', gap: '24px' },
+            style: { display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '1000px' },
             children: [
               {
                 type: 'div',
                 props: {
-                  style: { display: 'flex', alignItems: 'center', gap: '20px' },
-                  children: [
-                    {
-                      type: 'div',
-                      props: {
-                        style: {
-                          fontFamily: 'IBM Plex Mono',
-                          fontSize: '96px',
-                          fontWeight: 500,
-                          lineHeight: 1.05,
-                          letterSpacing: '-0.02em',
-                        },
-                        children: 'Eric Hare',
-                      },
-                    },
-                    {
-                      type: 'div',
-                      props: {
-                        style: {
-                          width: '24px',
-                          height: '80px',
-                          background: '#4ad07f',
-                          boxShadow: '0 0 28px #4ad07f',
-                        },
-                      },
-                    },
-                  ],
+                  style: { fontFamily: 'Newsreader', fontSize: '88px', fontWeight: 500, lineHeight: 0.98, letterSpacing: '-3px' },
+                  children: 'I build tools for decisions you can inspect.',
                 },
               },
               {
                 type: 'div',
                 props: {
-                  style: {
-                    fontSize: '34px',
-                    color: '#93a89a',
-                    lineHeight: 1.35,
-                    maxWidth: '960px',
-                  },
-                  children:
-                    'Software Engineer at IBM — Langflow, enterprise AI agent tooling, statistical graphics, forensic statistics.',
+                  style: { maxWidth: '900px', color: '#4f5d54', fontSize: '25px', lineHeight: 1.45 },
+                  children: 'Core Langflow maintainer at IBM · Creator of Verity and Aeroza',
                 },
               },
             ],
@@ -128,12 +81,19 @@ export const GET: APIRoute = async () => {
           type: 'div',
           props: {
             style: {
-              fontSize: '22px',
-              color: '#5f7066',
+              display: 'flex',
+              justifyContent: 'space-between',
+              paddingTop: '20px',
+              borderTop: '1px solid #b9c0b8',
+              color: '#6b776f',
               fontFamily: 'IBM Plex Mono',
-              letterSpacing: '0.03em',
+              fontSize: '14px',
+              letterSpacing: '1px',
             },
-            children: 'github.com/erichare · erichare.me',
+            children: [
+              { type: 'div', props: { children: 'ERICHARE.ME' } },
+              { type: 'div', props: { children: 'AGENTS · DATA · EVIDENCE' } },
+            ],
           },
         },
       ],
@@ -144,9 +104,10 @@ export const GET: APIRoute = async () => {
     width: 1200,
     height: 630,
     fonts: [
-      { name: 'IBM Plex Mono', data: plexMono500, weight: 500, style: 'normal' },
-      { name: 'IBM Plex Mono', data: plexMono600, weight: 600, style: 'normal' },
+      { name: 'Newsreader', data: newsreader500, weight: 500, style: 'normal' },
       { name: 'IBM Plex Sans', data: plexSans400, weight: 400, style: 'normal' },
+      { name: 'IBM Plex Sans', data: plexSans500, weight: 500, style: 'normal' },
+      { name: 'IBM Plex Mono', data: plexMono500, weight: 500, style: 'normal' },
     ],
   });
 

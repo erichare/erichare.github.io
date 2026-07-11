@@ -1,157 +1,294 @@
 ---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Section from '../components/Section.astro';
-import { Icon } from 'astro-icon/components';
-import { Image } from 'astro:assets';
 
 const timeline = [
   {
-    period: 'Aug 2025 — Present',
+    period: '2025 — Present',
     role: 'Software Engineer',
     org: 'IBM',
-    team: 'DOE — Developer and Operator Experience',
-    detail: 'Core maintainer of Langflow and ongoing contributor on the Astra DB Data API and AI Workbench stacks. Focus areas: MCP integration, model-provider abstractions, agent tool-use policy, retrieval tooling, and the Langflow SDK. Joined via IBM\u2019s acquisition of DataStax in 2025.',
+    detail: 'Core Langflow maintainer on Developer and Operator Experience. I work across MCP, the Langflow SDK, agent tool-use policy, model providers, retrieval tooling, and the production seams users feel first.',
   },
   {
-    period: 'Dec 2022 — Aug 2025',
+    period: '2022 — 2025',
     role: 'Software Engineer',
     org: 'DataStax',
-    detail: 'Joined the Langflow core team after DataStax acquired Langflow in April 2024. Shipped hybrid-search + GenAI workflows, watsonx Orchestrate integrations, and Astra DB + Pulsar tooling. Transitioned into IBM with the 2025 acquisition.',
+    detail: 'Built Astra DB and GenAI product surfaces, then joined the Langflow core team after DataStax acquired the project in 2024. Moved with DataStax into IBM in 2025.',
   },
   {
-    period: 'May 2021 — Dec 2022',
+    period: '2021 — 2022',
     role: 'Senior Data Scientist',
     org: 'Daisi Technology',
-    detail: 'Built reference "daisies" — serverless Python cloud functions for scientists — covering YOLO object detection, Prophet forecasting, sentiment analysis, PCA, and PDF extraction. Wrote most of the platform\u2019s engineering blog before it sunset in November 2022.',
+    detail: 'Built serverless Python functions for scientific computing and wrote much of the platform’s engineering story.',
   },
   {
-    period: 'May 2017 — May 2021',
+    period: '2017 — 2021',
     role: 'Chief Data Scientist',
     org: 'Omni Analytics Group',
-    detail: 'Led the company\u2019s data-science practice: statistical consulting, Shiny applications, and delivery of the *Creating and Designing Interactive Web Applications with Shiny* course. Helped seed the open-source OmniacsDAO suite (Numerai/DeFi tooling) that the community still maintains.',
+    detail: 'Led statistical consulting, Shiny application work, and technical teaching. Helped seed the open-source OmniacsDAO suite.',
   },
   {
     period: '2012 — 2017',
-    role: 'PhD Candidate & Research Assistant',
+    role: 'PhD, Statistics & Computer Science',
     org: 'Iowa State University',
-    detail: 'Statistics & Computer Science. Dissertation: Statistical Methods for Bullet Matching. Research with CSAFE on forensic bullet-striation analysis; co-author of the R packages bulletr and bulletxtrctr.',
-  },
-  {
-    period: 'Summers 2010 — 2013',
-    role: 'Quality Assurance Intern',
-    org: 'TIBCO Software, Seattle WA',
-    detail: 'Three summers during undergrad — my first proper exposure to professional software engineering.',
+    detail: 'Developed reproducible methods for forensic bullet comparison with CSAFE and shipped the work as papers, R packages, and a dissertation.',
   },
 ];
 
-const interests = [
-  { icon: 'lucide:workflow', label: 'AI agent tooling', detail: 'MCP, agent policy, orchestration.' },
-  { icon: 'lucide:bar-chart-2', label: 'Statistical graphics', detail: 'Visual inference, ggplot2-era thinking for the agent era.' },
-  { icon: 'lucide:code-2', label: 'R & Python packaging', detail: 'Years of CRAN submissions have made me opinionated.' },
-  { icon: 'lucide:scale', label: 'Forensic statistics', detail: 'Bullet-matching with CSAFE, ongoing collaborator.' },
-  { icon: 'lucide:flask-conical', label: 'Reproducible research', detail: 'Good science ships with its code.' },
-  { icon: 'lucide:graduation-cap', label: 'Teaching', detail: 'Engineering probability, introductory statistics, and statistical computing.' },
+const principles = [
+  { icon: 'ph:magnifying-glass', title: 'Inspectability', body: 'A useful system should show its reasoning, state, and failure modes.' },
+  { icon: 'ph:scales', title: 'Honest evaluation', body: 'Measure uncertainty and publish the misses, not only the attractive examples.' },
+  { icon: 'ph:package', title: 'Open implementation', body: 'Good research and good developer experience both improve when the code can be run.' },
+  { icon: 'ph:flow-arrow', title: 'Agent tooling', body: 'MCP, orchestration, policy, and the infrastructure underneath a reliable tool call.' },
+  { icon: 'ph:chart-line', title: 'Statistical graphics', body: 'Interfaces that help people reason about variation rather than hide it.' },
+  { icon: 'ph:graduation-cap', title: 'Teaching', body: 'The best technical explanation leaves someone able to do the next step alone.' },
 ];
 ---
 
-<BaseLayout title="About" description="Eric Hare — biography, career timeline, and areas of focus.">
+<BaseLayout title="About" description="Eric Hare — software engineer, statistician, open-source maintainer, and forensic statistics researcher.">
   <PageHeader
     eyebrow="About"
-    title="Short version: statistician who became a software engineer."
-    lede="Longer version below. I grew up in the Pacific Northwest, learned to code the old-fashioned way (shipping bad R code), picked up statistics at UW, and got a PhD at Iowa State. Today I work on AI-agent tooling at IBM, and I still write R on weekends."
+    title="Software engineer by way of statistics."
+    lede="I build open tools for agents, data, and evidence—and I care whether the decisions they support can be inspected, reproduced, and challenged."
   />
 
   <Section>
-    <div class="grid lg:grid-cols-[1fr_260px] gap-10 items-start">
+    <div class="about-intro">
       <div class="prose-styled">
         <p>
-          I'm a software engineer at <strong>IBM</strong> on the <em>DOE — Developer and Operator
-          Experience</em> team, where I'm a core maintainer of
-          <a href="https://github.com/langflow-ai/langflow">Langflow</a> and an active contributor to
-          <a href="https://github.com/datastax/ai-workbench">AI Workbench</a>. I joined IBM in August
-          2025 when it acquired DataStax, which had in turn acquired Langflow in 2024 — a trajectory
-          that has let me stay close to the same product surface through two name changes on the org chart.
+          I’m a software engineer at <strong>IBM</strong> on the Developer and Operator Experience team,
+          where I’m a core maintainer of <a href="https://github.com/langflow-ai/langflow">Langflow</a>.
+          My work sits at the boundary between the clean API a developer wants and the messy production
+          system that has to keep working: agent tools, MCP, authentication, model providers, retrieval,
+          packaging, SDKs, and release pipelines.
         </p>
         <p>
-          I did my undergrad at the University of Washington (dual degrees in Statistics and Computer
-          Engineering, 2012) and my PhD at Iowa State (Statistics &amp; Computer Science, 2017). My
-          dissertation was on automated <a href="/phd">bullet matching</a> — I worked
-          with <a href="https://forensicstats.org">CSAFE</a> on using 3D surface scans of spent bullets to
-          link them back to the gun that fired them. Surprisingly fun problem; genuinely useful in court.
+          Before agents, I worked on statistical evidence. I earned dual undergraduate degrees in
+          Statistics and Computer Engineering from the University of Washington, then a PhD in Statistics
+          and Computer Science at Iowa State. My dissertation developed reproducible methods for comparing
+          3D scans of spent bullets. That research now has a second life in
+          <a href="/projects/verity">Verity</a>, an open engine for calibrated forensic surface comparison.
         </p>
         <p>
-          Between then and now: Chief Data Scientist at
-          <a href="https://omnianalytics.org">Omni Analytics Group</a> (2017–2021), Senior Data Scientist at
-          <a href="https://medium.com/daisi">Daisi Technology</a> (2021–2022), then on to DataStax (2022–2025)
-          and into IBM when they acquired us.
-          I've authored or co-authored a few R packages
-          (<a href="https://cran.r-project.org/web/packages/bulletr/">bulletr</a>, bulletxtrctr), published
-          in <em>Annals of Applied Statistics</em> and <em>JCGS</em>, and written for CHANCE, InfoWorld, and
-          the DataStax / Daisi engineering blogs.
+          I also build <a href="/projects/aeroza">Aeroza</a>, a weather platform organized around a similar
+          idea: forecasts should be queryable, testable, and scored against what actually happened. The
+          domains are different; the instinct is the same.
         </p>
         <p>
-          I also build <a href="/projects/aeroza">Aeroza</a>, an open-source weather platform for live
-          radar, geospatial queries, streaming APIs, nowcasting, and forecast verification.
-        </p>
-        <p>
-          Outside work: I live north of Seattle with my partner and our two cats, love gaming,
-          and still occasionally use the terminal to solve Advent of Code.
+          I live north of Seattle with my partner and our two cats. Away from the terminal, I’m usually
+          gaming, following Pacific Northwest weather, or convincing myself that one more side project is
+          a reasonable way to spend a weekend.
         </p>
       </div>
 
-      <aside class="card p-5 text-sm">
+      <aside class="about-portrait">
         <Image
           src="/img/personal/personal-image.jpg"
           alt="Eric Hare"
           width={460}
           height={460}
-          class="rounded-md mb-4"
           loading="eager"
         />
-        <div class="space-y-2">
-          <p><span class="font-mono text-xs uppercase tracking-wider" style="color: var(--color-fg-subtle);">Degrees</span><br>PhD, Iowa State — 2017<br>BS Statistics + BS CompE, UW — 2012</p>
-          <p><span class="font-mono text-xs uppercase tracking-wider" style="color: var(--color-fg-subtle);">Based in</span><br>Lake Stevens, WA</p>
-          <div>
-            <span class="font-mono text-xs uppercase tracking-wider" style="color: var(--color-fg-subtle);">Contact</span>
-            <ul class="mt-1 space-y-1.5">
-              <li><a href="mailto:ericrhare@gmail.com" class="link inline-block py-1">ericrhare@gmail.com</a></li>
-              <li><a href="mailto:eric.hare@ibm.com" class="link inline-block py-1">eric.hare@ibm.com</a></li>
-            </ul>
-          </div>
-        </div>
+        <dl>
+          <div><dt>Based in</dt><dd>Lake Stevens, WA</dd></div>
+          <div><dt>Current role</dt><dd>Software Engineer, IBM</dd></div>
+          <div><dt>Contact</dt><dd><a href="mailto:ericrhare@gmail.com">ericrhare@gmail.com</a></dd></div>
+        </dl>
       </aside>
     </div>
   </Section>
 
-  <Section eyebrow="Timeline" title="Where I've been.">
-    <ol class="relative border-l pl-8 space-y-10" style="border-color: var(--color-border-muted);">
-      {timeline.map((t) => (
-        <li class="relative">
-          <span
-            class="absolute -left-[41px] top-1.5 w-2.5 h-2.5 rounded-full"
-            style="background: var(--color-accent); box-shadow: 0 0 0 4px var(--color-bg);"
-          ></span>
-          <p class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-accent);">{t.period}</p>
-          <h3 class="mt-1 text-lg font-semibold" style="font-family: var(--font-serif); font-weight: 500;">
-            {t.role} <span class="font-normal" style="color: var(--color-fg-muted);">— {t.org}</span>
-          </h3>
-          {t.team && <p class="mt-0.5 text-xs font-mono" style="color: var(--color-fg-subtle);">{t.team}</p>}
-          <p class="mt-2 text-[0.95rem] leading-relaxed max-w-2xl" style="color: var(--color-fg-muted);">{t.detail}</p>
-        </li>
-      ))}
-    </ol>
-  </Section>
-
-  <Section eyebrow="Interests" title="Things I find worth caring about.">
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {interests.map((i) => (
-        <div class="card p-5">
-          <Icon name={i.icon} width="20" style="color: var(--color-accent);" />
-          <h3 class="mt-3 font-medium">{i.label}</h3>
-          <p class="mt-1 text-sm" style="color: var(--color-fg-muted);">{i.detail}</p>
-        </div>
+  <Section eyebrow="Principles" title="What carries across the work.">
+    <div class="principle-grid">
+      {principles.map((principle) => (
+        <article>
+          <Icon name={principle.icon} width="21" />
+          <h3>{principle.title}</h3>
+          <p>{principle.body}</p>
+        </article>
       ))}
     </div>
   </Section>
+
+  <Section eyebrow="Timeline" title="The short chronology.">
+    <ol class="career-list">
+      {timeline.map((item) => (
+        <li>
+          <p class="career-list__period">{item.period}</p>
+          <div>
+            <h3>{item.role} <span>— {item.org}</span></h3>
+            <p>{item.detail}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <a href="/cv" class="timeline-link">Read the full CV <Icon name="ph:arrow-right" width="16" /></a>
+  </Section>
 </BaseLayout>
+
+<style>
+  .about-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 18rem;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-portrait {
+    border-top: 1px solid var(--color-border-muted);
+    padding-top: 0.75rem;
+  }
+
+  .about-portrait img {
+    width: 100%;
+    filter: saturate(0.72) contrast(1.02);
+  }
+
+  .about-portrait dl {
+    margin-top: 1rem;
+  }
+
+  .about-portrait dl > div {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 0.75rem;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--color-border-muted);
+    font-size: 0.74rem;
+  }
+
+  .about-portrait dt {
+    color: var(--color-fg-subtle);
+    font-family: var(--font-mono);
+    font-size: 0.59rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .about-portrait dd,
+  .about-portrait a {
+    color: var(--color-fg-muted);
+  }
+
+  .principle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--color-border-muted);
+  }
+
+  .principle-grid article {
+    min-height: 12rem;
+    padding: 1.5rem;
+    border-right: 1px solid var(--color-border-muted);
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .principle-grid article:nth-child(3n) {
+    border-right: 0;
+  }
+
+  .principle-grid svg {
+    color: var(--color-accent);
+  }
+
+  .principle-grid h3 {
+    margin-top: 1.3rem;
+    font-size: 1.55rem;
+  }
+
+  .principle-grid p {
+    margin-top: 0.55rem;
+    color: var(--color-fg-muted);
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+
+  .career-list {
+    border-top: 1px solid var(--color-border-muted);
+  }
+
+  .career-list li {
+    display: grid;
+    grid-template-columns: 10rem minmax(0, 1fr);
+    gap: 2rem;
+    padding-block: 1.4rem;
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .career-list__period {
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .career-list h3 {
+    font-size: 1.45rem;
+  }
+
+  .career-list h3 span {
+    color: var(--color-fg-muted);
+    font-weight: 400;
+  }
+
+  .career-list div p {
+    max-width: 45rem;
+    margin-top: 0.5rem;
+    color: var(--color-fg-muted);
+    font-size: 0.83rem;
+    line-height: 1.65;
+  }
+
+  .timeline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1.5rem;
+    color: var(--color-accent);
+    font-size: 0.82rem;
+    font-weight: 550;
+  }
+
+  @media (max-width: 780px) {
+    .about-intro {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .about-portrait {
+      max-width: 22rem;
+    }
+
+    .principle-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .principle-grid article:nth-child(3n) {
+      border-right: 1px solid var(--color-border-muted);
+    }
+
+    .principle-grid article:nth-child(2n) {
+      border-right: 0;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .principle-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .principle-grid article {
+      min-height: auto;
+      border-right: 0 !important;
+    }
+
+    .career-list li {
+      grid-template-columns: 1fr;
+      gap: 0.65rem;
+    }
+  }
+</style>

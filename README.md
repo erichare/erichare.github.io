@@ -7,12 +7,12 @@ My personal site, rebuilt for 2026. Astro + Tailwind CSS v4 + MDX, deployed to G
 
 ## Stack
 
-- **[Astro 5](https://astro.build)** — static-first, content collections, view transitions.
+- **[Astro 6](https://astro.build)** — static-first, content collections, view transitions.
 - **[Tailwind CSS v4](https://tailwindcss.com)** — via the Vite plugin, with a custom `@theme` block in `src/styles/global.css`.
 - **MDX** for long-form content (projects, blog posts).
 - **[Satori](https://github.com/vercel/satori) + Sharp** for dynamic OG image generation at `/og-default.png`.
-- **Icons**: Lucide + Simple Icons via `astro-icon`.
-- **Fonts**: Inter (sans), Newsreader (serif), JetBrains Mono (mono).
+- **Icons**: Phosphor, Lucide, and Simple Icons via `astro-icon`.
+- **Fonts**: IBM Plex Sans (body), Newsreader (display), IBM Plex Mono (metadata), self-hosted through Fontsource.
 - **Hosted on GitHub Pages** (custom domain: `erichare.me`). Deploys on push to `main` via Actions.
 
 ## Repository layout

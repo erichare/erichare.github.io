@@ -30,51 +30,51 @@ const stats = [
 const pipeline = [
   {
     n: '01',
-    icon: 'lucide:scan-line',
+    icon: 'ph:scan',
     title: 'Scan',
     detail: 'High-resolution 3D surface scans of spent bullets — sub-micron vertical resolution across the land-engraved area.',
   },
   {
     n: '02',
-    icon: 'lucide:waves',
+    icon: 'ph:wave-sine',
     title: 'Extract',
     detail: 'Isolate land-engraved areas, detrend the bullet curvature, and pull out the 1D striation signature for each land.',
   },
   {
     n: '03',
-    icon: 'lucide:git-compare-arrows',
+    icon: 'ph:arrows-left-right',
     title: 'Align',
     detail: 'Pairwise cross-correlation aligns striation signatures between lands, robust to shifts and degradation.',
   },
   {
     n: '04',
-    icon: 'lucide:sigma',
+    icon: 'ph:function',
     title: 'Score',
-    detail: 'A random-forest model over features of the aligned signatures yields a match probability you can defend in court.',
+    detail: 'A model over features of the aligned signatures measures similarity and supports calibrated statements about evidentiary strength.',
   },
 ];
 
 const contributions = [
   {
-    icon: 'lucide:package',
+    icon: 'ph:package',
     title: 'bulletr',
     body: 'Reference R package for reading 3D bullet scans, extracting striations, and scoring matches — the first open, reproducible implementation of the pipeline.',
     href: 'https://github.com/erichare/bulletr',
   },
   {
-    icon: 'lucide:package-2',
+    icon: 'ph:archive-box',
     title: 'bulletxtrctr',
     body: 'Feature-extraction toolkit separated from the core package for maintainability and reuse across CSAFE tooling.',
     href: 'https://github.com/erichare/bulletxtrctr',
   },
   {
-    icon: 'lucide:book-open-text',
+    icon: 'ph:book-open-text',
     title: 'Methodology',
     body: 'Published in the Annals of Applied Statistics and Law, Probability & Risk, with source code released alongside the papers.',
     href: 'https://doi.org/10.1214/17-AOAS1080',
   },
   {
-    icon: 'lucide:app-window',
+    icon: 'ph:browser',
     title: 'Web prototype',
     body: 'A Shiny app that lets examiners upload scans and step through the matching pipeline interactively.',
     href: 'https://labs.omnianalytics.org/bullet-analyzer/',
@@ -97,8 +97,7 @@ const timeline = [
 >
   <!-- Hero -->
   <section class="relative overflow-hidden border-b" style="border-color: var(--color-border-muted);">
-    <div class="absolute inset-0 grid-mesh pointer-events-none opacity-60"></div>
-    <div class="striation-bg absolute inset-0 pointer-events-none"></div>
+    <img src="/img/home/hero-evidence-map.webp" alt="" class="research-hero-art" aria-hidden="true" />
 
     <div class="container-wide relative pt-20 pb-20 md:pt-28 md:pb-28">
       <nav class="text-xs font-mono mb-8" style="color: var(--color-fg-subtle);">
@@ -119,9 +118,9 @@ const timeline = [
       </h1>
 
       <p class="mt-7 text-lg md:text-xl max-w-3xl leading-relaxed" style="color: var(--color-fg-muted);">
-        My dissertation replaced a firearms examiner's judgement call through a comparison microscope with
-        an open, end-to-end statistical pipeline operating on 3D surface scans. The resulting methods,
-        software, and publications are now part of the
+        My dissertation translated the comparison of microscopic toolmarks into an open, end-to-end
+        statistical pipeline operating on 3D surface scans. The resulting methods, software, and
+        publications are now part of the
         <a href="https://forensicstats.org" class="link">CSAFE</a> research program and have been cited in
         the ongoing debate over the scientific foundation of pattern-matching forensic disciplines.
       </p>
@@ -132,7 +131,7 @@ const timeline = [
           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-md font-medium text-sm transition hover:opacity-90"
           style="background: var(--color-accent); color: var(--color-bg);"
         >
-          <Icon name="lucide:file-text" width="16" />
+          <Icon name="ph:file-text" width="16" />
           Read the thesis
         </a>
         <a
@@ -140,7 +139,7 @@ const timeline = [
           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm border transition hover:border-[var(--color-border)]"
           style="border-color: var(--color-border-muted); color: var(--color-fg);"
         >
-          <Icon name="lucide:external-link" width="16" />
+          <Icon name="ph:arrow-up-right" width="16" />
           AOAS paper
         </a>
         <a
@@ -190,7 +189,7 @@ const timeline = [
       </div>
       <aside class="card p-6">
         <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider" style="color: var(--color-accent);">
-          <Icon name="lucide:quote" width="14" />
+          <Icon name="ph:quotes" width="14" />
           NAS, 2009
         </div>
         <blockquote class="mt-3 text-[0.98rem] leading-relaxed italic" style="color: var(--color-fg);">
@@ -231,64 +230,18 @@ const timeline = [
       ))}
     </ol>
 
-    <!-- Striation signature visualization -->
-    <figure class="mt-10 card p-6 md:p-8">
-      <figcaption class="flex items-center justify-between gap-3 text-xs font-mono uppercase tracking-wider mb-5" style="color: var(--color-fg-subtle);">
-        <span class="flex items-center gap-2">
-          <Icon name="lucide:activity" width="14" style="color: var(--color-accent);" />
-          Synthetic striation signature &mdash; illustrative
-        </span>
-        <span>amplitude &times; position along land</span>
+    <figure class="mt-10 research-figure">
+      <img
+        src="/img/home/verity-surface.webp"
+        alt="Two three-dimensional bullet surface scans and their aligned crosscut signatures."
+        width="1600"
+        height="820"
+        loading="lazy"
+      />
+      <figcaption>
+        Two 3D surface scans with crosscut signatures. The important work is not merely seeing a
+        resemblance, but measuring it reproducibly and calibrating what that similarity means.
       </figcaption>
-      <svg
-        viewBox="0 0 800 180"
-        class="w-full h-auto"
-        role="img"
-        aria-label="Two overlaid striation signatures showing a strong match between bullet lands."
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <linearGradient id="strA" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stop-color="currentColor" stop-opacity="0" />
-            <stop offset="10%" stop-color="currentColor" stop-opacity="1" />
-            <stop offset="90%" stop-color="currentColor" stop-opacity="1" />
-            <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
-          </linearGradient>
-        </defs>
-
-        <!-- Grid baseline -->
-        <line x1="0" y1="90" x2="800" y2="90" stroke="currentColor" stroke-opacity="0.12" stroke-dasharray="3 6" />
-
-        <!-- Bullet A signature -->
-        <path
-          d="M0,90 C40,70 70,120 110,85 S180,45 220,95 S290,140 330,80 S410,50 450,100 S520,130 560,78 S640,55 680,95 S760,115 800,88"
-          fill="none"
-          stroke="currentColor"
-          stroke-opacity="0.55"
-          stroke-width="1.75"
-          style="color: var(--color-fg-muted);"
-        />
-        <!-- Bullet B signature: very similar shape, slight offset -->
-        <path
-          d="M0,92 C40,74 70,118 112,88 S182,48 222,97 S291,138 332,82 S411,52 451,102 S521,128 561,80 S641,57 681,96 S761,113 800,90"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          style="color: var(--color-accent);"
-        />
-
-        <!-- Match markers -->
-        <g style="color: var(--color-accent);">
-          {[110, 220, 330, 450, 560, 680].map((x) => (
-            <circle cx={x} cy="90" r="2.5" fill="currentColor" fill-opacity="0.7" />
-          ))}
-        </g>
-      </svg>
-      <p class="mt-4 text-sm" style="color: var(--color-fg-muted);">
-        Two signatures overlaid. Peaks and valleys align where the same barrel feature scored both
-        bullets &mdash; the cross-correlation between them is what the classifier ultimately turns
-        into a match probability.
-      </p>
     </figure>
   </Section>
 
@@ -300,7 +253,7 @@ const timeline = [
           <div class="flex items-start justify-between gap-4">
             <Icon name={c.icon} width="22" style="color: var(--color-accent);" />
             <Icon
-              name="lucide:arrow-up-right"
+              name="ph:arrow-up-right"
               width="16"
               class="shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               style="color: var(--color-fg-subtle);"
@@ -333,7 +286,7 @@ const timeline = [
             <p class="mt-1 text-sm italic" style="color: var(--color-fg-muted);">{p.data.venue}</p>
             {p.data.award && (
               <p class="mt-2 inline-flex items-center gap-1.5 text-xs font-mono" style="color: var(--color-warn);">
-                <Icon name="lucide:award" width="14" />
+                <Icon name="ph:medal" width="14" />
                 {p.data.award}
               </p>
             )}
@@ -351,7 +304,7 @@ const timeline = [
     </ul>
     <div class="mt-8">
       <a href="/publications" class="inline-flex items-center gap-1.5 text-sm font-mono link">
-        All publications <Icon name="lucide:arrow-right" width="14" />
+        All publications <Icon name="ph:arrow-right" width="14" />
       </a>
     </div>
   </Section>
@@ -405,7 +358,6 @@ const timeline = [
   <!-- CTA -->
   <Section>
     <div class="card p-8 md:p-12 text-center relative overflow-hidden">
-      <div class="absolute inset-0 grid-mesh pointer-events-none opacity-40"></div>
       <div class="relative">
         <p class="text-xs uppercase tracking-[0.18em] font-mono mb-4" style="color: var(--color-accent);">
           Still interested?
@@ -422,17 +374,15 @@ const timeline = [
         <div class="mt-6 flex flex-wrap justify-center gap-3">
           <a
             href="mailto:ericrhare@gmail.com"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm"
-            style="background: var(--color-accent); color: var(--color-bg);"
+            class="button button-primary"
           >
-            <Icon name="lucide:mail" width="16" /> Get in touch
+            <Icon name="ph:envelope-simple" width="16" /> Get in touch
           </a>
           <a
             href="https://forensicstats.org"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm border"
-            style="border-color: var(--color-border-muted);"
+            class="button button-secondary"
           >
-            <Icon name="lucide:external-link" width="16" /> CSAFE
+            <Icon name="ph:arrow-up-right" width="16" /> CSAFE
           </a>
         </div>
       </div>
@@ -441,17 +391,40 @@ const timeline = [
 </BaseLayout>
 
 <style>
-  .striation-bg {
-    background:
-      repeating-linear-gradient(
-        92deg,
-        transparent 0 22px,
-        color-mix(in oklch, var(--color-accent) 7%, transparent) 22px 23px,
-        transparent 23px 54px,
-        color-mix(in oklch, var(--color-accent) 4%, transparent) 54px 55px
-      );
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent 75%);
-    opacity: 0.55;
+  .research-hero-art {
+    position: absolute;
+    inset: 0 -16rem 0 auto;
+    width: min(78vw, 70rem);
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    opacity: 0.48;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  :global(:root[data-theme='dark']) .research-hero-art {
+    filter: invert(1);
+    opacity: 0.12;
+    mix-blend-mode: screen;
+  }
+
+  .research-figure {
+    border-top: 1px solid var(--color-border-muted);
+    padding-top: 1rem;
+  }
+
+  .research-figure img {
+    width: 100%;
+    border: 1px solid var(--color-border-muted);
+  }
+
+  .research-figure figcaption {
+    max-width: 48rem;
+    margin-top: 0.75rem;
+    color: var(--color-fg-muted);
+    font-size: 0.78rem;
+    line-height: 1.6;
   }
 
   @media (prefers-reduced-motion: reduce) {

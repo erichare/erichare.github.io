@@ -1,107 +1,206 @@
 ---
+import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import Section from '../../components/Section.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
-import { Icon } from 'astro-icon/components';
-import { getCollection } from 'astro:content';
+import Section from '../../components/Section.astro';
 
-const all = (await getCollection('projects')).sort(
-  (a, b) => a.data.order - b.data.order
-);
+const all = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const flagshipIds = new Set(['langflow', 'verity', 'aeroza']);
+const contributionIds = new Set(['astra-data-api', 'ai-workbench']);
+const flagship = all.filter((project) => flagshipIds.has(project.id));
+const contributions = all.filter((project) => contributionIds.has(project.id));
+const archive = all.filter((project) => !flagshipIds.has(project.id) && !contributionIds.has(project.id));
 ---
 
-<BaseLayout title="Projects" description="Open-source tools, research code, and products Eric Hare has built.">
+<BaseLayout title="Work" description="Selected open-source systems, product engineering, and research software by Eric Hare.">
   <PageHeader
-    eyebrow="Projects"
-    title="Selected software and research work."
-    lede="Representative open-source tools, product systems, and research software from industry and academic work."
+    eyebrow="Work"
+    title="Tools for agents, evidence, and the systems between them."
+    lede="A selected portfolio of open-source platforms, research software, and the production engineering required to keep them dependable."
   />
 
-  <Section eyebrow="Research" title="PhD research." subtitle="A larger body of work with its own dedicated page.">
-    <a
-      href="/phd"
-      class="card group relative overflow-hidden flex flex-col md:flex-row gap-6 md:gap-10 p-7 md:p-10"
-      style="border-color: color-mix(in oklch, var(--color-accent) 35%, var(--color-border-muted));"
-    >
-      <div
-        class="striation-motif absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-      ></div>
+  <Section eyebrow="Flagship work" title="Three threads, one point of view." subtitle="Make complex systems inspectable. Measure what matters. Leave the implementation open enough to challenge.">
+    <div class="project-list">
+      {flagship.map((project) => (
+        <ProjectCard
+          href={`/projects/${project.id}`}
+          title={project.data.title}
+          tagline={project.data.tagline}
+          role={project.data.role}
+          period={project.data.period}
+          stack={project.data.stack}
+          featured
+          image={project.data.hero}
+          imageAlt={project.data.heroAlt}
+        />
+      ))}
+    </div>
+  </Section>
 
-      <div class="relative flex-1">
-        <span
-          class="chip mb-4"
-          style="background: var(--color-accent-soft); color: var(--color-accent); border-color: color-mix(in oklch, var(--color-accent) 35%, transparent);"
-        >
-          <Icon name="lucide:star" width="12" />
-          Featured
-        </span>
-
-        <h3
-          class="text-2xl md:text-3xl font-semibold leading-tight"
-          style="font-family: var(--font-serif); font-weight: 500;"
-        >
-          Statistical Methods for Bullet Matching
-        </h3>
-
-        <p class="mt-2 text-xs font-mono uppercase tracking-wider" style="color: var(--color-fg-subtle);">
-          Iowa State · 2012 — 2017 · PhD dissertation &amp; ongoing CSAFE research
-        </p>
-
-        <p class="mt-4 text-[1.02rem] leading-relaxed max-w-2xl" style="color: var(--color-fg-muted);">
-          A reproducible, statistical pipeline for matching spent bullets to the gun that fired them —
-          built on 3D surface scans, shipped as two R packages and a handful of papers. Won the
-          2016 ASA Imaging Section Student Paper Award; continues today as part of CSAFE's
-          BulletAnalyzr.
-        </p>
-
-        <div class="mt-5 flex flex-wrap gap-1.5">
-          <span class="chip">R</span>
-          <span class="chip">C++</span>
-          <span class="chip">3D scanning</span>
-          <span class="chip">forensic statistics</span>
-        </div>
-
-        <div class="mt-6 inline-flex items-center gap-1.5 text-sm font-mono" style="color: var(--color-accent);">
-          Read the write-up
-          <Icon
-            name="lucide:arrow-right"
-            width="14"
-            class="transition-transform group-hover:translate-x-1"
-          />
-        </div>
+  <Section eyebrow="Research" title="From bullet matching to calibrated evidence.">
+    <a href="/phd" class="research-callout">
+      <div>
+        <p class="eyebrow">Iowa State · CSAFE · Verity</p>
+        <h3>Statistical methods for forensic surface comparison.</h3>
+        <p>My PhD work established an open, reproducible pipeline for analyzing 3D bullet scans. A decade later, that research continues through Verity.</p>
+        <span>Explore the research <Icon name="ph:arrow-right" width="16" /></span>
       </div>
+      <img src="/img/home/verity-surface.webp" alt="Three-dimensional bullet surfaces and crosscut signatures." loading="lazy" />
     </a>
   </Section>
 
-  <Section eyebrow="Software" title="Software projects." subtitle="Current product work, open-source systems, and selected older projects.">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      {all.map((p) => (
+  <Section eyebrow="Selected contributions" title="Platforms I help make real.">
+    <div class="project-list project-list--compact">
+      {contributions.map((project) => (
         <ProjectCard
-          href={`/projects/${p.id}`}
-          title={p.data.title}
-          tagline={p.data.tagline}
-          role={p.data.role}
-          period={p.data.period}
-          stack={p.data.stack}
-          featured={p.data.featured}
+          href={`/projects/${project.id}`}
+          title={project.data.title}
+          tagline={project.data.tagline}
+          role={project.data.role}
+          period={project.data.period}
+          stack={project.data.stack}
+          image={project.data.hero}
+          imageAlt={project.data.heroAlt}
         />
+      ))}
+    </div>
+  </Section>
+
+  <Section eyebrow="Earlier work" title="A short archive.">
+    <div class="archive-list">
+      {archive.map((project) => (
+        <a href={`/projects/${project.id}`}>
+          <div>
+            <h3>{project.data.title}</h3>
+            <p>{project.data.role} · {project.data.period}</p>
+          </div>
+          <p>{project.data.tagline}</p>
+          <Icon name="ph:arrow-up-right" width="17" />
+        </a>
       ))}
     </div>
   </Section>
 </BaseLayout>
 
 <style>
-  .striation-motif {
-    background: repeating-linear-gradient(
-      92deg,
-      transparent 0 18px,
-      color-mix(in oklch, var(--color-accent) 8%, transparent) 18px 19px,
-      transparent 19px 46px,
-      color-mix(in oklch, var(--color-accent) 5%, transparent) 46px 47px
-    );
-    mask-image: radial-gradient(ellipse 70% 80% at 85% 50%, black, transparent 75%);
-    opacity: 0.9;
+  .project-list {
+    display: grid;
+  }
+
+  .project-list--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-list--compact :global(.project-card) {
+    grid-template-columns: 1fr;
+  }
+
+  .project-list--compact :global(.project-card__media) {
+    min-height: 12rem;
+  }
+
+  .research-callout {
+    display: grid;
+    grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.28fr);
+    border-top: 1px solid var(--color-border-muted);
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .research-callout > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 2rem 2rem 0;
+  }
+
+  .research-callout h3 {
+    margin-top: 0.8rem;
+    font-size: clamp(2rem, 4vw, 3.3rem);
+    line-height: 1;
+  }
+
+  .research-callout p:not(.eyebrow) {
+    margin-top: 1rem;
+    color: var(--color-fg-muted);
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .research-callout span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    font-weight: 550;
+  }
+
+  .research-callout img {
+    width: 100%;
+    height: 100%;
+    min-height: 22rem;
+    object-fit: cover;
+  }
+
+  .archive-list {
+    border-top: 1px solid var(--color-border-muted);
+  }
+
+  .archive-list a {
+    display: grid;
+    grid-template-columns: minmax(13rem, 0.4fr) minmax(0, 1fr) auto;
+    gap: 2rem;
+    align-items: center;
+    padding-block: 1.4rem;
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .archive-list a:hover {
+    color: var(--color-accent);
+  }
+
+  .archive-list h3 {
+    font-size: 1.35rem;
+  }
+
+  .archive-list div p,
+  .archive-list > a > p {
+    margin-top: 0.25rem;
+    color: var(--color-fg-muted);
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 780px) {
+    .project-list--compact {
+      grid-template-columns: 1fr;
+    }
+
+    .research-callout {
+      grid-template-columns: 1fr;
+    }
+
+    .research-callout > div {
+      padding-right: 0;
+    }
+
+    .research-callout img {
+      min-height: 15rem;
+    }
+
+    .archive-list a {
+      grid-template-columns: 1fr auto;
+      gap: 0.75rem;
+    }
+
+    .archive-list > a > p {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
   }
 </style>

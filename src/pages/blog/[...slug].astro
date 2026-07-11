@@ -22,7 +22,7 @@ const rt = readingTime(entry.body ?? '');
   publishedTime={d.pubDate}
 >
   <article class="container-wide pt-14 pb-20">
-    <nav class="text-xs font-mono mb-8 max-w-3xl mx-auto" style="color: var(--color-fg-subtle);">
+    <nav class="text-xs font-mono mb-8 max-w-3xl mx-auto" style="color: var(--color-fg-subtle);" aria-label="Breadcrumb">
       <a href="/blog" class="link">← All writing</a>
     </nav>
 
@@ -65,7 +65,7 @@ const rt = readingTime(entry.body ?? '');
       </p>
       <p class="mt-3">
         <a href="/blog" class="inline-flex items-center gap-1.5 link">
-          <Icon name="lucide:arrow-left" width="14" /> All writing
+          <Icon name="ph:arrow-left" width="14" /> All writing
         </a>
       </p>
     </footer>

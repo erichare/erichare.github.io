@@ -1,54 +1,125 @@
 ---
+import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import Section from '../../components/Section.astro';
-import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 ---
 
-<BaseLayout title="Writing" description="Essays and notes by Eric Hare on AI engineering, data science, statistical graphics, and open-source maintenance.">
+<BaseLayout title="Writing" description="Field notes by Eric Hare on open systems, evidence, agents, weather infrastructure, and statistical software.">
   <PageHeader
     eyebrow="Writing"
-    title="Notes, essays, and field reports."
-    lede="Mostly about what I'm working on — AI agent tooling, MCP, R packaging, and the occasional statistical aside."
+    title="Field notes from the work."
+    lede="Essays and build notes on open systems, agents, forensic evidence, weather infrastructure, and the decisions hiding underneath the interface."
   />
 
-  <Section>
-    <ul class="space-y-10 max-w-3xl">
-      {posts.map((post) => (
+  <section class="container-wide writing-index">
+    <ol>
+      {posts.map((post, index) => (
         <li>
-          <a href={`/blog/${post.id}`} class="block group">
-            <time
-              class="text-xs font-mono"
-              style="color: var(--color-fg-subtle);"
-              datetime={post.data.pubDate.toISOString()}
-            >
-              {post.data.pubDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </time>
-            <h2 class="mt-1 text-2xl font-medium group-hover:text-[var(--color-accent)] transition" style="font-family: var(--font-serif); font-weight: 500;">
-              {post.data.title}
-            </h2>
-            <p class="mt-2 leading-relaxed" style="color: var(--color-fg-muted);">
-              {post.data.description}
-            </p>
-            {post.data.tags.length > 0 && (
-              <div class="mt-3 flex flex-wrap gap-1.5">
-                {post.data.tags.map((t) => <span class="chip">#{t}</span>)}
+          <a href={`/blog/${post.id}`}>
+            <div class="writing-index__number">{String(index + 1).padStart(2, '0')}</div>
+            <div>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              <div class="writing-index__tags">
+                {post.data.tags.map((tag) => <span>{tag}</span>)}
               </div>
-            )}
+            </div>
+            <div class="writing-index__date">
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}
+              </time>
+              <Icon name="ph:arrow-up-right" width="17" />
+            </div>
           </a>
         </li>
       ))}
-      {posts.length === 0 && (
-        <li style="color: var(--color-fg-muted);">No posts yet — come back soon.</li>
-      )}
-    </ul>
-  </Section>
+    </ol>
+    {posts.length === 0 && <p>No posts yet.</p>}
+  </section>
 </BaseLayout>
+
+<style>
+  .writing-index {
+    padding-block: 4rem;
+  }
+
+  .writing-index ol {
+    border-top: 1px solid var(--color-border-muted);
+  }
+
+  .writing-index li {
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .writing-index a {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr) auto;
+    gap: 2rem;
+    padding-block: 1.75rem;
+  }
+
+  .writing-index a:hover h2 {
+    color: var(--color-accent);
+  }
+
+  .writing-index__number {
+    color: var(--color-accent);
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  .writing-index h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.65rem);
+    line-height: 1.05;
+  }
+
+  .writing-index h2 + p {
+    max-width: 48rem;
+    margin-top: 0.65rem;
+    color: var(--color-fg-muted);
+    font-size: 0.86rem;
+    line-height: 1.65;
+  }
+
+  .writing-index__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.85rem;
+    margin-top: 1rem;
+    color: var(--color-fg-subtle);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    text-transform: uppercase;
+  }
+
+  .writing-index__date {
+    display: flex;
+    min-width: 8rem;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    color: var(--color-fg-subtle);
+    font-family: var(--font-mono);
+    font-size: 0.59rem;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 640px) {
+    .writing-index a {
+      grid-template-columns: 2.5rem minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    .writing-index__date {
+      grid-column: 2;
+      grid-row: 2;
+      justify-content: flex-start;
+    }
+  }
+</style>

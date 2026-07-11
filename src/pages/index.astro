@@ -1,14 +1,57 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Section from '../components/Section.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../lib/site';
 
-const projects = (await getCollection('projects'))
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 6);
+const projects = await getCollection('projects');
+const projectById = new Map(projects.map((project) => [project.id, project]));
+
+const featured = [
+  {
+    id: 'langflow',
+    index: '01',
+    label: 'Co-lead',
+    responsiveHero: '/img/home/langflow-flow-800.webp',
+    description: 'I help shape Langflow at IBM, with a focus on agent tooling, MCP, the SDK, and the production details that make open-source software dependable.',
+    caption: 'Langflow’s visual canvas turns an agent system into an inspectable flow.',
+  },
+  {
+    id: 'verity',
+    index: '02',
+    label: 'Creator',
+    responsiveHero: '/img/home/verity-surface-800.webp',
+    description: 'An open forensic-comparison engine that reports calibrated evidentiary strength instead of hiding uncertainty behind a binary match.',
+    caption: 'Three-dimensional surface evidence and aligned crosscut signatures in Bullet Lens.',
+  },
+  {
+    id: 'aeroza',
+    index: '03',
+    label: 'Creator',
+    responsiveHero: '/img/home/aeroza-radar-800.webp',
+    description: 'A developer-first weather platform for live radar, geospatial queries, streaming APIs, signed alerts, and public forecast verification.',
+    caption: 'Live radar and severe-weather context exposed through one queryable platform.',
+  },
+].map((item) => ({ ...item, project: projectById.get(item.id)! }));
+
+const supporting = [
+  {
+    id: 'astra-data-api',
+    image: '/img/home/astra-data-api-160.webp',
+    srcSet: '/img/home/astra-data-api-160.webp 160w, /img/home/astra-data-api-320.webp 320w',
+    sizes: '10rem',
+    alt: 'Astra DB Data API mark.',
+    detail: 'The HTTP and JSON data plane behind Langflow, ingestion, and the astrapy client.',
+  },
+  {
+    id: 'ai-workbench',
+    image: '/img/home/ai-workbench-640.webp',
+    srcSet: '/img/home/ai-workbench-640.webp 640w, /img/home/ai-workbench.webp 1200w',
+    sizes: '(max-width: 900px) calc(100vw - 2.5rem), 20rem',
+    alt: 'AI Workbench workspace with knowledge bases and agents.',
+    detail: 'A self-hosted workspace for building, inspecting, and operating retrieval-backed AI applications.',
+  },
+].map((item) => ({ ...item, project: projectById.get(item.id)! }));
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
@@ -16,195 +59,593 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 ---
 
 <BaseLayout>
-  <!-- Hero -->
-  <section class="relative overflow-hidden border-b" style="border-color: var(--color-border-muted);">
-    <div class="absolute inset-0 grid-mesh pointer-events-none opacity-60"></div>
-    <div class="container-wide relative pt-20 pb-16 md:pt-28 md:pb-24">
-      <p class="text-xs uppercase tracking-[0.18em] font-mono mb-6 flex items-center gap-2" style="color: var(--color-accent);">
-        <span class="inline-flex w-1.5 h-1.5 rounded-full" style="background: var(--color-accent); box-shadow: 0 0 10px var(--color-accent);"></span>
-        Software Engineer · IBM · Langflow
-      </p>
-
-      <h1
-        class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.08] tracking-tight max-w-4xl"
-        style="font-family: var(--font-serif); font-weight: 500;"
-      >
-        Building tools that help people <span style="color: var(--color-accent);">see</span> their data&nbsp;— and agents that help them act on it.<span class="term-caret" aria-hidden="true"></span>
-      </h1>
-
-      <p class="mt-7 text-lg md:text-xl max-w-2xl leading-relaxed" style="color: var(--color-fg-muted);">
-        I'm Eric. I work on developer experience and enterprise agent tooling at IBM — including
-        <a href="/projects/langflow" class="link">Langflow</a>,
-        <a href="/projects/astra-data-api" class="link">Astra DB</a>, and
-        <a href="/projects/ai-workbench" class="link">AI Workbench</a> — and joined via the DataStax acquisition.
-        Before that: DataStax, Daisi, Chief Data Scientist at Omni Analytics, and a PhD at Iowa State in
-        Statistics &amp; Computer Science — where I helped
-        <a href="/phd" class="link">match bullets to the guns that fired them</a>.
-      </p>
-
-      <div class="mt-9 flex flex-wrap items-center gap-3">
-        <a
-          href="/projects"
-          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-md font-medium text-sm transition"
-          style="background: var(--color-accent); color: var(--color-bg);"
-        >
-          See the work
-          <Icon name="lucide:arrow-right" width="16" />
-        </a>
-        <a
-          href="/cv"
-          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm border transition hover:border-[var(--color-border)]"
-          style="border-color: var(--color-border-muted); color: var(--color-fg);"
-        >
-          <Icon name="lucide:file-text" width="16" />
-          CV
-        </a>
-        <a
-          href={`mailto:${SITE.email}`}
-          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm transition hover:opacity-80"
-          style="color: var(--color-fg-muted);"
-        >
-          <Icon name="lucide:mail" width="16" />
-          {SITE.email}
-        </a>
+  <section class="home-hero">
+    <div class="container-wide home-hero__inner">
+      <img
+        src="/img/home/hero-evidence-map-900.webp"
+        alt=""
+        width="900"
+        height="600"
+        class="home-hero__art"
+        aria-hidden="true"
+      />
+      <div class="home-hero__copy">
+        <p class="eyebrow">Software engineer · statistician</p>
+        <h1>I build tools for decisions you can inspect.</h1>
+        <p class="home-hero__lede">
+          Software engineer and statistician. Core Langflow maintainer at IBM; creator of Verity and Aeroza.
+        </p>
+        <div class="home-hero__actions">
+          <a href="#selected-work" class="button button-primary">
+            Explore selected work <Icon name="ph:arrow-right" width="16" />
+          </a>
+          <a href="/blog" class="button button-secondary">Read the writing</a>
+        </div>
       </div>
-
-      <!-- Status + affiliations strip -->
-      <dl class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4 text-sm max-w-3xl">
-        <div>
-          <dt class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-fg-subtle);">Now</dt>
-          <dd class="mt-1" style="color: var(--color-fg);">IBM · Software Engineer</dd>
-        </div>
-        <div>
-          <dt class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-fg-subtle);">Team</dt>
-          <dd class="mt-1" style="color: var(--color-fg);">DOE — Dev &amp; Operator Experience</dd>
-        </div>
-        <div>
-          <dt class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-fg-subtle);">Based in</dt>
-          <dd class="mt-1" style="color: var(--color-fg);">Lake Stevens, WA</dd>
-        </div>
-        <div>
-          <dt class="text-xs font-mono uppercase tracking-wider" style="color: var(--color-fg-subtle);">Writing</dt>
-          <dd class="mt-1" style="color: var(--color-fg);">
-            <a href="/blog" class="link">/blog</a>
-          </dd>
-        </div>
-      </dl>
     </div>
   </section>
 
-  <!-- Projects -->
-  <Section eyebrow="Selected work" title="Representative engineering projects." subtitle="Open-source tools, research code, and product systems I have built or helped build over the last decade.">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      {projects.map((p) => (
-        <ProjectCard
-          href={`/projects/${p.id}`}
-          title={p.data.title}
-          tagline={p.data.tagline}
-          role={p.data.role}
-          period={p.data.period}
-          stack={p.data.stack}
-          featured={p.data.featured}
-        />
+  <section class="container-wide proof-strip" aria-label="A short professional profile">
+    <div>
+      <p class="eyebrow">At IBM</p>
+      <p>Core Langflow maintainer. Building agent tooling used in production.</p>
+    </div>
+    <div>
+      <p class="eyebrow">Open source</p>
+      <p>Creator of Verity and Aeroza. Open, transparent, community-first.</p>
+    </div>
+    <div>
+      <p class="eyebrow">Statistical rigor</p>
+      <p>PhD in Statistics &amp; Computer Science. Forensic methods and reproducible analysis.</p>
+    </div>
+    <div>
+      <p class="eyebrow">Location &amp; time</p>
+      <p>Lake Stevens, Washington. Working across software, data, and decisions.</p>
+    </div>
+  </section>
+
+  <section id="selected-work" class="container-wide home-work">
+    <div class="home-section-heading">
+      <p class="eyebrow">Selected work</p>
+      <h2>Systems built to hold up under scrutiny.</h2>
+    </div>
+
+    <div class="feature-list">
+      {featured.map(({ project, index, label, responsiveHero, description, caption }) => (
+        <article class="feature-project">
+          <div class="feature-project__index" aria-hidden="true">{index}</div>
+          <div class="feature-project__copy">
+            <p class="eyebrow">{label}</p>
+            <h3>{project.data.title}</h3>
+            <p class="feature-project__tagline">{project.data.tagline}</p>
+            <p>{description}</p>
+            <a href={`/projects/${project.id}`} class="feature-project__link">
+              Explore {project.data.title} <Icon name="ph:arrow-right" width="16" />
+            </a>
+          </div>
+          <figure class="feature-project__media">
+            <img
+              src={responsiveHero}
+              srcset={`${responsiveHero} 800w, ${project.data.hero} 1600w`}
+              sizes="(max-width: 900px) calc(100vw - 5.5rem), 43rem"
+              alt={project.data.heroAlt ?? ''}
+              width="1600"
+              height="820"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>{caption}</figcaption>
+          </figure>
+        </article>
       ))}
     </div>
-    <div class="mt-8">
-      <a href="/projects" class="inline-flex items-center gap-1.5 text-sm font-mono link">
-        All projects <Icon name="lucide:arrow-right" width="14" />
-      </a>
-    </div>
-  </Section>
+  </section>
 
-  <!-- Now / focus -->
-  <Section eyebrow="Focus" title="What I'm working on in 2026.">
-    <div class="grid md:grid-cols-2 gap-5">
-      <article class="card p-6">
-        <Icon name="lucide:workflow" width="22" style="color: var(--color-accent);" />
-        <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">Langflow core</h3>
-        <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
-          SDK, MCP integration, model-provider unification, and the Flow DevOps API toolkit.
-          <a href="/projects/langflow" class="link">Read the case study →</a>
-        </p>
-      </article>
-      <article class="card p-6">
-        <Icon name="lucide:scale" width="22" style="color: var(--color-accent);" />
-        <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">Verity</h3>
-        <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
-          An open engine for forensic surface comparison: calibrated likelihood ratios — not
-          black-box "matches" — from 3-D scans of bullets, cartridge cases, and toolmarks.
-          My main project outside of work.
-          <a href="/projects/verity" class="link">Read more →</a>
-        </p>
-      </article>
-      <article class="card p-6">
-        <Icon name="lucide:database" width="22" style="color: var(--color-accent);" />
-        <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">AI Workbench</h3>
-        <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
-          Building the Astra-backed workbench for retrieval applications: workspaces, knowledge bases,
-          ingest, agents, MCP, and the production TypeScript runtime.
-          <a href="/projects/ai-workbench" class="link">Read more →</a>
-        </p>
-      </article>
-      <article class="card p-6">
-        <Icon name="lucide:cloud-sun" width="22" style="color: var(--color-accent);" />
-        <h3 class="mt-3 font-semibold" style="font-family: var(--font-serif); font-size: 1.1rem;">Aeroza</h3>
-        <p class="mt-2 text-sm" style="color: var(--color-fg-muted);">
-          A developer-first weather platform for live radar, geospatial queries, streaming APIs,
-          signed alert webhooks, and probabilistic nowcasting.
-          <a href="/projects/aeroza" class="link">Read more →</a>
-        </p>
-      </article>
+  <section class="container-wide supporting-work">
+    <p class="eyebrow">Also helping build</p>
+    <div class="supporting-work__grid">
+      {supporting.map(({ project, image, srcSet, sizes, alt, detail }) => (
+        <a href={`/projects/${project.id}`} class="supporting-project">
+          <div class:list={['supporting-project__image', project.id === 'astra-data-api' && 'is-logo']}>
+            <img src={image} srcset={srcSet} sizes={sizes} alt={alt} loading="lazy" decoding="async" />
+          </div>
+          <div>
+            <h3>{project.data.title}</h3>
+            <p>{detail}</p>
+            <span>Learn more <Icon name="ph:arrow-right" width="14" /></span>
+          </div>
+        </a>
+      ))}
     </div>
-  </Section>
+  </section>
 
-  <!-- Writing -->
-  {posts.length > 0 && (
-    <Section eyebrow="Writing" title="Recent posts." subtitle="Notes on AI engineering, data science, and the occasional piece of statistical esoterica.">
-      <ul class="divide-y" style="--tw-divide-opacity: 1;">
-        {posts.map((post) => (
-          <li class="py-5">
-            <a href={`/blog/${post.id}`} class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 group">
-              <div>
-                <h3 class="text-lg font-medium group-hover:text-[var(--color-accent)] transition">
-                  {post.data.title}
-                </h3>
-                <p class="mt-1 text-sm" style="color: var(--color-fg-muted);">{post.data.description}</p>
-              </div>
-              <time class="text-xs font-mono shrink-0" style="color: var(--color-fg-subtle);" datetime={post.data.pubDate.toISOString()}>
+  <section class="container-wide home-writing">
+    <div class="home-section-heading home-section-heading--row">
+      <div>
+        <p class="eyebrow">From the desk</p>
+        <h2>Notes on evidence, agents, and uncertainty.</h2>
+      </div>
+      <a href="/blog" class="feature-project__link">All writing <Icon name="ph:arrow-right" width="15" /></a>
+    </div>
+    <ol class="writing-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.id}`}>
+            <div>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+            </div>
+            <div class="writing-list__meta">
+              <time datetime={post.data.pubDate.toISOString()}>
                 {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}
               </time>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <div class="mt-6">
-        <a href="/blog" class="inline-flex items-center gap-1.5 text-sm font-mono link">
-          All writing <Icon name="lucide:arrow-right" width="14" />
-        </a>
-      </div>
-    </Section>
-  )}
+              <span>{post.data.tags[0] ?? 'notes'}</span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
 
-  <!-- Contact strip -->
-  <Section>
-    <div class="card p-8 md:p-12 text-center">
-      <h2 class="text-2xl md:text-3xl font-semibold" style="font-family: var(--font-serif); font-weight: 500;">
-        Want to talk shop?
-      </h2>
-      <p class="mt-3 max-w-xl mx-auto" style="color: var(--color-fg-muted);">
-        I'm always up for a conversation about AI agents, statistical graphics, R packaging, or forensic statistics.
-      </p>
-      <div class="mt-6 flex flex-wrap justify-center gap-3">
-        <a href={`mailto:${SITE.email}`} class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm" style="background: var(--color-accent); color: var(--color-bg);">
-          <Icon name="lucide:mail" width="16" /> {SITE.email}
-        </a>
-        <a href={SITE.social.github} class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm border" style="border-color: var(--color-border-muted);">
-          <Icon name="simple-icons:github" width="16" /> GitHub
-        </a>
-        <a href={SITE.social.linkedin} class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm border" style="border-color: var(--color-border-muted);">
-          <Icon name="simple-icons:linkedin" width="16" /> LinkedIn
-        </a>
-      </div>
+  <section class="container-wide home-contact">
+    <div>
+      <p class="eyebrow">Let’s talk</p>
+      <h2>Let’s build things that stand up to scrutiny.</h2>
+      <p>I’m always up for a conversation about AI agents, developer platforms, statistical graphics, or forensic statistics.</p>
     </div>
-  </Section>
+    <div class="home-contact__links">
+      <a href={`mailto:${SITE.email}`}><Icon name="ph:envelope-simple" width="18" /> {SITE.email}</a>
+      <a href={SITE.social.github}><Icon name="simple-icons:github" width="16" /> github.com/erichare</a>
+      <a href={SITE.social.linkedin}><Icon name="simple-icons:linkedin" width="16" /> LinkedIn</a>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .home-hero {
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .home-hero__inner {
+    position: relative;
+    display: grid;
+    min-height: 38rem;
+    align-items: center;
+    padding-block: 6.5rem 5.5rem;
+  }
+
+  .home-hero__copy {
+    position: relative;
+    z-index: 1;
+    max-width: 49rem;
+  }
+
+  .home-hero h1 {
+    max-width: 48rem;
+    margin-top: 1.2rem;
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 0.92;
+  }
+
+  .home-hero__lede {
+    max-width: 39rem;
+    margin-top: 1.65rem;
+    color: var(--color-fg-muted);
+    font-size: clamp(1.05rem, 2vw, 1.28rem);
+    line-height: 1.55;
+  }
+
+  .home-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.8rem;
+  }
+
+  .home-hero__art {
+    position: absolute;
+    top: 0;
+    right: -12rem;
+    width: min(70vw, 52rem);
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    opacity: 0.75;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  :global(:root[data-theme='dark']) .home-hero__art {
+    filter: invert(1);
+    opacity: 0.14;
+    mix-blend-mode: screen;
+  }
+
+  .proof-strip {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    padding-block: 2.25rem;
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .proof-strip p:last-child {
+    margin-top: 0.7rem;
+    color: var(--color-fg-muted);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .home-work,
+  .supporting-work,
+  .home-writing {
+    padding-block: 4.75rem;
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .home-section-heading {
+    display: grid;
+    grid-template-columns: minmax(8rem, 0.25fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .home-section-heading h2 {
+    max-width: 45rem;
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    line-height: 0.98;
+  }
+
+  .feature-project {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(13rem, 0.52fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+    padding-block: 2rem;
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .feature-project__index {
+    color: var(--color-accent);
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .feature-project__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 1rem;
+  }
+
+  .feature-project h3 {
+    margin-top: 0.8rem;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    line-height: 1;
+  }
+
+  .feature-project__tagline {
+    margin-top: 1rem;
+    color: var(--color-fg);
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.55;
+  }
+
+  .feature-project__copy > p:not(.eyebrow):not(.feature-project__tagline) {
+    margin-top: 0.8rem;
+    color: var(--color-fg-muted);
+    font-size: 0.83rem;
+    line-height: 1.6;
+  }
+
+  .feature-project__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: auto;
+    padding-top: 1.2rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 55%, transparent);
+    color: var(--color-accent-strong);
+    font-size: 0.8rem;
+    font-weight: 550;
+  }
+
+  .feature-project__link:hover {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+  }
+
+  .feature-project__media img {
+    width: 100%;
+    aspect-ratio: 1.95 / 1;
+    object-fit: cover;
+    border: 1px solid var(--color-border-muted);
+    background: var(--color-bg-elev);
+  }
+
+  .feature-project__media figcaption {
+    margin-top: 0.5rem;
+    color: var(--color-fg-subtle);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    line-height: 1.45;
+  }
+
+  .supporting-work > .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .supporting-work__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid var(--color-border-muted);
+  }
+
+  .supporting-project {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .supporting-project:first-child {
+    border-right: 1px solid var(--color-border-muted);
+  }
+
+  .supporting-project:hover {
+    background: var(--color-accent-soft);
+  }
+
+  .supporting-project__image {
+    overflow: hidden;
+    align-self: stretch;
+    min-height: 6.5rem;
+    background: var(--color-bg-elev);
+  }
+
+  .supporting-project__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .supporting-project__image.is-logo {
+    display: grid;
+    place-items: center;
+    background: #101714;
+  }
+
+  .supporting-project__image.is-logo img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: contain;
+  }
+
+  .supporting-project h3 {
+    font-size: 1.35rem;
+  }
+
+  .supporting-project p {
+    margin-top: 0.45rem;
+    color: var(--color-fg-muted);
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+
+  .supporting-project span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 550;
+  }
+
+  .home-section-heading--row {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+
+  .home-section-heading--row > div h2 {
+    margin-top: 0.8rem;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+  }
+
+  .writing-list li {
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .writing-list a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2rem;
+    align-items: center;
+    padding-block: 1.25rem;
+  }
+
+  .writing-list a:hover h3 {
+    color: var(--color-accent);
+  }
+
+  .writing-list h3 {
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .writing-list p {
+    max-width: 48rem;
+    margin-top: 0.3rem;
+    color: var(--color-fg-muted);
+    font-size: 0.77rem;
+    line-height: 1.5;
+  }
+
+  .writing-list__meta {
+    display: grid;
+    min-width: 9rem;
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+    text-align: right;
+    color: var(--color-fg-subtle);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .home-contact {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(15rem, 0.6fr);
+    gap: 3rem;
+    align-items: center;
+    margin-top: 4.75rem;
+    padding: 2.75rem 3rem;
+    border-left: 4px solid var(--color-signal);
+    background: var(--color-accent-soft);
+  }
+
+  .home-contact h2 {
+    max-width: 42rem;
+    margin-top: 0.8rem;
+    font-size: clamp(2rem, 4vw, 3.3rem);
+    line-height: 1;
+  }
+
+  .home-contact p:not(.eyebrow) {
+    max-width: 42rem;
+    margin-top: 0.8rem;
+    color: var(--color-fg-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .home-contact__links {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .home-contact__links a {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.65rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-fg-muted);
+    font-size: 0.78rem;
+  }
+
+  .home-contact__links a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 900px) {
+    .home-hero__art {
+      right: -22rem;
+      width: 58rem;
+      opacity: 0.45;
+    }
+
+    .proof-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .feature-project {
+      grid-template-columns: 3rem minmax(0, 1fr);
+    }
+
+    .feature-project__media {
+      grid-column: 2;
+      margin-top: 0.5rem;
+    }
+
+    .supporting-work__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .supporting-project:first-child {
+      border-right: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home-hero__inner {
+      min-height: auto;
+      padding-block: 4.75rem 4rem;
+    }
+
+    .home-hero h1 {
+      font-size: clamp(3.4rem, 17vw, 5.2rem);
+    }
+
+    .home-hero__art {
+      right: -25rem;
+      width: 50rem;
+      opacity: 0.22;
+    }
+
+    .proof-strip {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .home-section-heading,
+    .home-section-heading--row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .feature-project {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .feature-project__media {
+      grid-column: 1;
+    }
+
+    .feature-project__copy {
+      padding-right: 0;
+    }
+
+    .feature-project__link {
+      margin-top: 0.25rem;
+    }
+
+    .supporting-project {
+      grid-template-columns: 1fr;
+      padding-inline: 0;
+    }
+
+    .supporting-project__image {
+      min-height: 10rem;
+    }
+
+    .writing-list a {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .writing-list__meta {
+      grid-template-columns: auto auto;
+      justify-content: start;
+      text-align: left;
+    }
+
+    .home-contact {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      margin-top: 3.5rem;
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>

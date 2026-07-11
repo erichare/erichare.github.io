@@ -1,12 +1,13 @@
 # Eric Hare
 
-> Software Engineer at IBM on the Developer and Operator Experience (DOE) team — working on developer experience and enterprise agent tooling, including Langflow, Astra DB, and AI Workbench. Joined IBM in August 2025 via the DataStax acquisition. PhD in Statistics and Computer Science from Iowa State University (2017). Previously Software Engineer at DataStax, Senior Data Scientist at Daisi Technology, and Chief Data Scientist at Omni Analytics Group. Based in Lake Stevens, WA.
+> Software engineer and statistician. Core Langflow maintainer at IBM; creator of Verity and Aeroza. I build open tools for decisions people can inspect. PhD in Statistics and Computer Science from Iowa State University (2017). Based in Lake Stevens, WA.
 
 ## Primary pages
 
-- [Home](https://erichare.me/): overview, status, selected projects.
+- [Home](https://erichare.me/): positioning, selected work, writing, and contact.
 - [About](https://erichare.me/about): biography and career timeline.
-- [Projects](https://erichare.me/projects): open-source work and research.
+- [Work](https://erichare.me/projects): open-source systems, product engineering, and research software.
+- [Research](https://erichare.me/phd): forensic surface comparison, PhD methods, software, and publications.
 - [Publications](https://erichare.me/publications): peer-reviewed papers and preprints.
 - [CV](https://erichare.me/cv): full curriculum vitae. Markdown source at https://github.com/erichare/erichare.github.io/blob/main/cv.md
 - [Writing](https://erichare.me/blog): essays and field reports.
@@ -14,7 +15,8 @@
 
 ## Flagship projects
 
-- [Langflow](https://erichare.me/projects/langflow) — IBM / open-source. Core maintainer; 240+ merged PRs. The visual framework for building AI agents (147k+ GitHub stars). Repository: https://github.com/langflow-ai/langflow
+- [Langflow](https://erichare.me/projects/langflow) — IBM / open-source. Core maintainer of the visual framework for building AI agents. Repository: https://github.com/langflow-ai/langflow
+- [Verity](https://erichare.me/projects/verity) — open forensic surface comparison through calibrated, transparent likelihood ratios. Repository: https://github.com/erichare/verity
 - [Astra DB Data API](https://erichare.me/projects/astra-data-api) — IBM / DataStax. Contributor to the HTTP/JSON data plane in front of Astra DB: Unstructured integration, portal ingestion backend, and the astrapy Python client.
 - [AI Workbench](https://erichare.me/projects/ai-workbench) — DataStax / open-source. Self-hosted product surface for building, inspecting, and operating retrieval-backed AI applications on DataStax Astra. Repository: https://github.com/datastax/ai-workbench
 - [Aeroza](https://erichare.me/projects/aeroza) — open-source weather platform for real-time radar, geospatial queries, streaming APIs, signed webhooks, nowcasting, and forecast verification. Repository: https://github.com/erichare/aeroza

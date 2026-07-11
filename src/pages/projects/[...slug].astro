@@ -1,57 +1,211 @@
 ---
 import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Icon } from 'astro-icon/components';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
-  return projects.map((p) => ({ params: { slug: p.id }, props: { entry: p } }));
+  return projects.map((project) => ({ params: { slug: project.id }, props: { entry: project } }));
 }
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const d = entry.data;
+const project = entry.data;
 ---
 
-<BaseLayout title={d.title} description={d.summary}>
-  <article class="container-wide pt-16 pb-16">
-    <nav class="text-xs font-mono mb-6" style="color: var(--color-fg-subtle);">
-      <a href="/projects" class="link">Projects</a> / {d.title}
-    </nav>
-
-    <header class="max-w-3xl">
-      <p class="text-xs uppercase tracking-[0.18em] font-mono" style="color: var(--color-accent);">
-        {d.period}{d.role ? ` · ${d.role}` : ''}
-      </p>
-      <h1 class="mt-3 text-4xl md:text-5xl font-semibold" style="font-family: var(--font-serif); font-weight: 500;">
-        {d.title}
-      </h1>
-      <p class="mt-5 text-lg leading-relaxed" style="color: var(--color-fg-muted);">
-        {d.tagline}
-      </p>
-
-      {d.stack.length > 0 && (
-        <div class="mt-6 flex flex-wrap gap-1.5">
-          {d.stack.map((s) => <span class="chip">{s}</span>)}
+<BaseLayout title={project.title} description={project.summary}>
+  <article>
+    <header class="project-hero">
+      <div class="container-wide project-hero__grid">
+        <div class="project-hero__rail">
+          <nav aria-label="Breadcrumb"><a href="/projects">Work</a> / {project.title}</nav>
+          <p>{project.period}</p>
+          {project.role && <p>{project.role}</p>}
         </div>
-      )}
-
-      {d.links.length > 0 && (
-        <div class="mt-6 flex flex-wrap gap-3">
-          {d.links.map((l) => (
-            <a href={l.href} class="inline-flex items-center gap-1.5 text-sm link">
-              <Icon name="lucide:external-link" width="14" />
-              {l.label}
-            </a>
-          ))}
+        <div class="project-hero__main">
+          <h1>{project.title}</h1>
+          <p class="project-hero__tagline">{project.tagline}</p>
+          {project.links.length > 0 && (
+            <div class="project-hero__links">
+              {project.links.map((link, index) => (
+                <a href={link.href} class:list={['button', index === 0 ? 'button-primary' : 'button-secondary']}>
+                  {link.label} <Icon name="ph:arrow-up-right" width="15" />
+                </a>
+              ))}
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </header>
 
-    <hr class="my-10 max-w-3xl" />
+    {project.hero && (
+      <figure class="container-wide project-visual">
+        <img src={project.hero} alt={project.heroAlt ?? ''} width="1600" height="820" />
+      </figure>
+    )}
 
-    <div class="prose-styled">
-      <Content />
+    <div class="container-wide project-body">
+      <aside class="project-facts" aria-label="Project details">
+        <div>
+          <p class="eyebrow">Role</p>
+          <p>{project.role ?? 'Contributor'}</p>
+        </div>
+        <div>
+          <p class="eyebrow">Period</p>
+          <p>{project.period ?? 'Selected work'}</p>
+        </div>
+        {project.stack.length > 0 && (
+          <div>
+            <p class="eyebrow">Tools</p>
+            <ul>{project.stack.map((item) => <li>{item}</li>)}</ul>
+          </div>
+        )}
+      </aside>
+      <div class="prose-styled project-prose">
+        <Content />
+      </div>
     </div>
+
+    <footer class="container-wide project-next">
+      <p class="eyebrow">Keep exploring</p>
+      <a href="/projects">All selected work <Icon name="ph:arrow-right" width="17" /></a>
+    </footer>
   </article>
 </BaseLayout>
+
+<style>
+  .project-hero {
+    padding-block: 4.75rem 4rem;
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .project-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.25fr) minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+
+  .project-hero__rail {
+    display: grid;
+    align-content: start;
+    gap: 0.55rem;
+    color: var(--color-fg-subtle);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .project-hero__rail nav {
+    margin-bottom: 1rem;
+    text-transform: none;
+  }
+
+  .project-hero__rail a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .project-hero h1 {
+    max-width: 54rem;
+    font-size: clamp(4rem, 9vw, 7.5rem);
+    line-height: 0.9;
+  }
+
+  .project-hero__tagline {
+    max-width: 48rem;
+    margin-top: 1.5rem;
+    color: var(--color-fg-muted);
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.6;
+  }
+
+  .project-hero__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.8rem;
+  }
+
+  .project-visual {
+    margin-top: 2.5rem;
+  }
+
+  .project-visual img {
+    width: 100%;
+    max-height: 39rem;
+    object-fit: cover;
+    border: 1px solid var(--color-border-muted);
+  }
+
+  .project-body {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.25fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    padding-block: 4.5rem;
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .project-facts {
+    display: grid;
+    align-content: start;
+    gap: 1.8rem;
+    padding-right: 1rem;
+  }
+
+  .project-facts > div > p:last-child,
+  .project-facts li {
+    margin-top: 0.45rem;
+    color: var(--color-fg-muted);
+    font-size: 0.76rem;
+    line-height: 1.55;
+  }
+
+  .project-facts ul {
+    margin-top: 0.45rem;
+  }
+
+  .project-prose {
+    max-width: 48rem;
+  }
+
+  .project-next {
+    padding-block: 3rem;
+  }
+
+  .project-next a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.65rem;
+    color: var(--color-accent);
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: 720px) {
+    .project-hero {
+      padding-block: 3.5rem 3rem;
+    }
+
+    .project-hero__grid,
+    .project-body {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    .project-hero h1 {
+      font-size: clamp(3.6rem, 18vw, 5.5rem);
+    }
+
+    .project-facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-right: 0;
+    }
+
+    .project-facts > div:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

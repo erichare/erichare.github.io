@@ -1,8 +1,8 @@
 export const SITE = {
   name: 'Eric Hare',
-  title: 'Eric Hare — Software Engineer & Data Scientist',
+  title: 'Eric Hare — Software Engineer & Statistician',
   description:
-    'Software engineer at IBM working on Developer and Operator Experience. PhD in Statistics & Computer Science from Iowa State. Langflow maintainer, R package author, forensic statistics researcher.',
+    'Software engineer and statistician. Core Langflow maintainer at IBM; creator of Verity and Aeroza. I build tools for decisions you can inspect.',
   url: 'https://erichare.me',
   author: 'Eric Hare',
   email: 'ericrhare@gmail.com',
@@ -19,11 +19,9 @@ export const SITE = {
 } as const;
 
 export const NAV = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/publications', label: 'Publications' },
-  { href: '/cv', label: 'CV' },
+  { href: '/projects', label: 'Work' },
+  { href: '/phd', label: 'Research' },
   { href: '/blog', label: 'Writing' },
-  { href: '/now', label: 'Now' },
+  { href: '/about', label: 'About' },
+  { href: '/cv', label: 'CV' },
 ] as const;

@@ -1,35 +1,37 @@
 ---
-import { SITE } from '../lib/site';
 import { Icon } from 'astro-icon/components';
+import { SITE } from '../lib/site';
+
 const year = new Date().getFullYear();
 ---
 
-<footer class="mt-24 border-t" style="border-color: var(--color-border-muted);">
-  <div class="container-wide py-10 flex flex-col gap-6 md:flex-row md:justify-between md:items-center text-sm" style="color: var(--color-fg-muted);">
-    <div class="flex flex-col gap-1">
-      <p>&copy; {year} {SITE.author}. Built with Astro, deployed on GitHub Pages.</p>
-      <ul class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs" style="color: var(--color-fg-subtle);">
-        <li><a href="/llms.txt" class="link inline-block py-1">llms.txt</a></li>
-        <li><a href="/rss.xml" class="link inline-block py-1">RSS</a></li>
-        <li><a href="https://github.com/erichare/erichare.github.io" class="link inline-block py-1">Source</a></li>
-      </ul>
+<footer class="site-footer">
+  <div class="container-wide site-footer__inner">
+    <div>
+      <a href="/" class="site-mark site-footer__mark">
+        <span class="site-mark__dot" aria-hidden="true"></span>
+        <span>{SITE.name}</span>
+      </a>
+      <p class="site-footer__note">Software engineer and statistician in Lake Stevens, Washington.</p>
     </div>
-    <div class="flex items-center gap-3">
-      <a href={SITE.social.github} aria-label="GitHub" class="p-2 rounded-md hover:opacity-80 transition" style="color: var(--color-fg-muted);">
-        <Icon name="simple-icons:github" width="18" />
-      </a>
-      <a href={SITE.social.linkedin} aria-label="LinkedIn" class="p-2 rounded-md hover:opacity-80 transition" style="color: var(--color-fg-muted);">
-        <Icon name="simple-icons:linkedin" width="18" />
-      </a>
-      <a href={SITE.social.scholar} aria-label="Google Scholar" class="p-2 rounded-md hover:opacity-80 transition" style="color: var(--color-fg-muted);">
-        <Icon name="simple-icons:googlescholar" width="18" />
-      </a>
-      <a href={`mailto:${SITE.email}`} aria-label="Email" class="p-2 rounded-md hover:opacity-80 transition" style="color: var(--color-fg-muted);">
-        <Icon name="lucide:mail" width="18" />
-      </a>
-      <a href="/rss.xml" aria-label="RSS feed" class="p-2 rounded-md hover:opacity-80 transition" style="color: var(--color-fg-muted);">
-        <Icon name="lucide:rss" width="18" />
-      </a>
+
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="/publications">Publications</a>
+      <a href="/now">Now</a>
+      <a href="/rss.xml">RSS</a>
+      <a href="/llms.txt">llms.txt</a>
+      <a href="https://github.com/erichare/erichare.github.io">Source</a>
+    </nav>
+
+    <div class="site-footer__social">
+      <a href={SITE.social.github} aria-label="GitHub"><Icon name="simple-icons:github" width="17" /></a>
+      <a href={SITE.social.linkedin} aria-label="LinkedIn"><Icon name="simple-icons:linkedin" width="17" /></a>
+      <a href={SITE.social.scholar} aria-label="Google Scholar"><Icon name="simple-icons:googlescholar" width="17" /></a>
+      <a href={`mailto:${SITE.email}`} aria-label="Email"><Icon name="ph:envelope-simple" width="19" /></a>
     </div>
+  </div>
+  <div class="container-wide site-footer__meta">
+    <span>&copy; {year} {SITE.author}</span>
+    <span>Built with Astro. Deployed on GitHub Pages.</span>
   </div>
 </footer>

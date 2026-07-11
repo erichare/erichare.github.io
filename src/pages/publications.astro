@@ -27,12 +27,19 @@ const formatAuthors = (authors: readonly string[]) =>
   description="Papers, proceedings, preprints and a PhD thesis by Eric Hare."
 >
   <PageHeader
-    eyebrow="Publications"
-    title="Papers, proceedings, and a thesis."
-    lede="Mostly statistics and its applications — forensic bullet-matching, visual inference, teaching, and a stray YOLO/agriculture paper."
+    eyebrow="Research archive"
+    title="Papers, proceedings, and the primary sources."
+    lede="Statistics in practice: forensic surface comparison, visual inference, statistical education, and a few applied collaborations along the way."
   />
 
   <Section>
+    <div class="research-context">
+      <p>
+        Looking for the narrative rather than the bibliography? Start with the
+        <a href="/phd" class="link">PhD research overview</a> or the current
+        <a href="/projects/verity" class="link">Verity case study</a>.
+      </p>
+    </div>
     <div class="space-y-14">
       {years.map((year) => (
         <div>
@@ -56,7 +63,7 @@ const formatAuthors = (authors: readonly string[]) =>
                   <p class="mt-1 text-sm italic" style="color: var(--color-fg-muted);">{p.data.venue}</p>
                   {p.data.award && (
                     <p class="mt-2 inline-flex items-center gap-1.5 text-xs font-mono" style="color: var(--color-warn);">
-                      <Icon name="lucide:award" width="14" />
+                      <Icon name="ph:medal" width="14" />
                       {p.data.award}
                     </p>
                   )}
@@ -77,3 +84,16 @@ const formatAuthors = (authors: readonly string[]) =>
     </div>
   </Section>
 </BaseLayout>
+
+<style>
+  .research-context {
+    max-width: 48rem;
+    margin-bottom: 3rem;
+    padding: 1.25rem 1.5rem;
+    border-left: 3px solid var(--color-signal);
+    background: var(--color-accent-soft);
+    color: var(--color-fg-muted);
+    font-size: 0.86rem;
+    line-height: 1.65;
+  }
+</style>

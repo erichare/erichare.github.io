@@ -9,51 +9,148 @@ interface Props {
   period?: string;
   stack?: readonly string[];
   featured?: boolean;
+  image?: string;
+  imageAlt?: string;
 }
 
-const { href, title, tagline, role, period, stack = [], featured = false } = Astro.props;
+const {
+  href,
+  title,
+  tagline,
+  role,
+  period,
+  stack = [],
+  featured = false,
+  image,
+  imageAlt = '',
+} = Astro.props;
 ---
 
-<a
-  href={href}
-  class:list={[
-    'card group p-6 md:p-7 flex flex-col gap-4 h-full',
-    featured ? 'md:col-span-2' : '',
-  ]}
-  style={featured
-    ? 'border-color: color-mix(in oklch, var(--color-accent) 35%, var(--color-border-muted));'
-    : ''}
->
-  <div class="flex items-start justify-between gap-4">
-    <div>
-      {featured && (
-        <span class="chip mb-3" style="background: var(--color-accent-soft); color: var(--color-accent); border-color: color-mix(in oklch, var(--color-accent) 35%, transparent);">
-          <Icon name="lucide:star" width="12" />
-          Featured
-        </span>
-      )}
-      <h3 class="text-xl font-semibold" style="font-family: var(--font-serif); font-weight: 500;">{title}</h3>
-      {period && (
-        <p class="mt-1 text-xs font-mono" style="color: var(--color-fg-subtle);">
-          {period}{role ? ` · ${role}` : ''}
-        </p>
-      )}
-    </div>
-    <Icon
-      name="lucide:arrow-up-right"
-      width="18"
-      class="shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-      style="color: var(--color-fg-subtle);"
-    />
-  </div>
-
-  <p class="text-[0.95rem] leading-relaxed" style="color: var(--color-fg-muted);">
-    {tagline}
-  </p>
-
-  {stack.length > 0 && (
-    <div class="mt-auto flex flex-wrap gap-1.5 pt-2">
-      {stack.map((s) => <span class="chip">{s}</span>)}
+<a href={href} class:list={['project-card', featured && 'is-featured']}>
+  {image && (
+    <div class="project-card__media">
+      <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
     </div>
   )}
+  <div class="project-card__body">
+    <div class="project-card__header">
+      <div>
+        {featured && <p class="eyebrow">Flagship</p>}
+        <h3>{title}</h3>
+      </div>
+      <Icon name="ph:arrow-up-right" width="18" class="project-card__arrow" />
+    </div>
+    {(period || role) && (
+      <p class="project-card__meta">{period}{period && role ? ' · ' : ''}{role}</p>
+    )}
+    <p class="project-card__tagline">{tagline}</p>
+    {stack.length > 0 && (
+      <div class="project-card__stack">
+        {stack.slice(0, 6).map((item) => <span>{item}</span>)}
+      </div>
+    )}
+  </div>
 </a>
+
+<style>
+  .project-card {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    border-top: 1px solid var(--color-border-muted);
+    transition: background 160ms ease, border-color 160ms ease;
+  }
+
+  .project-card:hover {
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
+  }
+
+  .project-card__media {
+    min-height: 15rem;
+    overflow: hidden;
+    background: var(--color-bg-elev);
+  }
+
+  .project-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 300ms ease;
+  }
+
+  .project-card:hover .project-card__media img {
+    transform: scale(1.012);
+  }
+
+  .project-card__body {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    padding: 1.6rem;
+  }
+
+  .project-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .project-card h3 {
+    margin-top: 0.3rem;
+    font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+    line-height: 1;
+  }
+
+  .project-card__arrow {
+    flex: none;
+    color: var(--color-fg-subtle);
+    transition: color 160ms ease, transform 160ms ease;
+  }
+
+  .project-card:hover .project-card__arrow {
+    color: var(--color-accent);
+    transform: translate(2px, -2px);
+  }
+
+  .project-card__meta {
+    margin-top: 0.65rem;
+    color: var(--color-fg-subtle);
+    font-family: var(--font-mono);
+    font-size: 0.61rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .project-card__tagline {
+    margin-top: 1rem;
+    color: var(--color-fg-muted);
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .project-card__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.8rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    color: var(--color-fg-subtle);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+  }
+
+  @media (max-width: 720px) {
+    .project-card {
+      grid-template-columns: 1fr;
+    }
+
+    .project-card__media {
+      min-height: 12rem;
+    }
+
+    .project-card__body {
+      padding-inline: 0;
+    }
+  }
+</style>

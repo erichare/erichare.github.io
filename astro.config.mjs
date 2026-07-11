@@ -7,10 +7,6 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://erichare.me',
   trailingSlash: 'ignore',
-  prefetch: {
-    prefetchAll: true,
-    defaultStrategy: 'viewport',
-  },
   integrations: [
     mdx(),
     sitemap(),

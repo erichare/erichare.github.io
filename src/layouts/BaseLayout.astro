@@ -1,9 +1,14 @@
 ---
 import '../styles/global.css';
+import '@fontsource/newsreader/latin-400.css';
+import '@fontsource/newsreader/latin-500.css';
+import '@fontsource-variable/ibm-plex-sans';
+import '@fontsource/ibm-plex-mono/latin-400.css';
+import '@fontsource/ibm-plex-mono/latin-500.css';
+import newsreaderLatin500 from '@fontsource/newsreader/files/newsreader-latin-500-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
-import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -17,7 +22,7 @@ const props = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,12 +31,8 @@ const props = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="alternate" type="application/rss+xml" title="Eric Hare — Writing" href="/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
-    />
+    <link rel="preload" href={newsreaderLatin500} as="font" type="font/woff2" crossorigin="anonymous" />
+    <meta name="color-scheme" content="light dark" />
     <script is:inline>
       (function () {
         const t = localStorage.getItem('eh-theme');
@@ -40,7 +41,6 @@ const props = Astro.props;
       })();
     </script>
     <SEO {...props} />
-    <ClientRouter />
   </head>
   <body>
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:px-3 focus:py-1.5 focus:rounded-md focus:bg-white focus:text-black focus:z-50">Skip to content</a>

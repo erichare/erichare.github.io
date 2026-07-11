@@ -8,9 +8,9 @@ GitHub:   @erichare
 Location: Lake Stevens, WA, USA
 
 /* SITE */
-Last updated: 2026-04-17
+Last updated: 2026-07-11
 Language:     English
 Doctype:      HTML5
-Stack:        Astro 5, Tailwind CSS v4, MDX
+Stack:        Astro 6, Tailwind CSS v4, MDX
 Hosting:      GitHub Pages
 Source:       https://github.com/erichare/erichare.github.io
