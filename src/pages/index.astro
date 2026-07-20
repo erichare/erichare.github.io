@@ -12,7 +12,8 @@ const featured = [
     id: 'langflow',
     index: '01',
     label: 'Co-lead',
-    responsiveHero: '/img/home/langflow-flow-800.webp',
+    responsiveHero: '/img/home/langflow-flow-700.webp',
+    responsiveHeroSrcSet: '/img/home/langflow-flow-700.webp 700w, /img/home/langflow-flow-800.webp 800w, /img/home/langflow-flow.webp 1600w',
     description: 'I help shape Langflow at IBM, with a focus on agent tooling, MCP, the SDK, and the production details that make open-source software dependable.',
     caption: 'Langflow’s visual canvas turns an agent system into an inspectable flow.',
   },
@@ -20,7 +21,8 @@ const featured = [
     id: 'verity',
     index: '02',
     label: 'Creator',
-    responsiveHero: '/img/home/verity-surface-800.webp',
+    responsiveHero: '/img/home/verity-surface-700.webp',
+    responsiveHeroSrcSet: '/img/home/verity-surface-700.webp 700w, /img/home/verity-surface-800.webp 800w, /img/home/verity-surface.webp 1600w',
     description: 'An open forensic-comparison engine that reports calibrated evidentiary strength instead of hiding uncertainty behind a binary match.',
     caption: 'Three-dimensional surface evidence and aligned crosscut signatures in Bullet Lens.',
   },
@@ -28,7 +30,8 @@ const featured = [
     id: 'aeroza',
     index: '03',
     label: 'Creator',
-    responsiveHero: '/img/home/aeroza-radar-800.webp',
+    responsiveHero: '/img/home/aeroza-radar-700.webp',
+    responsiveHeroSrcSet: '/img/home/aeroza-radar-700.webp 700w, /img/home/aeroza-radar-800.webp 800w, /img/home/aeroza-radar.webp 1600w',
     description: 'A developer-first weather platform for live radar, geospatial queries, streaming APIs, signed alerts, and public forecast verification.',
     caption: 'Live radar and severe-weather context exposed through one queryable platform.',
   },
@@ -46,7 +49,7 @@ const supporting = [
   {
     id: 'ai-workbench',
     image: '/img/home/ai-workbench-640.webp',
-    srcSet: '/img/home/ai-workbench-640.webp 640w, /img/home/ai-workbench.webp 1200w',
+    srcSet: '/img/home/ai-workbench-640.webp 640w, /img/home/ai-workbench-700.webp 700w, /img/home/ai-workbench.webp 1200w',
     sizes: '(max-width: 900px) calc(100vw - 2.5rem), 20rem',
     alt: 'AI Workbench workspace with knowledge bases and agents.',
     detail: 'A self-hosted workspace for building, inspecting, and operating retrieval-backed AI applications.',
@@ -111,7 +114,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </div>
 
     <div class="feature-list">
-      {featured.map(({ project, index, label, responsiveHero, description, caption }) => (
+      {featured.map(({ project, index, label, responsiveHero, responsiveHeroSrcSet, description, caption }) => (
         <article class="feature-project">
           <div class="feature-project__index" aria-hidden="true">{index}</div>
           <div class="feature-project__copy">
@@ -126,7 +129,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
           <figure class="feature-project__media">
             <img
               src={responsiveHero}
-              srcset={`${responsiveHero} 800w, ${project.data.hero} 1600w`}
+              srcset={responsiveHeroSrcSet}
               sizes="(max-width: 900px) calc(100vw - 5.5rem), 43rem"
               alt={project.data.heroAlt ?? ''}
               width="1600"

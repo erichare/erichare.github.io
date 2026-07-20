@@ -12,6 +12,15 @@ const contributionIds = new Set(['astra-data-api', 'ai-workbench']);
 const flagship = all.filter((project) => flagshipIds.has(project.id));
 const contributions = all.filter((project) => contributionIds.has(project.id));
 const archive = all.filter((project) => !flagshipIds.has(project.id) && !contributionIds.has(project.id));
+
+const responsiveProjectImages = new Map([
+  ['langflow', '/img/home/langflow-flow-700.webp 700w, /img/home/langflow-flow-800.webp 800w, /img/home/langflow-flow.webp 1600w'],
+  ['verity', '/img/home/verity-surface-700.webp 700w, /img/home/verity-surface-800.webp 800w, /img/home/verity-surface.webp 1600w'],
+  ['aeroza', '/img/home/aeroza-radar-700.webp 700w, /img/home/aeroza-radar-800.webp 800w, /img/home/aeroza-radar.webp 1600w'],
+  ['ai-workbench', '/img/home/ai-workbench-640.webp 640w, /img/home/ai-workbench-700.webp 700w, /img/home/ai-workbench.webp 1200w'],
+]);
+
+const projectImageSizes = '(max-width: 720px) calc(100vw - 2rem), 38rem';
 ---
 
 <BaseLayout title="Work" description="Selected open-source systems, product engineering, and research software by Eric Hare.">
@@ -33,6 +42,8 @@ const archive = all.filter((project) => !flagshipIds.has(project.id) && !contrib
           stack={project.data.stack}
           featured
           image={project.data.hero}
+          imageSrcSet={responsiveProjectImages.get(project.id)}
+          imageSizes={projectImageSizes}
           imageAlt={project.data.heroAlt}
         />
       ))}
@@ -47,7 +58,13 @@ const archive = all.filter((project) => !flagshipIds.has(project.id) && !contrib
         <p>My PhD work established an open, reproducible pipeline for analyzing 3D bullet scans. A decade later, that research continues through Verity.</p>
         <span>Explore the research <Icon name="ph:arrow-right" width="16" /></span>
       </div>
-      <img src="/img/home/verity-surface.webp" alt="Three-dimensional bullet surfaces and crosscut signatures." loading="lazy" />
+      <img
+        src="/img/home/verity-surface-700.webp"
+        srcset="/img/home/verity-surface-700.webp 700w, /img/home/verity-surface-800.webp 800w, /img/home/verity-surface.webp 1600w"
+        sizes="(max-width: 780px) calc(100vw - 2rem), 44rem"
+        alt="Three-dimensional bullet surfaces and crosscut signatures."
+        loading="lazy"
+      />
     </a>
   </Section>
 
@@ -62,6 +79,8 @@ const archive = all.filter((project) => !flagshipIds.has(project.id) && !contrib
           period={project.data.period}
           stack={project.data.stack}
           image={project.data.hero}
+          imageSrcSet={responsiveProjectImages.get(project.id)}
+          imageSizes={projectImageSizes}
           imageAlt={project.data.heroAlt}
         />
       ))}
