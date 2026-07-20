@@ -10,6 +10,8 @@ interface Props {
   stack?: readonly string[];
   featured?: boolean;
   image?: string;
+  imageSrcSet?: string;
+  imageSizes?: string;
   imageAlt?: string;
 }
 
@@ -22,6 +24,8 @@ const {
   stack = [],
   featured = false,
   image,
+  imageSrcSet,
+  imageSizes,
   imageAlt = '',
 } = Astro.props;
 ---
@@ -29,7 +33,14 @@ const {
 <a href={href} class:list={['project-card', featured && 'is-featured']}>
   {image && (
     <div class="project-card__media">
-      <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
+      <img
+        src={image}
+        srcset={imageSrcSet}
+        sizes={imageSizes}
+        alt={imageAlt}
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   )}
   <div class="project-card__body">
