@@ -52,7 +52,7 @@ Reproducible research · Forensic statistics.
   Functions](https://www.infoworld.com/article/2338626/)" for InfoWorld).
 
 ### Daisi Technology — Senior Data Scientist
-*May 2021 — December 2022 · Remote (California)*
+*March 2019 — November 2022 · Remote (California)*
 
 - Built reference "daisies" (serverless Python cloud functions) for YOLO object detection,
   time-series forecasting with Prophet, sentiment analysis, PCA, PDF extraction, and more.
