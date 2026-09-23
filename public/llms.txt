@@ -21,7 +21,7 @@
 - [AI Workbench](https://erichare.me/projects/ai-workbench) — DataStax / open-source. Self-hosted product surface for building, inspecting, and operating retrieval-backed AI applications on DataStax Astra. Repository: https://github.com/datastax/ai-workbench
 - [Aeroza](https://erichare.me/projects/aeroza) — open-source weather platform for real-time radar, geospatial queries, streaming APIs, signed webhooks, nowcasting, and forecast verification. Repository: https://github.com/erichare/aeroza
 - [PhD research — bullet matching](https://erichare.me/phd) — PhD dissertation + CSAFE research on automated forensic bullet striation matching. R packages: bulletr, bulletxtrctr.
-- [Daisi](https://erichare.me/projects/daisi) — Serverless Python cloud functions for scientific computing (2021–2022).
+- [Daisi](https://erichare.me/projects/daisi) — Serverless Python cloud functions for scientific computing (2019–2022).
 - [Omni Analytics & OmniacsDAO](https://erichare.me/projects/omniacsdao) — Chief Data Scientist 2017–2021. Open-source Shiny and DeFi tooling.
 
 ## Contact
