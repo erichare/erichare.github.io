@@ -95,8 +95,8 @@ Full list at [/publications](/publications).
   Applied Statistics*, 2017. doi:10.1214/17-AOAS1080
 - Hare, Hofmann, Carriquiry. **Algorithmic Approaches to Match Degraded Land Impressions**. *Law,
   Probability and Risk*, mgx018, 2017. doi:10.1093/lpr/mgx018
-- Hare, Kaplan. **Designing Modular Software: A Case Study in Introductory Statistics**. *JCGS*,
-  2017. doi:10.1080/10618600.2017.1386568
+- Hare, Kaplan. **Designing Modular Software: A Case Study in Introductory Statistics**. *JCGS*, 2017.
+  doi:10.1080/10618600.2017.1386568
 - Hare, Buja, Hofmann. **Manipulation of Discrete Random Variables with discreteRV**. *R Journal*
   7(1), 2015.
 - Sieber, Hare, Hofmann, Trepel. **Biomathematical description of synthetic Peptide libraries**.

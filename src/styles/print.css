@@ -1,5 +1,9 @@
 @media print {
   :root {
+    /* Force the light color scheme: with the dark scheme active (dark-mode
+       browsers, headless Chrome on a dark-mode OS), Chrome paints the PDF
+       page canvas #121212, producing a black frame around the content. */
+    color-scheme: light !important;
     --color-bg: #ffffff !important;
     --color-bg-elev: #ffffff !important;
     --color-fg: #1a1a1a !important;
@@ -13,7 +17,7 @@
 
   @page {
     size: letter;
-    margin: 0.6in 0.7in;
+    margin: 0.6in 0.75in;
   }
 
   html, body {
@@ -21,7 +25,7 @@
     color: #1a1a1a !important;
     font-family: 'Newsreader', ui-serif, Georgia, 'Times New Roman', serif !important;
     font-size: 10.5pt;
-    line-height: 1.4;
+    line-height: 1.45;
   }
 
   /* Hide all site chrome */
@@ -40,6 +44,7 @@
 
   main {
     padding: 0 !important;
+    min-height: 0 !important;
   }
 
   /* Remove hero padding */
@@ -58,33 +63,60 @@
     display: none !important;
   }
 
-  /* Header block at top of CV */
+  /* ---- Typography ---- */
+
+  h1, h2, h3 {
+    font-family: 'IBM Plex Sans Variable', 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif !important;
+  }
+
   h1 {
-    font-size: 22pt !important;
-    margin: 0 0 4pt 0 !important;
-    font-weight: 600 !important;
-    letter-spacing: -0.01em !important;
+    font-size: 23pt !important;
+    margin: 0 0 2pt 0 !important;
+    font-weight: 650 !important;
+    letter-spacing: -0.015em !important;
+    color: #111 !important;
     page-break-after: avoid;
   }
 
+  /* Subtitle line directly under the name in the print-only header */
+  [data-cv-page] .print-only > p {
+    font-family: 'IBM Plex Sans Variable', 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif !important;
+    font-size: 10pt !important;
+    color: #444 !important;
+    margin: 0 0 6pt 0 !important;
+  }
+
   h2 {
-    font-size: 12.5pt !important;
+    font-size: 10pt !important;
     font-weight: 600 !important;
-    margin-top: 11pt !important;
-    margin-bottom: 3pt !important;
-    padding-bottom: 2pt !important;
-    border-bottom: 1px solid #aaa !important;
-    letter-spacing: 0.02em;
+    margin-top: 13pt !important;
+    margin-bottom: 5pt !important;
+    padding-bottom: 2.5pt !important;
+    border-bottom: 0.75pt solid #bbb !important;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
+    color: #222 !important;
     page-break-after: avoid;
   }
 
   h3 {
     font-size: 11pt !important;
     font-weight: 600 !important;
-    margin-top: 8pt !important;
-    margin-bottom: 2pt !important;
+    margin-top: 10pt !important;
+    margin-bottom: 1pt !important;
+    color: #111 !important;
     page-break-after: avoid;
+  }
+
+  /* Date / location line right after a job title */
+  h3 + p {
+    margin-top: 0 !important;
+  }
+  h3 + p em {
+    font-family: 'IBM Plex Sans Variable', 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif !important;
+    font-style: normal !important;
+    font-size: 9pt !important;
+    color: #555 !important;
   }
 
   p {
@@ -94,11 +126,15 @@
   }
 
   ul, ol {
-    margin: 4pt 0 !important;
-    padding-left: 18pt !important;
+    margin: 3pt 0 !important;
+    padding-left: 15pt !important;
   }
   li {
     margin: 1pt 0 !important;
+    padding-left: 2pt;
+  }
+  li::marker {
+    color: #777;
   }
 
   em, i {
@@ -115,16 +151,6 @@
     border: 0 !important;
   }
 
-  /* Inline code chips: the screen theme (esp. dark mode) gives these a dark
-     background, which prints as a black box. Force a light chip. */
-  code,
-  :not(pre) > code {
-    background: #f2f2f2 !important;
-    color: #1a1a1a !important;
-    padding: 0 2pt !important;
-    border-radius: 2pt !important;
-  }
-
   hr {
     display: none !important;
   }
@@ -136,6 +162,16 @@
     background: transparent !important;
     border: 0 !important;
     padding: 0 !important;
+  }
+
+  /* Inline code chips: the screen theme (esp. dark mode) gives these a dark
+     background, which prints as a black box. Force a light chip. */
+  code,
+  :not(pre) > code {
+    background: #f2f2f2 !important;
+    color: #1a1a1a !important;
+    padding: 0 2pt !important;
+    border-radius: 2pt !important;
   }
 
   /* Eyebrow labels */
