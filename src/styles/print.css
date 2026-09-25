@@ -6,6 +6,7 @@
     --color-fg-muted: #333333 !important;
     --color-fg-subtle: #4a4a4a !important;
     --color-accent: #0f5073 !important;
+    --color-accent-soft: #eaf1f4 !important;
     --color-border: #cccccc !important;
     --color-border-muted: #dddddd !important;
   }
@@ -69,8 +70,8 @@
   h2 {
     font-size: 12.5pt !important;
     font-weight: 600 !important;
-    margin-top: 14pt !important;
-    margin-bottom: 4pt !important;
+    margin-top: 11pt !important;
+    margin-bottom: 3pt !important;
     padding-bottom: 2pt !important;
     border-bottom: 1px solid #aaa !important;
     letter-spacing: 0.02em;
@@ -97,7 +98,7 @@
     padding-left: 18pt !important;
   }
   li {
-    margin: 1.5pt 0 !important;
+    margin: 1pt 0 !important;
   }
 
   em, i {
@@ -112,6 +113,16 @@
     color: #0f5073 !important;
     text-decoration: none !important;
     border: 0 !important;
+  }
+
+  /* Inline code chips: the screen theme (esp. dark mode) gives these a dark
+     background, which prints as a black box. Force a light chip. */
+  code,
+  :not(pre) > code {
+    background: #f2f2f2 !important;
+    color: #1a1a1a !important;
+    padding: 0 2pt !important;
+    border-radius: 2pt !important;
   }
 
   hr {
