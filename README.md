@@ -12,7 +12,7 @@ My personal site, rebuilt for 2026. Astro + Tailwind CSS v4 + MDX, deployed to G
 - **MDX** for long-form content (projects, blog posts).
 - **[Satori](https://github.com/vercel/satori) + Sharp** for dynamic OG image generation at `/og-default.png`.
 - **Icons**: Phosphor, Lucide, and Simple Icons via `astro-icon`.
-- **Fonts**: IBM Plex Sans (body), Newsreader (display), IBM Plex Mono (metadata), self-hosted through Fontsource.
+- **Fonts**: Plus Jakarta Sans (body), Fraunces (display), and Fragment Mono (metadata), self-hosted through Fontsource. The print CV retains IBM Plex and Newsreader.
 - **Hosted on GitHub Pages** (custom domain: `erichare.me`). Deploys on push to `main` via Actions.
 
 ## Repository layout

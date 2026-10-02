@@ -48,16 +48,25 @@ const principles = [
 ];
 ---
 
-<BaseLayout title="About" description="Eric Hare — software engineer, statistician, open-source maintainer, and forensic statistics researcher.">
+<BaseLayout title="About" description="Eric Hare runs JEStats with his partner and builds open software for agents and data. Software engineer and statistician in Lake Stevens, Washington.">
   <PageHeader
     eyebrow="About"
     title="Software engineer by way of statistics."
-    lede="I build open tools for agents, data, and evidence—and I care whether the decisions they support can be inspected, reproduced, and challenged."
+    lede="I run JEStats with my partner, build open tools for agents and data, and care whether the decisions they support can be inspected, reproduced, and challenged."
   />
 
   <Section>
     <div class="about-intro">
       <div class="prose-styled">
+        <p>
+          I run <a href="https://jestats.io/"><strong>JEStats (J&amp;E Consulting)</strong></a> with my
+          partner in Lake Stevens, Washington. Our studio helps people turn ideas and data into useful
+          work: data analysis, website design and management, print and social graphics, and AI
+          integrations. We also build developer tools, including the
+          <a href="/projects/astra-db-plugin">Astra DB Plugin</a>,
+          <a href="/projects/skillroute">SkillRoute</a>, and
+          <a href="/projects/codebase-mentor">Codebase Mentor</a>.
+        </p>
         <p>
           I’m a software engineer at <strong>IBM</strong> on the Developer and Operator Experience team,
           where I’m a core maintainer of <a href="https://github.com/langflow-ai/langflow">Langflow</a>.
@@ -75,7 +84,7 @@ const principles = [
         <p>
           I also build <a href="/projects/aeroza">Aeroza</a>, a weather platform organized around a similar
           idea: forecasts should be queryable, testable, and scored against what actually happened. The
-          domains are different; the instinct is the same.
+          domains are different. The instinct is the same.
         </p>
         <p>
           I live north of Seattle with my partner and our two cats. Away from the terminal, I’m usually
@@ -94,6 +103,7 @@ const principles = [
         />
         <dl>
           <div><dt>Based in</dt><dd>Lake Stevens, WA</dd></div>
+          <div><dt>Studio</dt><dd><a href="https://jestats.io/">JEStats</a></dd></div>
           <div><dt>Current role</dt><dd>Software Engineer, IBM</dd></div>
           <div><dt>Contact</dt><dd><a href="mailto:ericrhare@gmail.com">ericrhare@gmail.com</a></dd></div>
         </dl>
@@ -133,18 +143,20 @@ const principles = [
   .about-intro {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 18rem;
-    gap: 5rem;
+    gap: clamp(2rem, 5vw, 5rem);
     align-items: start;
   }
 
   .about-portrait {
-    border-top: 1px solid var(--color-border-muted);
-    padding-top: 0.75rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border-muted);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
   }
 
   .about-portrait img {
     width: 100%;
-    filter: saturate(0.72) contrast(1.02);
+    border-radius: var(--radius-md);
   }
 
   .about-portrait dl {
@@ -153,17 +165,17 @@ const principles = [
 
   .about-portrait dl > div {
     display: grid;
-    grid-template-columns: 5.5rem 1fr;
+    grid-template-columns: 5rem minmax(0, 1fr);
     gap: 0.75rem;
     padding-block: 0.75rem;
     border-bottom: 1px solid var(--color-border-muted);
-    font-size: 0.74rem;
+    font-size: 0.8rem;
   }
 
   .about-portrait dt {
     color: var(--color-fg-subtle);
     font-family: var(--font-mono);
-    font-size: 0.59rem;
+    font-size: 0.63rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
@@ -171,6 +183,17 @@ const principles = [
   .about-portrait dd,
   .about-portrait a {
     color: var(--color-fg-muted);
+    overflow-wrap: anywhere;
+  }
+
+  .about-portrait a {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-color: var(--color-border);
+  }
+
+  .about-portrait a:hover {
+    color: var(--color-accent);
   }
 
   .principle-grid {
@@ -202,8 +225,8 @@ const principles = [
   .principle-grid p {
     margin-top: 0.55rem;
     color: var(--color-fg-muted);
-    font-size: 0.8rem;
-    line-height: 1.6;
+    font-size: 0.88rem;
+    line-height: 1.7;
   }
 
   .career-list {
@@ -239,8 +262,8 @@ const principles = [
     max-width: 45rem;
     margin-top: 0.5rem;
     color: var(--color-fg-muted);
-    font-size: 0.83rem;
-    line-height: 1.65;
+    font-size: 0.88rem;
+    line-height: 1.7;
   }
 
   .timeline-link {

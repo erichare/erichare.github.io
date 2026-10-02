@@ -6,6 +6,11 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { marked } from 'marked';
 import '../styles/print.css';
+import '@fontsource/newsreader/latin-400.css';
+import '@fontsource/newsreader/latin-500.css';
+import '@fontsource-variable/ibm-plex-sans';
+import '@fontsource/ibm-plex-mono/latin-400.css';
+import '@fontsource/ibm-plex-mono/latin-500.css';
 
 const cvPath = path.resolve('./cv.md');
 const cvText = await fs.readFile(cvPath, 'utf8');

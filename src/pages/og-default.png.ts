@@ -7,11 +7,11 @@ import sharp from 'sharp';
 export const prerender = true;
 
 export const GET: APIRoute = async () => {
-  const [newsreader500, plexSans400, plexSans500, plexMono500] = await Promise.all([
-    fs.readFile(path.resolve('node_modules/@fontsource/newsreader/files/newsreader-latin-500-normal.woff')),
-    fs.readFile(path.resolve('node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff')),
-    fs.readFile(path.resolve('node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff')),
-    fs.readFile(path.resolve('node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff')),
+  const [fraunces500, jakarta400, jakarta500, fragment400] = await Promise.all([
+    fs.readFile(path.resolve('node_modules/@fontsource/fraunces/files/fraunces-latin-500-normal.woff')),
+    fs.readFile(path.resolve('node_modules/@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-400-normal.woff')),
+    fs.readFile(path.resolve('node_modules/@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-500-normal.woff')),
+    fs.readFile(path.resolve('node_modules/@fontsource/fragment-mono/files/fragment-mono-latin-400-normal.woff')),
   ]);
 
   const element = {
@@ -24,10 +24,10 @@ export const GET: APIRoute = async () => {
         flexDirection: 'column',
         justifyContent: 'space-between',
         padding: '62px 70px 56px',
-        background: '#f5f2ea',
-        color: '#172019',
-        fontFamily: 'IBM Plex Sans',
-        border: '1px solid #d8d9d2',
+        background: '#faf9f5',
+        color: '#111827',
+        fontFamily: 'Plus Jakarta Sans',
+        border: '1px solid #e8e3da',
       },
       children: [
         {
@@ -40,7 +40,7 @@ export const GET: APIRoute = async () => {
                 props: {
                   style: { display: 'flex', alignItems: 'center', gap: '12px', fontSize: '22px', fontWeight: 500 },
                   children: [
-                    { type: 'div', props: { style: { width: '12px', height: '12px', borderRadius: '999px', background: '#235e45' } } },
+                    { type: 'div', props: { style: { width: '12px', height: '12px', borderRadius: '999px', background: '#ae4017' } } },
                     { type: 'div', props: { children: 'Eric Hare' } },
                   ],
                 },
@@ -48,7 +48,7 @@ export const GET: APIRoute = async () => {
               {
                 type: 'div',
                 props: {
-                  style: { color: '#235e45', fontFamily: 'IBM Plex Mono', fontSize: '14px', letterSpacing: '2px' },
+                  style: { color: '#ae4017', fontFamily: 'Fragment Mono', fontSize: '14px', letterSpacing: '2px' },
                   children: 'SOFTWARE ENGINEER · STATISTICIAN',
                 },
               },
@@ -63,15 +63,15 @@ export const GET: APIRoute = async () => {
               {
                 type: 'div',
                 props: {
-                  style: { fontFamily: 'Newsreader', fontSize: '88px', fontWeight: 500, lineHeight: 0.98, letterSpacing: '-3px' },
-                  children: 'I build tools for decisions you can inspect.',
+                  style: { fontFamily: 'Fraunces', fontSize: '88px', fontWeight: 500, lineHeight: 0.98, letterSpacing: '-3px' },
+                  children: 'Useful software. Thoughtful consulting.',
                 },
               },
               {
                 type: 'div',
                 props: {
-                  style: { maxWidth: '900px', color: '#4f5d54', fontSize: '25px', lineHeight: 1.45 },
-                  children: 'Core Langflow maintainer at IBM · Creator of Verity and Aeroza',
+                  style: { maxWidth: '900px', color: '#4b5563', fontSize: '25px', lineHeight: 1.45 },
+                  children: 'JEStats co-founder · Software engineer · Statistician',
                 },
               },
             ],
@@ -84,15 +84,15 @@ export const GET: APIRoute = async () => {
               display: 'flex',
               justifyContent: 'space-between',
               paddingTop: '20px',
-              borderTop: '1px solid #b9c0b8',
-              color: '#6b776f',
-              fontFamily: 'IBM Plex Mono',
+              borderTop: '1px solid #cbc5ba',
+              color: '#626b78',
+              fontFamily: 'Fragment Mono',
               fontSize: '14px',
               letterSpacing: '1px',
             },
             children: [
               { type: 'div', props: { children: 'ERICHARE.ME' } },
-              { type: 'div', props: { children: 'AGENTS · DATA · EVIDENCE' } },
+              { type: 'div', props: { children: 'JESTATS.IO · DATA · WEBSITES · AI' } },
             ],
           },
         },
@@ -104,10 +104,10 @@ export const GET: APIRoute = async () => {
     width: 1200,
     height: 630,
     fonts: [
-      { name: 'Newsreader', data: newsreader500, weight: 500, style: 'normal' },
-      { name: 'IBM Plex Sans', data: plexSans400, weight: 400, style: 'normal' },
-      { name: 'IBM Plex Sans', data: plexSans500, weight: 500, style: 'normal' },
-      { name: 'IBM Plex Mono', data: plexMono500, weight: 500, style: 'normal' },
+      { name: 'Fraunces', data: fraunces500, weight: 500, style: 'normal' },
+      { name: 'Plus Jakarta Sans', data: jakarta400, weight: 400, style: 'normal' },
+      { name: 'Plus Jakarta Sans', data: jakarta500, weight: 500, style: 'normal' },
+      { name: 'Fragment Mono', data: fragment400, weight: 400, style: 'normal' },
     ],
   });
 

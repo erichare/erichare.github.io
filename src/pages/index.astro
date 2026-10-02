@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import StudioSoftware from '../components/StudioSoftware.astro';
 import { SITE } from '../lib/site';
 
 const projects = await getCollection('projects');
@@ -73,19 +74,66 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         aria-hidden="true"
       />
       <div class="home-hero__copy">
-        <p class="eyebrow">Software engineer · statistician</p>
-        <h1>I build tools for decisions you can inspect.</h1>
+        <p class="eyebrow">Eric Hare · JEStats</p>
+        <h1>Useful software.<br /><span>Thoughtful consulting.</span></h1>
         <p class="home-hero__lede">
-          Software engineer and statistician. Core Langflow maintainer at IBM; creator of Verity and Aeroza.
+          I’m a software engineer and statistician, and I run JEStats with my partner.
+          We help businesses with data, websites, design, and practical AI, and build
+          open tools for the developers behind them.
         </p>
         <div class="home-hero__actions">
-          <a href="#selected-work" class="button button-primary">
-            Explore selected work <Icon name="ph:arrow-right" width="16" />
+          <a href={SITE.studio.url} class="button button-primary">
+            Visit JEStats <Icon name="ph:arrow-up-right" width="16" />
           </a>
-          <a href="/blog" class="button button-secondary">Read the writing</a>
+          <a href="#studio-software" class="button button-secondary">Explore our software <Icon name="ph:arrow-down" width="16" /></a>
         </div>
+        <p class="home-hero__note">Based in Lake Stevens, Washington. Working with businesses near and far.</p>
       </div>
     </div>
+  </section>
+
+  <section id="jestats" class="container-wide home-studio" aria-labelledby="studio-title">
+    <div class="home-studio__copy">
+      <p class="eyebrow">J&amp;E Consulting · JEStats</p>
+      <h2 id="studio-title">Bring us the problem.<br />We’ll help you build the solution.</h2>
+      <p>
+        JEStats is the studio my partner and I run from Lake Stevens.
+        We bring statistics, software engineering, design, and marketing together
+        to make useful things for real businesses.
+      </p>
+      <p>From a clearer picture of your sales to a website you can depend on, you work directly with the people doing the work.</p>
+      <a href={SITE.studio.contact} class="button button-primary">Talk to us about a project <Icon name="ph:arrow-up-right" width="16" /></a>
+    </div>
+    <div class="studio-services">
+      <article>
+        <Icon name="ph:chart-bar" width="24" />
+        <div><h3>Data &amp; analysis</h3><p>Turn spreadsheets, sales reports, and operational data into decisions you can act on.</p></div>
+      </article>
+      <article>
+        <Icon name="ph:browser" width="24" />
+        <div><h3>Websites &amp; care</h3><p>WordPress builds, repairs, and ongoing management for businesses that have other things to do.</p></div>
+      </article>
+      <article>
+        <Icon name="ph:palette" width="24" />
+        <div><h3>Print &amp; social</h3><p>Business cards, brochures, and social graphics that feel like your business.</p></div>
+      </article>
+      <article>
+        <Icon name="ph:flow-arrow" width="24" />
+        <div><h3>Practical AI</h3><p>Custom tools, assistants, and integrations built around the way you actually work.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="studio-software" class="container-wide home-software" aria-labelledby="software-title">
+    <div class="home-section-heading home-section-heading--row">
+      <div>
+        <p class="eyebrow">JEStats software</p>
+        <h2 id="software-title">Better tools for the work behind the work.</h2>
+        <p class="home-section-lede">Open developer tools for connecting agents to data, finding the right skills, and making complex systems easier to work with.</p>
+      </div>
+      <a href="/projects" class="feature-project__link">All work <Icon name="ph:arrow-right" width="15" /></a>
+    </div>
+    <StudioSoftware />
   </section>
 
   <section class="container-wide proof-strip" aria-label="A short professional profile">
@@ -102,14 +150,14 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       <p>PhD in Statistics &amp; Computer Science. Forensic methods and reproducible analysis.</p>
     </div>
     <div>
-      <p class="eyebrow">Location &amp; time</p>
-      <p>Lake Stevens, Washington. Working across software, data, and decisions.</p>
+      <p class="eyebrow">At JEStats</p>
+      <p>Consulting and open developer tools. Built with my partner in Lake Stevens.</p>
     </div>
   </section>
 
   <section id="selected-work" class="container-wide home-work">
     <div class="home-section-heading">
-      <p class="eyebrow">Selected work</p>
+      <p class="eyebrow">Beyond the studio</p>
       <h2>Systems built to hold up under scrutiny.</h2>
     </div>
 
@@ -192,9 +240,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
   <section class="container-wide home-contact">
     <div>
-      <p class="eyebrow">Let’s talk</p>
-      <h2>Let’s build things that stand up to scrutiny.</h2>
-      <p>I’m always up for a conversation about AI agents, developer platforms, statistical graphics, or forensic statistics.</p>
+      <p class="eyebrow">Let’s build something useful</p>
+      <h2>Have a project in mind?</h2>
+      <p>For data, websites, design, or AI consulting, reach out through JEStats. I’m also happy to talk about open-source tools and research.</p>
+      <a href={SITE.studio.contact} class="button button-primary">Start a conversation at JEStats <Icon name="ph:arrow-up-right" width="16" /></a>
     </div>
     <div class="home-contact__links">
       <a href={`mailto:${SITE.email}`}><Icon name="ph:envelope-simple" width="18" /> {SITE.email}</a>
@@ -213,26 +262,38 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .home-hero__inner {
     position: relative;
     display: grid;
-    min-height: 38rem;
+    min-height: 35rem;
     align-items: center;
-    padding-block: 6.5rem 5.5rem;
+    padding-block: 5rem 4rem;
   }
 
   .home-hero__copy {
     position: relative;
     z-index: 1;
-    max-width: 49rem;
+    max-width: 58rem;
   }
 
   .home-hero h1 {
-    max-width: 48rem;
+    max-width: 58rem;
     margin-top: 1.2rem;
-    font-size: clamp(4rem, 8vw, 7rem);
-    line-height: 0.92;
+    font-size: clamp(3.4rem, 6.6vw, 5.75rem);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+  }
+
+  .home-hero h1 span {
+    color: var(--color-accent);
+  }
+
+  .home-hero__note {
+    margin-top: 1.5rem;
+    color: var(--color-fg-subtle);
+    font-size: 0.8rem;
+    line-height: 1.7;
   }
 
   .home-hero__lede {
-    max-width: 39rem;
+    max-width: 43rem;
     margin-top: 1.65rem;
     color: var(--color-fg-muted);
     font-size: clamp(1.05rem, 2vw, 1.28rem);
@@ -254,14 +315,15 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     height: 100%;
     object-fit: cover;
     object-position: right center;
-    opacity: 0.75;
+    opacity: 0.18;
+    filter: grayscale(1);
     mix-blend-mode: multiply;
     pointer-events: none;
   }
 
   :global(:root[data-theme='dark']) .home-hero__art {
-    filter: invert(1);
-    opacity: 0.14;
+    filter: grayscale(1) invert(1);
+    opacity: 0.1;
     mix-blend-mode: screen;
   }
 
@@ -282,8 +344,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
   .home-work,
   .supporting-work,
-  .home-writing {
-    padding-block: 4.75rem;
+  .home-writing,
+  .home-software {
+    padding-block: 3.75rem;
     border-bottom: 1px solid var(--color-border-muted);
   }
 
@@ -299,7 +362,71 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .home-section-heading h2 {
     max-width: 45rem;
     font-size: clamp(2.4rem, 5vw, 4.2rem);
-    line-height: 0.98;
+    line-height: 1.12;
+  }
+
+  .home-studio {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4rem;
+    padding-block: 4rem;
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .home-studio h2 {
+    margin-top: 1rem;
+    font-size: clamp(2.1rem, 3.5vw, 3rem);
+    line-height: 1.15;
+  }
+
+  .home-studio__copy > p:not(.eyebrow),
+  .home-section-lede {
+    max-width: 43rem;
+    margin-top: 1rem;
+    color: var(--color-fg-muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .home-studio__copy .button {
+    margin-top: 1.5rem;
+  }
+
+  .studio-services {
+    display: grid;
+    border: 1px solid var(--color-border-muted);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    padding-inline: 1.5rem;
+  }
+
+  .studio-services article {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+    padding-block: 1.25rem;
+  }
+
+  .studio-services article + article {
+    border-top: 1px solid var(--color-border-muted);
+  }
+
+  .studio-services :global(svg) {
+    color: var(--color-accent);
+  }
+
+  .studio-services h3 {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .studio-services p {
+    margin-top: 0.45rem;
+    color: var(--color-fg-muted);
+    font-size: 0.88rem;
+    line-height: 1.65;
   }
 
   .feature-project {
@@ -343,7 +470,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .feature-project__copy > p:not(.eyebrow):not(.feature-project__tagline) {
     margin-top: 0.8rem;
     color: var(--color-fg-muted);
-    font-size: 0.83rem;
+    font-size: 0.95rem;
     line-height: 1.6;
   }
 
@@ -369,6 +496,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     aspect-ratio: 1.95 / 1;
     object-fit: cover;
     border: 1px solid var(--color-border-muted);
+    border-radius: var(--radius-md);
     background: var(--color-bg-elev);
   }
 
@@ -376,7 +504,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     margin-top: 0.5rem;
     color: var(--color-fg-subtle);
     font-family: var(--font-mono);
-    font-size: 0.58rem;
+    font-size: 0.73rem;
     line-height: 1.45;
   }
 
@@ -422,7 +550,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .supporting-project__image.is-logo {
     display: grid;
     place-items: center;
-    background: #101714;
+    background: #111827;
   }
 
   .supporting-project__image.is-logo img {
@@ -438,7 +566,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .supporting-project p {
     margin-top: 0.45rem;
     color: var(--color-fg-muted);
-    font-size: 0.78rem;
+    font-size: 0.9rem;
     line-height: 1.55;
   }
 
@@ -489,7 +617,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     max-width: 48rem;
     margin-top: 0.3rem;
     color: var(--color-fg-muted);
-    font-size: 0.77rem;
+    font-size: 0.9rem;
     line-height: 1.5;
   }
 
@@ -501,7 +629,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     text-align: right;
     color: var(--color-fg-subtle);
     font-family: var(--font-mono);
-    font-size: 0.58rem;
+    font-size: 0.72rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
@@ -514,6 +642,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     margin-top: 4.75rem;
     padding: 2.75rem 3rem;
     border-left: 4px solid var(--color-signal);
+    border-radius: var(--radius-md);
     background: var(--color-accent-soft);
   }
 
@@ -537,6 +666,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     gap: 0.75rem;
   }
 
+  .home-contact .button {
+    margin-top: 1.5rem;
+  }
+
   .home-contact__links a {
     display: flex;
     min-height: 2.75rem;
@@ -552,10 +685,13 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   }
 
   @media (max-width: 900px) {
+    .home-studio {
+      gap: 2rem;
+    }
     .home-hero__art {
       right: -22rem;
       width: 58rem;
-      opacity: 0.45;
+      opacity: 0.1;
     }
 
     .proof-strip {
@@ -587,18 +723,24 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     }
 
     .home-hero h1 {
-      font-size: clamp(3.4rem, 17vw, 5.2rem);
+      font-size: clamp(2.5rem, 10vw, 3.8rem);
     }
 
     .home-hero__art {
       right: -25rem;
       width: 50rem;
-      opacity: 0.22;
+      opacity: 0.08;
     }
 
     .proof-strip {
       grid-template-columns: 1fr;
       gap: 1.5rem;
+    }
+
+    .home-studio {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding-block: 3rem;
     }
 
     .home-section-heading,

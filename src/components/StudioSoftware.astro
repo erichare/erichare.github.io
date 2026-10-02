@@ -1,0 +1,124 @@
+---
+import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+
+const definitions = [
+  { id: 'astra-db-plugin', kind: 'Database tools', icon: 'ph:database' },
+  { id: 'skillroute', kind: 'Agent skills', icon: 'ph:signpost' },
+  { id: 'codebase-mentor', kind: 'Codebase understanding', icon: 'ph:book-open-text' },
+];
+
+const projects = await getCollection('projects');
+const products = definitions.flatMap((definition) => {
+  const project = projects.find((entry) => entry.id === definition.id);
+  const repository = project?.data.links.find((link) => link.label === 'Repository');
+  return project ? [{ ...definition, project, repository }] : [];
+});
+---
+
+<div class="studio-software">
+  {products.map(({ kind, icon, project, repository }) => (
+    <article class="software-card">
+      <div class="software-card__top">
+        <span class="software-card__icon" aria-hidden="true">
+          <Icon name={icon} width="26" />
+        </span>
+        <p class="eyebrow">{kind}</p>
+      </div>
+      <h3><a href={`/projects/${project.id}`}>{project.data.title}</a></h3>
+      <p class="software-card__summary">{project.data.summary}</p>
+      <div class="software-card__links">
+        <a href={`/projects/${project.id}`}>
+          Explore {project.data.title} <Icon name="ph:arrow-right" width="16" />
+        </a>
+        {repository && (
+          <a
+            href={repository.href}
+            aria-label={`${project.data.title} on GitHub`}
+          >
+            GitHub <Icon name="ph:arrow-up-right" width="16" />
+          </a>
+        )}
+      </div>
+    </article>
+  ))}
+</div>
+
+<style>
+  .studio-software {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    gap: 1.25rem;
+  }
+
+  .software-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    padding: clamp(1.4rem, 3vw, 2rem);
+    border: 1px solid var(--color-border-muted);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
+    transition: border-color 160ms ease;
+  }
+
+  .software-card:hover {
+    border-color: var(--color-accent);
+  }
+
+  .software-card__top {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .software-card__icon {
+    display: grid;
+    flex: none;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border-radius: var(--radius-lg);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+  }
+
+  .software-card h3 {
+    font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+    line-height: 1.15;
+  }
+
+  .software-card h3 a:hover {
+    color: var(--color-accent);
+  }
+
+  .software-card__summary {
+    margin-top: 0.9rem;
+    color: var(--color-fg-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .software-card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.25rem;
+    margin-top: auto;
+    padding-top: 1.75rem;
+  }
+
+  .software-card__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .software-card__links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+</style>

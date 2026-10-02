@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Section from '../components/Section.astro';
 
-const lastUpdated = new Date('2026-09-23');
+const lastUpdated = new Date('2026-10-02T00:00:00Z');
 ---
 
 <BaseLayout title="Now" description="What Eric Hare is working on right now, updated periodically.">
@@ -16,8 +16,33 @@ const lastUpdated = new Date('2026-09-23');
   <Section>
     <div class="prose-styled">
       <p>
-        <em>Updated {lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} from Lake Stevens, WA.</em>
+        <em>Updated {lastUpdated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })} from Lake Stevens, WA.</em>
       </p>
+
+      <h2>JEStats</h2>
+      <ul>
+        <li>
+          <strong>Consulting and creative work.</strong> Growing
+          <a href="https://jestats.io/">JEStats (J&amp;E Consulting)</a>, the studio I run with my
+          partner in Lake Stevens. We help with data analysis, website design and management,
+          print and social graphics, and AI integrations. Projects start with a written scope.
+        </li>
+        <li>
+          <strong>Astra DB Plugin.</strong> Building a community integration that helps coding
+          agents inspect live schemas, search data, and work with Astra DB through guarded tools.
+          <a href="/projects/astra-db-plugin">Project notes</a>.
+        </li>
+        <li>
+          <strong>SkillRoute.</strong> Helping agents find relevant skills with ranked matches,
+          confidence scores, and source evidence. A local-first tool for skill discovery and routing.
+          <a href="/projects/skillroute">Project notes</a>.
+        </li>
+        <li>
+          <strong>Codebase Mentor.</strong> Helping developers understand unfamiliar repositories
+          with architecture answers, change plans, and onboarding guides grounded in source code.
+          <a href="/projects/codebase-mentor">Project notes</a>.
+        </li>
+      </ul>
 
       <h2>Work</h2>
       <ul>
@@ -62,16 +87,6 @@ const lastUpdated = new Date('2026-09-23');
         </li>
       </ul>
 
-      <h2>Freelance</h2>
-      <ul>
-        <li>
-          <strong>J&amp;E Stats.</strong> Taking on small projects through
-          <a href="https://jestats.io">J&amp;E Stats</a>, the studio I run with my partner in Lake
-          Stevens: statistical analysis and review, spreadsheet and data analysis, and WordPress
-          builds and fixes. All async, with a written scope up front.
-        </li>
-      </ul>
-
       <h2>Reading & learning</h2>
       <ul>
         <li>Papers on agent tool-use evaluation and MCP security boundaries.</li>
@@ -81,7 +96,7 @@ const lastUpdated = new Date('2026-09-23');
       <h2>Not doing</h2>
       <ul>
         <li>Conference travel (remote-first for 2026).</li>
-        <li>Meeting-heavy engagements. Freelance work stays async so the day job at IBM keeps my full attention.</li>
+        <li>Unscoped projects. A written scope helps me give studio work and the day job at IBM the attention they need.</li>
       </ul>
     </div>
   </Section>
