@@ -22,10 +22,11 @@ const isActive = (href: string) => {
       {NAV.map(({ href, label }) => (
         <a
           href={href}
-          class:list={['site-nav__link', isActive(href) && 'is-active']}
+          class:list={['site-nav__link', label === 'JEStats' && 'is-studio', isActive(href) && 'is-active']}
           aria-current={isCurrentPage(href) ? 'page' : undefined}
         >
           {label}
+          {label === 'JEStats' && <Icon name="ph:arrow-up-right" width="13" />}
         </a>
       ))}
     </nav>
@@ -81,7 +82,7 @@ const isActive = (href: string) => {
     };
 
     setOpen(false);
-    const desktopNav = window.matchMedia('(min-width: 761px)');
+    const desktopNav = window.matchMedia('(min-width: 901px)');
     desktopNav.addEventListener('change', (event) => {
       if (event.matches) setOpen(false);
     });

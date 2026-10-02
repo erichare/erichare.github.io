@@ -2,7 +2,12 @@ export const SITE = {
   name: 'Eric Hare',
   title: 'Eric Hare — Software Engineer & Statistician',
   description:
-    'Software engineer and statistician. Core Langflow maintainer at IBM; creator of Verity and Aeroza. I build tools for decisions you can inspect.',
+    'Software engineer, statistician, and JEStats co-founder. Practical consulting and open developer tools for data, websites, and AI. Core Langflow maintainer at IBM.',
+  studio: {
+    name: 'JEStats',
+    url: 'https://jestats.io/',
+    contact: 'https://jestats.io/#contact-form',
+  },
   url: 'https://erichare.me',
   author: 'Eric Hare',
   email: 'ericrhare@gmail.com',
@@ -19,6 +24,7 @@ export const SITE = {
 } as const;
 
 export const NAV = [
+  { href: 'https://jestats.io/', label: 'JEStats' },
   { href: '/projects', label: 'Work' },
   { href: '/phd', label: 'Research' },
   { href: '/blog', label: 'Writing' },

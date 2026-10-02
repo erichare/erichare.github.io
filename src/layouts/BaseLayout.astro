@@ -1,11 +1,12 @@
 ---
 import '../styles/global.css';
-import '@fontsource/newsreader/latin-400.css';
-import '@fontsource/newsreader/latin-500.css';
-import '@fontsource-variable/ibm-plex-sans';
-import '@fontsource/ibm-plex-mono/latin-400.css';
-import '@fontsource/ibm-plex-mono/latin-500.css';
-import newsreaderLatin500 from '@fontsource/newsreader/files/newsreader-latin-500-normal.woff2?url';
+import '@fontsource/plus-jakarta-sans/latin-400.css';
+import '@fontsource/plus-jakarta-sans/latin-500.css';
+import '@fontsource/plus-jakarta-sans/latin-600.css';
+import '@fontsource/plus-jakarta-sans/latin-700.css';
+import '@fontsource/fraunces/latin-500.css';
+import '@fontsource/fragment-mono/latin-400.css';
+import frauncesLatin500 from '@fontsource/fraunces/files/fraunces-latin-500-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
@@ -31,7 +32,7 @@ const props = Astro.props;
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="alternate" type="application/rss+xml" title="Eric Hare — Writing" href="/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="preload" href={newsreaderLatin500} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={frauncesLatin500} as="font" type="font/woff2" crossorigin="anonymous" />
     <meta name="color-scheme" content="light dark" />
     <script is:inline>
       (function () {

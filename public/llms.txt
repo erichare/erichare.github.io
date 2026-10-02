@@ -1,12 +1,19 @@
 # Eric Hare
 
-> Software engineer and statistician. Core Langflow maintainer at IBM; creator of Verity and Aeroza. I build open tools for decisions people can inspect. PhD in Statistics and Computer Science from Iowa State University (2017). Based in Lake Stevens, WA.
+> Eric Hare runs JEStats (J&E Consulting) with his partner in Lake Stevens, WA. The studio provides data analysis, website design and management, print and social graphics, and AI integrations, and builds open developer tools. Eric is also a software engineer and statistician, a core Langflow maintainer at IBM, and creator of Verity and Aeroza. PhD in Statistics and Computer Science from Iowa State University (2017).
+
+## JEStats
+
+- [JEStats](https://jestats.io/): consulting, creative services, and developer tools from the studio Eric runs with his partner.
+- [Astra DB plugin](https://erichare.me/projects/astra-db-plugin): unofficial community integration for coding agents, with live schema inspection, vector and hybrid search, and guarded database tools.
+- [SkillRoute](https://erichare.me/projects/skillroute): local-first skill discovery and routing with ranked matches, confidence scores, source evidence, MCP, and Skill Atlas.
+- [Codebase Mentor](https://erichare.me/projects/codebase-mentor) — JEStats source-grounded architecture answers, change plans, and onboarding guides for unfamiliar repositories. Repository: https://github.com/jestatsio/codebase-mentor
 
 ## Primary pages
 
-- [Home](https://erichare.me/): positioning, selected work, writing, and contact.
+- [Home](https://erichare.me/): JEStats, developer tools, selected work, writing, and contact.
 - [About](https://erichare.me/about): biography and career timeline.
-- [Work](https://erichare.me/projects): open-source systems, product engineering, and research software.
+- [Work](https://erichare.me/projects): JEStats developer tools, open-source systems, product engineering, and research software.
 - [Research](https://erichare.me/phd): forensic surface comparison, PhD methods, software, and publications.
 - [Publications](https://erichare.me/publications): peer-reviewed papers and preprints.
 - [CV](https://erichare.me/cv): full curriculum vitae. Markdown source at https://github.com/erichare/erichare.github.io/blob/main/cv.md
@@ -26,6 +33,7 @@
 
 ## Contact
 
+- JEStats: https://jestats.io/
 - Personal email: ericrhare@gmail.com
 - Work email: eric.hare@ibm.com
 - GitHub: https://github.com/erichare

@@ -5,13 +5,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import Section from '../../components/Section.astro';
+import StudioSoftware from '../../components/StudioSoftware.astro';
 
 const all = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const studioIds = new Set(['astra-db-plugin', 'skillroute', 'codebase-mentor']);
 const flagshipIds = new Set(['langflow', 'verity', 'aeroza']);
 const contributionIds = new Set(['astra-data-api', 'ai-workbench']);
 const flagship = all.filter((project) => flagshipIds.has(project.id));
 const contributions = all.filter((project) => contributionIds.has(project.id));
-const archive = all.filter((project) => !flagshipIds.has(project.id) && !contributionIds.has(project.id));
+const archive = all.filter((project) => !studioIds.has(project.id) && !flagshipIds.has(project.id) && !contributionIds.has(project.id));
 
 const responsiveProjectImages = new Map([
   ['langflow', '/img/home/langflow-flow-700.webp 700w, /img/home/langflow-flow-800.webp 800w, /img/home/langflow-flow.webp 1600w'],
@@ -23,12 +25,17 @@ const responsiveProjectImages = new Map([
 const projectImageSizes = '(max-width: 720px) calc(100vw - 2rem), 38rem';
 ---
 
-<BaseLayout title="Work" description="Selected open-source systems, product engineering, and research software by Eric Hare.">
+<BaseLayout title="Work" description="JEStats developer tools, open-source platforms, and research software by Eric Hare.">
   <PageHeader
     eyebrow="Work"
-    title="Tools for agents, evidence, and the systems between them."
-    lede="A selected portfolio of open-source platforms, research software, and the production engineering required to keep them dependable."
+    title="Software from JEStats. Systems built to last."
+    lede="Developer tools from my consulting practice, alongside open-source platforms, product engineering, and statistical research."
   />
+
+  <Section id="jestats-software" eyebrow="JEStats software" title="Tools for better work with AI." subtitle="Open-source tools we develop at JEStats to help coding agents work with real data, choose useful skills, and understand unfamiliar code.">
+    <StudioSoftware />
+    <a href="https://jestats.io" class="studio-link">Explore JEStats <Icon name="ph:arrow-up-right" width="17" /></a>
+  </Section>
 
   <Section eyebrow="Flagship work" title="Three threads, one point of view." subtitle="Make complex systems inspectable. Measure what matters. Leave the implementation open enough to challenge.">
     <div class="project-list">
@@ -106,6 +113,22 @@ const projectImageSizes = '(max-width: 720px) calc(100vw - 2rem), 38rem';
 <style>
   .project-list {
     display: grid;
+    gap: 1.5rem;
+  }
+
+  .studio-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1.5rem;
+    color: var(--color-accent);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .studio-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
   }
 
   .project-list--compact {
@@ -113,7 +136,7 @@ const projectImageSizes = '(max-width: 720px) calc(100vw - 2rem), 38rem';
     gap: 1.5rem;
   }
 
-  .project-list--compact :global(.project-card) {
+  .project-list--compact :global(.project-card.has-image) {
     grid-template-columns: 1fr;
   }
 
@@ -124,27 +147,29 @@ const projectImageSizes = '(max-width: 720px) calc(100vw - 2rem), 38rem';
   .research-callout {
     display: grid;
     grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.28fr);
-    border-top: 1px solid var(--color-border-muted);
-    border-bottom: 1px solid var(--color-border-muted);
+    overflow: hidden;
+    border: 1px solid var(--color-border-muted);
+    border-radius: var(--radius-xl);
+    background: var(--color-surface);
   }
 
   .research-callout > div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 2rem 2rem 2rem 0;
+    padding: 2rem;
   }
 
   .research-callout h3 {
     margin-top: 0.8rem;
-    font-size: clamp(2rem, 4vw, 3.3rem);
-    line-height: 1;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    line-height: 1.15;
   }
 
   .research-callout p:not(.eyebrow) {
     margin-top: 1rem;
     color: var(--color-fg-muted);
-    font-size: 0.88rem;
+    font-size: 1rem;
     line-height: 1.65;
   }
 
@@ -155,7 +180,7 @@ const projectImageSizes = '(max-width: 720px) calc(100vw - 2rem), 38rem';
     margin-top: auto;
     padding-top: 1.5rem;
     color: var(--color-accent);
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: 550;
   }
 
@@ -191,7 +216,7 @@ const projectImageSizes = '(max-width: 720px) calc(100vw - 2rem), 38rem';
   .archive-list > a > p {
     margin-top: 0.25rem;
     color: var(--color-fg-muted);
-    font-size: 0.78rem;
+    font-size: 0.9rem;
     line-height: 1.55;
   }
 
@@ -202,10 +227,6 @@ const projectImageSizes = '(max-width: 720px) calc(100vw - 2rem), 38rem';
 
     .research-callout {
       grid-template-columns: 1fr;
-    }
-
-    .research-callout > div {
-      padding-right: 0;
     }
 
     .research-callout img {
