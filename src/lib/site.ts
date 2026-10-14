@@ -26,6 +26,7 @@ export const SITE = {
 export const NAV = [
   { href: 'https://jestats.io/', label: 'JEStats' },
   { href: '/projects', label: 'Work' },
+  { href: '/ai-plugins', label: 'AI plugins' },
   { href: '/phd', label: 'Research' },
   { href: '/blog', label: 'Writing' },
   { href: '/about', label: 'About' },
